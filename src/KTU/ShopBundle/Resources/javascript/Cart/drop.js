@@ -5,7 +5,7 @@ function setCartCount(count){
 
 function indicateProgress(element, check){
 
-    if( check == true){
+    if( check == true ){
         $(".actionsButton").attr("disabled", "disabled").css("opacity","0.3");
         $(element).html("<div class='imgWrap'><img src='/krautuve/web/images/loading.gif'></div>");
         $(element).siblings("#title, #price").css({"opacity":"0.5"});
@@ -17,9 +17,8 @@ function indicateProgress(element, check){
 }
 
 
-function dropItem(url, element, src){
+function dropItem(url, element){
     var element = $(element).parent();
-    var txt;
     var r = confirm("Ar tikrai norite išmesti šią prekę iš krepšelio?");
     if (r == true) {
 
