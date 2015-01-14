@@ -5,7 +5,7 @@
             <th id="title" class="col-lg-6">Pavadinimas</th>
             <th id="quantity" class="col-lg-1">Kiekis</th>
             <th id="price" class="col-lg-3">Kaina</th>
-            <th id="actions" class="actions col-lg-2" ><button class="actionsButton" onclick="clearCart('{{ app.request.attributes.get('_route') }}' + '/clear');">Išvalyti</button></th>
+            <th id="actions" class="actions col-lg-2" ><button class="actionsButton" onclick="clearCart();">Išvalyti</button></th>
         </tr>
 
         {% for cartItem in cartItems %}
