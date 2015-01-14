@@ -17,11 +17,9 @@ function recalculatePricesTotal(id, url){
             data = parseFloat(data);
 
             var newEU = data;
-            var newLT = newEU * 3.4528;
             newEU = format2(newEU);
-            newLT = format2(newLT);
 
-            $(thisPriceField).html( newLT + " Lt / " + "<span>" + newEU + " € </span>").promise().done(function(){
+            $(thisPriceField).html( newEU + " €").promise().done(function(){
                showField(thisPriceField, true);
             });
         },

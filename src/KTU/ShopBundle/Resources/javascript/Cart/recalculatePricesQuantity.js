@@ -1,6 +1,6 @@
 
-function showNewPrices(field, eu, lt){
-    $(field).html( lt + " Lt / " + "<span>" + eu + " € </span>").promise().done(function(){
+function showNewPrices(field, eu){
+    $(field).html( eu + " €").promise().done(function(){
         showField(field, true);
     });
 }
@@ -42,11 +42,9 @@ function recalculatePricesQuantity(element, id, url){
 
             if( data > -1 ){
                 var newEU = data;
-                var newLT = newEU * 3.4528;
                 newEU = format2(newEU);
-                newLT = format2(newLT);
 
-                showNewPrices(thisPriceField, newEU, newLT);
+                showNewPrices(thisPriceField, newEU);
             }
             else{
                 location.reload();

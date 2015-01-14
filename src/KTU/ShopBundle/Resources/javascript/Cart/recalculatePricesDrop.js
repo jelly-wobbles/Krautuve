@@ -8,10 +8,8 @@ function recalculatePricesDrop(amount){
 
 
     var newEU = oldEU - amount;
-    var newLT = newEU * 3.4528;
         newEU = newEU.toFixed(2).toString().replace(".", ",");
-        newLT = newLT.toFixed(2).toString().replace(".", ",");
 
 
-    $(".totalPrices").children("#price").html( newLT + " Lt / " + "<span>" + newEU + " € </span>");
+    $(".totalPrices").children("#price").html( newEU + " €");
 }
