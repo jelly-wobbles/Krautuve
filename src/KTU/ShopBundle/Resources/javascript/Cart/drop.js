@@ -18,14 +18,14 @@ function indicateProgress(element, check){
 
 
 function dropItem(url, element, src){
-    var element = $(element).parents("#actions");
+    var element = $(element).parent();
     var txt;
     var r = confirm("Ar tikrai norite išmesti šią prekę iš krepšelio?");
     if (r == true) {
 
         indicateProgress(element, true);
 
-        var price = $(element).siblings("#price").children("span").html();
+        var price = $(element).siblings("#price").html();
         price = parseFloat( price.replace(',', '.') );
 
         $.ajax({

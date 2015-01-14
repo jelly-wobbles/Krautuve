@@ -12,7 +12,7 @@
             <tr class="itemContainer">
                 <td id="title" class="col-lg-6"><a href="{{ path('shop_itemReview' ,{ 'itemID' : cartItem.items.id }) }}" target="_blank">{{ cartItem.items.itemsdetails.name }}</a></td>
                 <td id="quantity" class="col-lg-1"><input title="Keisti kiekį" class="quantityInput" type="text" name="name" value="{{ cartItem.quantity }}" onblur="quantityChange({{ cartItem.items.id }}, this);"/></td>
-                <td id="price" class="col-lg-3"><span>{{ (cartItem.items.itemsdetails.price * cartItem.quantity)|number_format(2, ',', '') }} €</span></td>
+                <td id="price" class="col-lg-3">{{ (cartItem.items.itemsdetails.price * cartItem.quantity)|number_format(2, ',', '') }} €</td>
                 <td id="actions" class="actions col-lg-2" ><button class="actionsButton" onclick="dropItem('{{ path('shop_cart_drop' ,{ 'id' : app.user.id, 'idItem': cartItem.id }) }}', this, '{{ asset('images/loading.gif') }}')">Išmesti</button></td>
             </tr>
         {% endfor %}
@@ -20,7 +20,7 @@
         <tr class="totalPrices">
             <td id="quantity" class="col-lg-6"></td>
             <td id="comment" class="col-lg-1">Viso:</td>
-            <td id="price" class="col-lg-3"><span>{{ totalPriceEU|number_format(2, ',', '') }} €</span></td>
+            <td id="price" class="col-lg-3">{{ totalPriceEU|number_format(2, ',', '') }} €</td>
             <td class="col-lg-2 buyButtonWrap actions">
                 <button id="buyButton" class="actionsButton" onclick="location.href = '{{ path('shop_cart_order', { 'id': app.user.id }) }}'">Pirkti</button>
             </td>

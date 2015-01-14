@@ -2,7 +2,7 @@
 
 function recalculatePricesDrop(amount){
 
-    var oldEU = $(".totalPrices").children("#price").children("span").html();
+    var oldEU = $(".totalPrices").children("#price").html();
         oldEU = parseFloat( oldEU.replace(',', '.') );
         oldEU = oldEU.toFixed(2);
 
