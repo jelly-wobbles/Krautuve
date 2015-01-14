@@ -12,8 +12,9 @@ function disableActions(element, check){
 }
 
 
-function quantityChange(id, element, url){
+function quantityChange(id, element){
 
+    var url = window.location.href + '/quantityChange';
     var url2 = url + '/recalculatePrices';
     var url3 = url + '/recalculateTotalPrice';
 
