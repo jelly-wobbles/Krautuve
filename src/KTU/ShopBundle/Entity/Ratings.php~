@@ -1,0 +1,52 @@
+<?php
+
+namespace KTU\ShopBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Ratings
+ *
+ * @ORM\Table(name="Ratings", indexes={@ORM\Index(name="fk_Ratings_Users1_idx", columns={"Users_id"}), @ORM\Index(name="fk_Ratings_ItemsDetails1_idx", columns={"ItemsDetails_id"})})
+ * @ORM\Entity
+ */
+class Ratings
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="rating", type="integer", nullable=false)
+     */
+    private $rating;
+
+    /**
+     * @var \Users
+     *
+     * @ORM\ManyToOne(targetEntity="Users")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Users_id", referencedColumnName="id")
+     * })
+     */
+    private $users;
+
+    /**
+     * @var \Itemsdetails
+     *
+     * @ORM\ManyToOne(targetEntity="Itemsdetails")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ItemsDetails_id", referencedColumnName="id")
+     * })
+     */
+    private $itemsdetails;
+
+
+}

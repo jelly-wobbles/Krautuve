@@ -1,0 +1,111 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+
+framework:
+    #esi:             ~
+    #translator:      { fallback: "%locale%" }
+    secret:          "%secret%"
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enabled: true }
+    templating:
+        engines: ['twig']
+        #assets_version: SomeVersionScheme
+    default_locale:  lt
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    session:
+        # handler_id set to null will use default session handler from php.ini
+        handler_id:  ~
+    fragments:       ~
+    http_method_override: true
+    translator: ~
+
+# Twig Configuration
+twig:
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+
+# Assetic Configuration
+assetic:
+    debug:          "%kernel.debug%"
+    use_controller: false
+    bundles:        [ KTUShopBundle ]
+    #java: /usr/bin/java
+    filters:
+        lessphp:
+             file: %kernel.root_dir%/../vendor/oyejorge/less.php/lessc.inc.php
+             apply_to: "\.less$"
+             formatter: "compressed"
+             preserve_comments: false
+        cssrewrite: ~
+        #closure:
+        #    jar: "%kernel.root_dir%/Resources/java/compiler.jar"
+        #yui_js:
+        #     jar: "%kernel.root_dir%/Resources/java/yuicompressor.jar"
+
+braincrafted_bootstrap:
+    less_filter: lessphp
+    jquery_path: %kernel.root_dir%/../vendor/jquery/jquery/jquery-1.10.2.js
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   "%database_driver%"
+        host:     "%database_host%"
+        port:     "%database_port%"
+        dbname:   "%database_name%"
+        user:     "%database_user%"
+        password: "%database_password%"
+        charset:  UTF8
+        # if using pdo_sqlite as your database driver, add the path in parameters.yml
+        # e.g. database_path: "%kernel.root_dir%/data/data.db3"
+        # path:     "%database_path%"
+
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        auto_mapping: true
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: "%mailer_transport%"
+    host:      "%mailer_host%"
+    username:  "%mailer_user%"
+    password:  "%mailer_password%"
+    spool:     { type: memory }
+
+# FOS userbundle
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: KTU\ShopBundle\Entity\Users
+    from_email:
+        address:        noreply@krautuve.com
+        sender_name:    noreply
+    profile:
+        form:
+            type: shop_user_profile
+            validation_groups: [ ShopEdit, Profile ]
+    registration:
+        form:
+            type: shop_user_registration
+            validation_groups: [ ShopRegistration, Registration ]
+        confirmation:
+            enabled:    true
+            from_email:
+                address:        noreply@krautuve.com
+                sender_name:    Registracijos patvirtinimas
+    resetting:
+        email:
+            from_email:
+                address:        noreply@krautuve.com
+                sender_name:    Slaptažodžio keitimas
+
+evp_web_to_pay:
+    credentials:
+        project_id: %paysera_id%
+        sign_password: %paysera_password%

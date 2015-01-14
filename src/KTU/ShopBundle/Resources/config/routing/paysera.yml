@@ -1,0 +1,15 @@
+paysera.pay:
+    path:     /payments/paysera/pay
+    defaults: { _controller: KTUShopBundle:PayseraPayments:redirectToPayment }
+
+paysera.accept:
+    path:     /payments/paysera/accept
+    defaults: { _controller: KTUShopBundle:PayseraPayments:accept }
+
+paysera.cancel:
+    path:     /payments/paysera/cancel
+    defaults: { _controller: KTUShopBundle:PayseraPayments:cancel }
+
+paysera.callback:
+    path:     /payments/paysera/callback
+    defaults: { _controller: KTUShopBundle:PayseraPayments:callback }

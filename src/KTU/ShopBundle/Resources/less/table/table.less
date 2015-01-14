@@ -1,0 +1,101 @@
+/**************************************
+          INCLUDES
+***************************************/
+
+@import "../global.less";
+
+/**************************************
+          STYLES
+***************************************/
+
+@pag-bor-col-hov: #666;
+@pag-font-col-hov: darken(@pag-bor-col-hov, 10%);
+@pag-font-col: #777;
+@pag-font-col-dis: #ccc;
+
+.preloader-container{
+  margin-top:-1px;
+  position: relative;
+  .preloader{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -8px;
+    margin-left: -53px;
+  }
+  border-bottom: 1px solid #ddd;
+}
+
+.navigation-container{
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  margin: 3px;
+  float: left;
+  display: block;
+  width: 100%;
+  position: relative;
+  text-align: right;
+  padding: 10px 15px;
+
+  .pagination{
+    margin: 0px 30px 0 0;
+
+    li{
+      float: left;
+      display: block;
+      border-left: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+      border-top: 1px solid #ccc;
+      color: @pag-font-col;
+      padding: 5px 10px;
+      margin: 0px;
+
+      &:hover{
+        color: @pag-font-col-hov;
+        cursor: pointer;
+        font-weight: bold;
+      }
+    }
+
+    .active{
+      color: @pag-font-col-hov;
+      font-weight: bold;
+      text-shadow: 1px 1px #eee;
+      cursor: default !important;
+    }
+
+    .disabled{
+      color: @pag-font-col-dis !important;
+      font-weight: normal !important;
+      cursor: default !important;
+    }
+
+    & li:last-child{
+      border-right: 1px solid #ccc;
+    }
+
+  }
+
+  .pagination.disabled{
+    li{
+      color: @pag-font-col-dis !important;
+      font-weight: normal !important;
+      cursor: default !important;
+    }
+  }
+
+  .pagination-information{
+    padding-top: 5px;
+    float: left;
+    .objects-information{
+      color: #999;
+    }
+  }
+
+}
+

@@ -1,0 +1,10 @@
+<ol class="breadcrumb navigation-map">
+    {% for location in locations %}
+        {% if loop.last %}
+            <li class="active">{{ location.name }}</li>
+        {% else %}
+            <li><a href="{{ location.path }}">{{ location.name }}</a></li>
+        {% endif %}
+    {% endfor %}
+
+</ol>

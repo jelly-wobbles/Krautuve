@@ -1,0 +1,140 @@
+
+@order-font-col: #009900;
+
+.orderForm{
+  padding: 0;
+
+
+  .orderFormLabel{
+    text-align: center;
+    font-size: 26px;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid @order-font-col;
+  }
+
+  ul{
+    margin-bottom: 30px;
+
+    li{
+      font-size: 20px;
+      padding: 3px;
+      width: 100%;
+
+      span{
+        font-size: 24px;
+      }
+    }
+  }
+
+  #contactsFormLabel{
+    font-size: 22px;
+    margin-bottom: 15px;
+  }
+
+  .contactsForm{
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+
+
+    input, label{
+      width: 100%;
+      padding: 3px;
+    }
+
+    label{
+      font-size: 18px;
+      margin-top: 10px;
+    }
+
+    input{
+      text-indent: 10px;
+      margin: 0;
+      padding: 0;
+      height: 34px;
+      border-radius: 2px;
+      border: 2px solid lighten(@order-font-col, 55%);
+      background: #FAFAFA;
+    }
+
+    input:focus{
+      border-color: lighten(@order-font-col, 55%);
+      outline: 0;
+      outline: thin dotted \9;
+      /* IE6-9 */
+
+      -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px lighten(@order-font-col, 55%);
+      -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px lighten(@order-font-col, 55%);
+      box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px lighten(@order-font-col, 55%);
+    }
+
+    #email{
+      color: #999;
+    }
+
+    .reminder{
+      margin: 10px;
+      padding: 10px;
+      color: #777;
+      font-size: 15px;
+    }
+
+    .hasError{
+      border: 2px solid red;
+      color: red;
+      font-weight: bold;
+    }
+
+    .hasError:focus{
+      border-color: red;
+      outline: 0;
+      outline: thin dotted \9;
+      /* IE6-9 */
+
+      -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px red;
+      -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px red;
+      box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px red;
+      color: red;
+      font-weight: bold;
+    }
+
+    .confirmButton{
+      margin-left: auto;
+      margin-right: auto;
+      cursor: pointer;
+      width: 260px;
+      height: auto;
+      background: lighten(@order-font-col, 5%);
+      border-radius: 2px;
+      text-align: center;
+      font-size: 16px;
+      padding: 10px;
+      margin-top: 20px;
+      color: #fff;
+      letter-spacing: 1px;
+      border: 2px solid transparent;
+
+      &:hover{
+        text-decoration: underline;
+
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 2px lighten(@order-font-col, 10%);
+        -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 2px lighten(@order-font-col, 10%);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 2px lighten(@order-font-col, 10%);
+      }
+
+      img{
+        margin: 0;
+        padding: 0;
+        height: 20px;
+        width: 20px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+
+    }
+
+  }
+}

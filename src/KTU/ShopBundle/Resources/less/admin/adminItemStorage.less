@@ -1,0 +1,37 @@
+/**************************************
+          INCLUDES
+***************************************/
+
+@import "admin.less";
+
+/**************************************
+          STYLES
+***************************************/
+
+@table-col: @items-col;
+
+.item-storage{
+  tr td:first-child{
+    width: 130px;
+  }
+
+  tr td:nth-child(2){
+    width: 150px;
+    text-align: right;
+  }
+
+  tr td:last-child{
+    > *{
+      margin-right: 10px;
+    }
+  }
+}
+
+#shop_item_storage_itemCount{
+  margin: 10px auto 0 auto;
+  width: 100px;
+}
+
+.help-block{
+  margin-bottom: 0px;
+}

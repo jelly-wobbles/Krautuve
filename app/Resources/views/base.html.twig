@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>{% block title %}Krautuvė{% endblock %}</title>
+        {% set url = app.request.uri %}
+        {% if is_granted('ROLE_ADMIN') %}
+            {% set show_nav = true %}
+        {% else %}
+            {% set show_nav = false %}
+        {% endif %}
+        {% if "/admin" not in url and show_nav %}
+            {% stylesheets '@KTUShopBundle/Resources/less/admin/adminBar.less' combine=true %}
+            <!-- Bootstrap -->
+            <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" media="screen">
+            <link rel="stylesheet" href="{{ asset_url }}">
+            {% endstylesheets %}
+        {% else %}
+            <!-- Bootstrap -->
+            <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" media="screen">
+        {% endif %}
+        <!-- HTML5 Shim and Respond.js add IE8 support of HTML5 elements and media queries -->
+        {% include 'BraincraftedBootstrapBundle::ie8-support.html.twig' %}
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        {% if "/admin" not in url and show_nav %}
+            {% include 'KTUShopBundle:Admin:adminBar.html.twig' %}
+            <script>
+                var navMiniURL = '{{ path('admin_nav_bar_state', {'state': 'mini'}) }}';
+                var navNormalURL = '{{ path('admin_nav_bar_state', {'state': 'normal'}) }}';
+            </script>
+            {% javascripts '@KTUShopBundle/Resources/javascript/admin/adminBar.js'
+                combine=true %}
+            <!-- jQuery (necessary for Bootstraps JavaScript plugins) -->
+            <script src="{{ asset('js/jquery.js') }}"></script>
+            <!-- Include all JavaScripts, compiled by Assetic -->
+            <script src="{{ asset('js/bootstrap.js') }}"></script>
+            <script src="{{ asset_url }}"></script>
+            {% endjavascripts %}
+        {% else %}
+            <!-- jQuery (necessary for Bootstraps JavaScript plugins) -->
+            <script src="{{ asset('js/jquery.js') }}"></script>
+            <!-- Include all JavaScripts, compiled by Assetic -->
+            <script src="{{ asset('js/bootstrap.js') }}"></script>
+        {% endif %}
+        <script>
+            {# Activity check #}
+            var activityTimeout=setTimeout(active,110000);
+            function active(){$.ajax({url:"{{ path('activity_check') }}",method:"POST"});}
+            $(document).ajaxSuccess(function(){clearTimeout(activityTimeout);activityTimeout=setTimeout(active,110000)});
+        </script>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

@@ -1,0 +1,61 @@
+{% trans_default_domain 'KTUShopBundle' %}
+{% embed 'KTUShopBundle:Admin:main.html.twig' %}
+    {% block stylesheets %}
+        {% stylesheets '@KTUShopBundle/Resources/less/admin/adminPurchaseMore.less' combine=true %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+    {% endblock %}
+    {% block content %}
+        {% set locations = [{ 'path': path('admin_purchases'), 'name': 'Pirkimai' },
+        { 'path': '#', 'name': 'Detali informacija' }] %}
+        {% include('@KTUShop/Admin/navigationMap.html.twig') with {'locations': locations} %}
+        <div class="table-single-row-container">
+            <h4 class="table-name">{{ icon('euro') }} Pirkimo informacija</h4>
+            <div class="table-body">
+                <table class="table purchase">
+                    <tr>
+                        <td>Pirkimo numeris:</td>
+                        <td>{{ purchase.id }}</td>
+                    </tr>
+                    <tr>
+                        <td>Pirkėjas:</td>
+                        <td>{{ purchase.users.fullname }}</td>
+                    </tr>
+                    <tr>
+                        <td>Būklė:</td>
+                        <td>{{ purchase.Purchasestatuses.status|trans }}</td>
+                    </tr>
+                    <tr>
+                        <td>Data:</td>
+                        <td>{{ purchase.date|date('Y-m-d H:i:s') }}</td>
+                    </tr>
+                    <tr>
+                        <td>Prekių sąrašas:</td>
+                        <td>
+                            <ul class="list">
+                                {% for pi in purchaseItems %}
+                                <li class="clearfix">
+                                    <div class="item-name">{{ pi.items.itemsDetails.name }}</div>
+                                    <div class="item-price">
+                                        <div class="price-e">{{ pi.quantity }} &times; {{ pi.itemprice }} &#8364;</div>
+                                        {% set priceLT = pi.itemprice * constant('KTU\\ShopBundle\\Entity\\Itemsdetails::LITASMULTIPLIER') %}
+                                        <div class="price-lt">({{ priceLT|number_format(2,',',' ') }} LT)</div>
+                                    </div>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr class="all-price">
+                        <td>Bendra suma:</td>
+                        {% set priceLT = purchaseSum * constant('KTU\\ShopBundle\\Entity\\Itemsdetails::LITASMULTIPLIER') %}
+                        <td>
+                            <div class="price-e">{{ purchaseSum|number_format(2,',',' ') }} &#8364;</div>
+                            <div class="price-lt">({{ priceLT|number_format(2,',',' ') }} Lt)</div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    {% endblock %}
+{% endembed %}

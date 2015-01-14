@@ -1,0 +1,45 @@
+shop:
+    name:
+        long: Per ilgas vardas ( 45 simboliai ).
+        blank: Prašome įvesti vardą.
+    surname:
+        long: Per ilga pavardė ( 45 simboliai ).
+        blank: Prašome įvesti pavardę.
+    address:
+        long: Per ilgas adresas ( 255 simboliai ).
+    zipCode:
+        pattern: Netinkamas formatas ( LT-12345 ).
+    phoneNumber:
+        pattern: Netinkamas formatas ( 861234567 ).
+
+shop_item:
+    name:
+        blank: Įveskite prekės pavadinimą.
+        short: Per trumpas pavadinimas ( minimum {{ limit }} simbolių ).
+        long: Per ilgas pavadinimas ( maksimum {{ limit }} simbolių ).
+    category:
+        blank: Pasirinkite kategoriją.
+    number:
+        blank: Įveskite prekės kainą.
+        low: Kaina turi būti didesnė negu {{ limit }}.
+        high: Kaina turi būti mažesnė negu {{ limit }}.
+    description:
+        long: Per ilgas aprašymas ( maksimum {{ limit }} simbolių ).
+    specs_name:
+        blank: Įveskite pavadinimą.
+        long: Per ilgas pavadinimas ( maksimum {{ limit }} ).
+    specs_value:
+        blank: Įveskite reikšmę.
+        long: Per ilga reikšmė ( maksimum {{ limit }} ).
+    discount:
+        blank: Įveskite akciją.
+        min: Mažiausia akcija gali būti {{ limit }}%.
+        max: Didžiausia akcija gali būti {{ limit }}%.
+    storage:
+        blank: Įveskite kiekį.
+        regex: Įveskite sveiką skaičių.
+
+shop_category:
+    name:
+        exists: Kategorija su tokiu pavadinimu jau yra.
+

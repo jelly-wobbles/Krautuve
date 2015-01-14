@@ -1,0 +1,61 @@
+{% embed 'KTUShopBundle:Admin:main.html.twig' %}
+    {% block stylesheets %}
+        {% stylesheets '@KTUShopBundle/Resources/less/admin/adminItemDiscount.less' combine=true %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+    {% endblock %}
+    {% block content %}
+        {% set locations = [{ 'path': path('admin_items'), 'name': 'Prekės' },
+        { 'path': '#', 'name': 'Nuolaida' }] %}
+        {% include('@KTUShop/Admin/navigationMap.html.twig') with {'locations': locations} %}
+        <div class="table-single-row-container">
+            <h4 class="table-name">{{ icon('shopping-cart') }} {{ itemDetails.name }} nuolaida</h4>
+            <div class="table-body">
+                <table class="table item-discount">
+                    <tr>
+                        <td>Kaina Lt:</td>
+                        <td id="price-lt">{{ itemDetails.priceLt|number_format(2,',',' ') }}</td>
+                        <td id="price-lt-no-discount" class="no-discount">
+                            {% if itemDetails.discount > 0 %}
+                                {{ itemDetails.purePriceLt|number_format(2,',',' ') }}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Kaina &#8364;:</td>
+                        <td id="price-e">{{ itemDetails.price|number_format(2,',',' ') }}</td>
+                        <td id="price-e-no-discount" class="no-discount">
+                            {% if itemDetails.discount > 0 %}
+                                {{ itemDetails.purePrice|number_format(2,',',' ') }}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Nuolaida:</td>
+                        <td id="discount">{{ itemDetails.discount*100 }}%</td>
+                        {% if itemDetails.discount > 0 %}
+                            <td class="discount-controls">
+                                <button class="btn btn-default btn-opt btn-discount">Keisti nuolaidą {{ icon('tag') }}</button>
+                                <button class="btn btn-default btn-remove">Nuimti nuolaidą {{ icon('remove') }}</button>
+                            </td>
+                        {% else %}
+                            <td class="discount-controls"><button class="btn btn-default btn-opt btn-discount">Pridėti nuolaidą {{ icon('tag') }}</button></td>
+                        {% endif %}
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <input id="item-id" type="hidden" value="{{ itemDetails.id }}">
+    {% endblock %}
+{% endembed %}
+{% block javascript %}
+    <script>
+        var itemDiscountPrototype = '{{ form_widget(form.itemDiscount) }}';
+        var manageDiscountURL = '{{ path('admin_item_manage_discount', {'id': itemDetails.id}) }}';
+    </script>
+    {% javascripts  '@KTUShopBundle/Resources/javascript/assetsClasses/modalWindow.js'
+        '@KTUShopBundle/Resources/javascript/admin/adminItemDiscount.js'
+        combine=true %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

@@ -1,0 +1,57 @@
+{% embed 'KTUShopBundle:Admin:main.html.twig' %}
+    {% block content %}
+        {% set locations = [{ 'path': path('admin_items'), 'name': 'Prekės' },
+                            { 'path': '#', 'name': 'Sandėliavimas' }] %}
+        {% include('@KTUShop/Admin/navigationMap.html.twig') with {'locations': locations} %}
+        <div class="table-single-row-container">
+            <h4 class="table-name">{{ icon('shopping-cart') }} {{ name }} sandėliavimas</h4>
+            <div class="table-body">
+                <table class="table item-storage">
+                    <tr>
+                        <td>Sandėlyje:</td>
+                        <td id="stored-items">{{ stored }}</td>
+                        <td>
+                            <button class="btn btn-default btn-opt btn-add">Pridėti {{ icon('plus') }}</button>
+                            {% if stored != 0 %}
+                            <button class="btn btn-default btn-remove">Išmesti {{ icon('trash') }}</button>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Išsiųsta:</td>
+                        <td>{{ sent }}</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Pristatyta:</td>
+                        <td>{{ delivered }}</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Parduota:</td>
+                        <td>{{ sold }}</td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <input id="item-id" type="hidden" value="{{ id }}">
+    {% endblock %}
+{% endembed %}
+{% block stylesheets %}
+    {% stylesheets '@KTUShopBundle/Resources/less/admin/adminItemStorage.less' combine=true %}
+    <link rel="stylesheet" href="{{ asset_url }}">
+    {% endstylesheets %}
+{% endblock %}
+{% block javascripts %}
+    <script>
+        var itemCountPrototype = '{{ form_widget(form.itemCount) }}';
+        var addStorageURL = '{{ path('admin_item_manage_storage', {'id': id, 'intention': 'add'}) }}';
+        var removeStorageURL = '{{ path('admin_item_manage_storage', {'id': id, 'intention': 'remove'}) }}';
+    </script>
+    {% javascripts  '@KTUShopBundle/Resources/javascript/assetsClasses/modalWindow.js'
+                    '@KTUShopBundle/Resources/javascript/admin/adminItemStorage.js'
+        combine=true %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

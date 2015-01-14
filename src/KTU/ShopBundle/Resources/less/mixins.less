@@ -1,0 +1,88 @@
+/******************************************************
+          CSS3
+******************************************************/
+
+.transition(@par){
+  -webkit-transition: @par;
+  -moz-transition: @par;
+  -o-transition: @par;
+  transition: @par;
+}
+
+.box-shadow(@par){
+  -webkit-box-shadow: @par;
+  box-shadow: @par;
+}
+
+.animation (@par) {
+  -webkit-animation: @par;
+  -moz-animation:    @par;
+  -ms-animation:     @par;
+  animation:         @par;
+}
+
+.transform(@par){
+  -ms-transform: @par;
+  -webkit-transform: @par;
+  transform: @par;
+}
+
+/********************************************************
+    Custom button
+********************************************************/
+
+.btn-custom(@col, @f-col){
+  padding: 4px 8px;
+  border: 1px solid darken(@col, 10%);
+  background-color: @col;
+  color: @f-col;
+  text-shadow: 1px 1px 0 darken(@col, 15%);
+
+  &:hover{
+    border: 1px solid darken(@col, 15%);
+    background-color: darken(@col, 5%);
+    color: @f-col;
+    text-shadow: 1px 1px 0 darken(@col, 30%);
+  }
+}
+
+/********************************************************
+    User status bubbles gradients
+********************************************************/
+
+.user-active-gradient(){
+  background: rgb(0,220,0);
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPHJhZGlhbEdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY3g9IjUwJSIgY3k9IjUwJSIgcj0iNzUlIj4KICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwMGRjMDAiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMDBhNjAwIiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L3JhZGlhbEdyYWRpZW50PgogIDxyZWN0IHg9Ii01MCIgeT0iLTUwIiB3aWR0aD0iMTAxIiBoZWlnaHQ9IjEwMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+  background: -moz-radial-gradient(center, ellipse cover,  rgba(0,220,0,1) 0%, rgba(0,166,0,1) 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(0,220,0,1)), color-stop(100%,rgba(0,166,0,1)));
+  background: -webkit-radial-gradient(center, ellipse cover,  rgba(0,220,0,1) 0%,rgba(0,166,0,1) 100%);
+  background: -o-radial-gradient(center, ellipse cover,  rgba(0,220,0,1) 0%,rgba(0,166,0,1) 100%);
+  background: -ms-radial-gradient(center, ellipse cover,  rgba(0,220,0,1) 0%,rgba(0,166,0,1) 100%);
+  background: radial-gradient(ellipse at center,  rgba(0,220,0,1) 0%,rgba(0,166,0,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00dc00', endColorstr='#00a600',GradientType=1 );
+}
+
+.user-not-active-gradient(){
+  background: rgb(252,55,0);
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPHJhZGlhbEdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY3g9IjUwJSIgY3k9IjUwJSIgcj0iNzUlIj4KICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNmYzM3MDAiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjY2MyYzAwIiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L3JhZGlhbEdyYWRpZW50PgogIDxyZWN0IHg9Ii01MCIgeT0iLTUwIiB3aWR0aD0iMTAxIiBoZWlnaHQ9IjEwMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+  background: -moz-radial-gradient(center, ellipse cover,  rgba(252,55,0,1) 0%, rgba(204,44,0,1) 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(252,55,0,1)), color-stop(100%,rgba(204,44,0,1)));
+  background: -webkit-radial-gradient(center, ellipse cover,  rgba(252,55,0,1) 0%,rgba(204,44,0,1) 100%);
+  background: -o-radial-gradient(center, ellipse cover,  rgba(252,55,0,1) 0%,rgba(204,44,0,1) 100%);
+  background: -ms-radial-gradient(center, ellipse cover,  rgba(252,55,0,1) 0%,rgba(204,44,0,1) 100%);
+  background: radial-gradient(ellipse at center,  rgba(252,55,0,1) 0%,rgba(204,44,0,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fc3700', endColorstr='#cc2c00',GradientType=1 );
+}
+
+.clear-fix(){
+  zoom: 1; // For IE 6/7 (trigger hasLayout)
+
+  &:before, &:after {
+    content: "";
+    display: table;
+  }
+
+  &:after {
+    clear:both;
+  }
+}

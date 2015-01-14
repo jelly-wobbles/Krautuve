@@ -1,0 +1,35 @@
+shop_cart:
+    path: /cart/{id}
+    defaults: {  _controller: KTUShopBundle:Cart:index, id: 0}
+
+shop_cart_order:
+    path: /cart/{id}/buy
+    defaults: {  _controller: KTUShopBundle:Order:index, id: 0}
+
+shop_cart_order_validate:
+    path: /cart/{id}/buy/validate
+    defaults: {  _controller: KTUShopBundle:Order:validate, id: 0}
+
+shop_cart_order_confirm:
+    path: /cart/{id}/buy/confirm
+    defaults: {  _controller: KTUShopBundle:Order:confirm, id: 0}
+
+shop_cart_drop:
+    path: /cart/{id}/drop/{idItem}
+    defaults: {  _controller: KTUShopBundle:Cart:drop, id: 0, idItem: 0}
+
+shop_cart_quantityChange:
+    path: /cart/{id}/quantityChange
+    defaults: {  _controller: KTUShopBundle:Cart:quantityChange }
+
+shop_cart_recalculatePrices:
+    path: /cart/{id}/quantityChange/recalculatePrices
+    defaults: {  _controller: KTUShopBundle:Cart:recalculatePricesQuantity }
+
+shop_cart_recalculateTotalPrice:
+    path: /cart/{id}/quantityChange/recalculateTotalPrice
+    defaults: {  _controller: KTUShopBundle:Cart:recalculateTotalPrice }
+
+shop_cart_clear:
+    path: /cart/{id}/clear
+    defaults: {  _controller: KTUShopBundle:Cart:clear }

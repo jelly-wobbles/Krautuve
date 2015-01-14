@@ -1,0 +1,73 @@
+{% embed 'KTUShopBundle:Admin:main.html.twig' %}
+    {% block stylesheets %}
+        {% stylesheets '@KTUShopBundle/Resources/less/admin/adminItemAdd_Edit.less' combine=true %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+    {% endblock %}
+    {% block content %}
+        {% set locations = [{ 'path': path('admin_items'), 'name': 'Prekės' },
+                            { 'path': '#', 'name': 'Pridėti prekę'}] %}
+        {% include('@KTUShop/Admin/navigationMap.html.twig') with {'locations': locations} %}
+        <div class="form-container">
+            <h4 class="form-name">{{ icon('shopping-cart') }} Pridėti prekę</h4>
+            <div class="form-body shop_item_add_form clearfix">
+                <form action="#"
+                        {{ form_enctype(form) }} method="POST" name="shop_item_add" novalidate>
+                    {{ bootstrap_set_style('vertical') }}
+                    {{ bootstrap_set_widget_col('6') }}
+                    {{ bootstrap_set_label_col('4') }}
+                    {{ form_row(form.name) }}
+                    {{ form_row(form.category) }}
+                    {{ form_row(form.price) }}
+                    <p class="group-label">Specifikacijos:</p>
+                    <div class="form-group specs-fields">
+                        <div class="specs-labels clearfix"
+                                {% if form.specs_names|length > 0 %} style="display: block" {% endif %}>
+                            {{ form_label(form.specs_names) }}
+                            {{ form_label(form.specs_values) }}
+                        </div>
+                        <div class="specs-values clearfix">
+                        </div>
+                        <div class="text-left">
+                            <button type="button" class="btn btn-default add-field add-specs">Pridėti specifikaciją</button>
+                        </div>
+                    </div>
+                    {{ form_row(form.description) }}
+                    <div class="form-group">
+                        <p class="group-label">Pridėkite nuotraukas:</p>
+                    </div>
+                    <div class="rendered-uploads upload-zone">
+                        <div class="upload-text">
+                            Tempkite nuotraukas čia arba pasirinkite su mygtuku. {{ icon('arrow-down') }}
+                        </div>
+                    </div>
+                    <div class="text-left">
+                        <button type="button" class="btn btn-default add-field btn-add-images">
+                            Pridėti nuotraukas {{ icon('open') }}
+                            <input type="file" id="shop_item_add_images" class="add-images"
+                                   name="shop_item_add[images]" accept="image/*" multiple>
+                        </button>
+                    </div>
+                    {{ form_row(form._token) }}
+                    <div class="form-submit-controls clearfix">
+                        <button type="submit" class="btn btn-default submit">Patvirtinti</button>
+                        <a href="{{ path('admin_items') }}" type="button" class="btn btn-default submit-cancel">Atšaukti</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    {% endblock %}
+{% endembed %}
+{% block javascripts %}
+    <script>
+        var specsNamesPrototype = '{{ form_widget(form.specs_names.vars.prototype) }}';
+        var specsValuesPrototype = '{{ form_widget(form.specs_values.vars.prototype) }}';
+        var specsCount = {{ form.specs_names|length }};
+        var persistDataURL = '{{ path('admin_item_add_persist') }}';
+    </script>
+    {% javascripts '@KTUShopBundle/Resources/javascript/assetsClasses/modalWindow.js'
+        '@KTUShopBundle/Resources/javascript/admin/adminItemAdd.js'
+        combine=true %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

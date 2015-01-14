@@ -1,0 +1,42 @@
+<?php
+
+namespace KTU\ShopBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Shares
+ *
+ * @ORM\Table(name="Shares", indexes={@ORM\Index(name="fk_Items_ItemsDetails1_idx", columns={"ItemsDetails_id"})})
+ * @ORM\Entity
+ */
+class Shares
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="percentage", type="float", precision=10, scale=0, nullable=false)
+     */
+    private $percentage;
+
+    /**
+     * @var \Itemsdetails
+     *
+     * @ORM\ManyToOne(targetEntity="Itemsdetails")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ItemsDetails_id", referencedColumnName="id", onDelete="CASCADE")
+     * })
+     */
+    private $itemsdetails;
+
+
+} 

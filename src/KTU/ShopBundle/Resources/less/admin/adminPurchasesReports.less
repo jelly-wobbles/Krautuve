@@ -1,0 +1,82 @@
+/**************************************
+          INCLUDES
+***************************************/
+
+@import "admin";
+
+/**************************************
+          STYLES
+***************************************/
+@table-col: @purchases-col;
+
+.upload-controls-container{
+  padding: 15px;
+  text-align: center;
+
+  .button-container{
+    width: 30%;
+    margin-right: 30px;
+    float: left;
+
+    a{
+      margin-top: 15px;
+      display: inline-block;
+      float: left;
+      text-align: center;
+      color: #999;
+      margin-right: 30px;
+      width: 100%;
+    }
+  }
+
+  .btn{
+    position: relative;
+  }
+
+  .btn-upload{
+    width: 100%;
+    .btn-custom(@conf-btn-col, #fff);
+  }
+}
+
+.table{
+  .error{
+    color: #c8402b;
+  }
+
+  .table-header{
+    border-top: 1px solid #999;
+  }
+
+  tr td{
+    border-bottom: 1px solid #ddd;
+  }
+
+}
+
+.form-submit-controls{
+  margin: 15px;
+  text-align: center;
+  position: relative;
+
+  .secondary-info{
+    position: absolute;
+    top: 5px;
+    left: 10px;
+  }
+
+}
+
+.submit{
+  font-size: 16px;
+  .btn-custom(@conf-btn-col, #fff);
+}
+
+#shop_purchases_report_storageReport, #shop_purchases_report_deliveryReport{
+  position: absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}

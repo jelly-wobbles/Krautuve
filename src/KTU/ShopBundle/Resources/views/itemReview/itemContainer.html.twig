@@ -1,0 +1,74 @@
+
+
+
+    {% set hasDiscount = false %}
+
+    {% if itemEntity.itemsdetails.discount != 0 %}
+        {% set hasDiscount = true %}
+    {% endif %}
+
+<div class="itemContainer">
+
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        {% include '@KTUShop/itemReview/toCartButton.html.twig' %}
+    {% endif %}
+
+    <p class="itemTitle col-lg-12"> {{ itemDetails.name }} </p>
+
+    <section class="blockSection col-lg-12">
+
+
+        {% include '@KTUShop/itemReview/gallery.html.twig' %}
+
+        {% include '@KTUShop/itemReview/mainInfo.html.twig' %}
+
+
+
+        {% if specificationsArr != null %}
+            {% include '@KTUShop/itemReview/specifications.html.twig' %}
+        {% endif %}
+
+
+
+        {% if itemDetails.description != null %}
+            {% include '@KTUShop/itemReview/description.html.twig' %}
+        {% endif %}
+
+
+
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            {% include '@KTUShop/itemReview/ratingContainer.html.twig' %}
+        {% endif %}
+
+
+
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+

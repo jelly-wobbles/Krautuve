@@ -1,0 +1,142 @@
+@import "../mixins";
+
+/**************************************
+          VARIABLES
+***************************************/
+
+@nav-col: #eee;
+@nav-f-col: #555;
+@nav-bor-col: #ddd;
+@nav-btn-col: #ccc;
+@nav-btn-f-col: #555;
+@nav-height: 53px;
+@nav-height-min: 33px;
+
+/**************************************
+          STYLES
+***************************************/
+
+.nav-btn(){
+  color: @nav-btn-f-col;
+  background-color: @nav-btn-col;
+  &:hover{
+    cursor: pointer;
+    color: darken(@nav-btn-f-col, 10%);
+    background-color: darken(@nav-btn-col, 10%);
+  }
+}
+
+.mini(){
+  font-size: 14px;
+  min-height: @nav-height-min;
+  height: @nav-height-min;
+  width: 182px;
+
+  .transition(all 0.2s linear);
+
+  .admin-option{
+    height: @nav-height-min;
+    line-height: @nav-height-min;
+
+    .glyphicon{
+      padding-right: 0;
+    }
+  }
+
+  .glyphicon-resize-full{
+    top: 3px;
+    font-size: 17px;
+  }
+
+  .admin-nav-resize{
+    font-size: 14px;
+    height: @nav-height;
+    line-height: @nav-height-min;
+  }
+
+  .admin-info{
+    line-height: @nav-height-min;
+  }
+
+  .desc-text{
+    display:none;
+  }
+
+}
+
+.admin-nav{
+  z-index: 1000;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  margin-bottom: 0px;
+  background-color: @nav-col;
+  border: 1px solid @nav-bor-col;
+  border-radius: 0;
+  color: @nav-f-col;
+  overflow: hidden;
+  height: @nav-height;
+  .transition(all 0.2s linear);
+
+  .admin-option{
+    padding: 0px 10px;
+    border-left: 1px solid @nav-bor-col;
+    height: @nav-height;
+    line-height: @nav-height;
+    display: block;
+    float:left;
+    color: @nav-f-col;
+
+    .glyphicon{
+      padding-right: 24px;
+    }
+
+    &:hover{
+      color: darken(@nav-f-col, 10%);
+      text-shadow: 1px 1px 2px #ccc;
+      cursor: pointer;
+      text-decoration: none;
+    }
+  }
+
+  .side-logo-sm{
+    margin: 7px 0 0 20px;
+    float: left;
+  }
+
+  .admin-nav-resize{
+    width: 40px;
+    float: left;
+    line-height: @nav-height;
+    text-align: center;
+    font-size: 20px;
+
+    .nav-btn();
+    .glyphicon{
+      width: inherit;
+    }
+  }
+
+  @media(max-width: 1000px){
+    .mini();
+    width: 142px !important;
+    .admin-nav-resize{
+      display: none;
+    }
+  }
+
+  .search-group {
+    float:right;
+    margin: 12px 0 0 30px;
+  }
+
+  .admin-info{
+    line-height: @nav-height;
+    float: right;
+  }
+
+}
+
+.minimize-admin-bar{
+  .mini();
+}

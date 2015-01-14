@@ -1,0 +1,7 @@
+{% extends "KTUShopBundle:Registration:registration_base.html.twig" %}
+{% trans_default_domain 'KTUShopBundle' %}
+{% block title %}  {{  parent() }} | Aktyvuokite paskyrą {% endblock %}
+{% block content %}
+    <p>{{ 'registration.check_email'|trans({'%email%': user.email}) }}</p>
+{% endblock %}
+

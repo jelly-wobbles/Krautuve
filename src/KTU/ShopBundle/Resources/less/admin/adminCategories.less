@@ -1,0 +1,29 @@
+/**************************************
+          INCLUDES
+***************************************/
+
+@import "admin.less";
+@import "../table/table.less";
+
+/**************************************
+          STYLES
+***************************************/
+
+@pag-bor-col-hov: @categories-col;
+@table-col: @categories-col;
+@table-col-hover: lighten(@categories-col, 27%);
+
+#categories{
+  th:first-child{
+    width: 40%;
+  }
+
+  th:nth-child(2){
+    width: 50%;
+  }
+
+  th:last-child{
+    width: 10%;
+    min-width: 119px;
+  }
+}

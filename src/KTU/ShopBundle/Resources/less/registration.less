@@ -1,0 +1,128 @@
+/**************************************
+          INCLUDES
+***************************************/
+
+@import "reset.less";
+@import "mixins.less";
+@import "global.less";
+
+/**************************************
+          VARIABLES
+***************************************/
+
+@header-bg-col: #347bb8;
+
+@footer-height: 100px;
+@footer-bg-col: #222222;
+
+/**************************************
+          STYLES
+***************************************/
+.main-wrapper{
+  min-height: 100%;
+  margin-bottom: -@footer-height;
+
+  .content{
+    padding: 15px;
+  }
+
+  .registration-header{
+    background-color: @header-bg-col;
+    padding: 0 30px;
+    position: relative;
+    height: 100px;
+    box-shadow: 0 2px 4px lighten(@header-bg-col, 25%);
+    min-width: 400px;
+
+    .side-logo-md{
+      margin: 30px 15px 0 0;
+      float: right;
+    }
+
+    .side-logo-sm{
+      float: right;
+      display: none;
+    }
+
+
+    @media (max-width: 768px) {
+
+      height: 94px;
+
+      .side-logo-md{
+        display: none;
+      }
+
+      .side-logo-sm{
+        margin-top: 29px;
+        display: block;
+      }
+
+      h2{
+        font-size: 50px;
+      }
+
+    }
+
+  }
+
+.content{
+    padding: 30px 0;
+    font-size: 18px;
+
+    .fos_user_registration_register{
+
+      @media(max-width: 1260px) and (min-width: 1200px){
+        width: 56%;
+        margin-left: 21%;
+      }
+
+      label{
+        line-height: 34px;
+      }
+
+      input{
+        font-size: 16px;
+      }
+
+      .form-group{
+        min-height: 50px;
+        height: auto;
+      }
+
+      .optional-fields{
+        color: #666666;
+        padding: 20px 0 10px 0;
+        margin: 0 15px 30px 15px;
+        border-bottom: 1px solid #cccccc;
+        font-size: 16px;
+      }
+
+      .btn-lg{
+        font-size: 18px;
+        margin-top: 10px;
+        margin-bottom: 0px;
+      }
+    }
+
+    .submit-registration{
+      margin-bottom: 30px;
+    }
+  }
+
+  .footer-push{
+    height: @footer-height;
+  }
+
+}
+
+.go-back{
+  margin-top: 20px;
+}
+
+.registration-footer{
+  width: 100%;
+  height: @footer-height;
+  background-color: @footer-bg-col;
+  padding: 0 15px;
+}

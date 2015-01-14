@@ -1,0 +1,248 @@
+/**************************************
+          INCLUDES
+***************************************/
+
+@import "../mixins.less";
+@cart-font-col: #009900;
+@splitter-col: #E5E5E5;
+
+@cart-font: Futura, "Trebuchet MS", Arial, sans-serif;
+
+.cartContainer{
+  margin-top: 50px;
+  min-height: 400px;
+  .cartTable{
+
+    tr{
+      border-top: 1px solid black;
+      border-bottom: 1px solid black;
+    }
+
+
+    .columnTitles {
+      border: 0;
+      height: 30px;
+      line-height: 30px;
+      font-weight: bold;
+
+      #title {
+        text-align: center;
+      }
+
+      #price, #actions, #quantity{
+        font-size: 17px;
+        text-align: center;
+      }
+
+
+      #actions{
+        font-weight: normal;
+        color: #A60000;
+
+        .actionsButton{
+          background: transparent;
+          border: 0;
+          color: #A60000;
+
+          &:hover{
+            color: red;
+            text-decoration: underline;
+          }
+        }
+
+        &:hover{
+          color: red;
+          text-decoration: underline;
+          cursor: pointer;
+        }
+
+        .imgWrap{
+          position: absolute;
+          height: 30px;
+          width: 30px;
+          left: 0;
+          right: 0;
+          margin-left: auto;
+          margin-right: auto;
+
+          img{
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+          }
+        }
+
+      }
+
+
+    }
+
+    .itemContainer{
+      height: 30px;
+      font-size: 16px;
+      line-height: 16px;
+      border-top: 2px solid @splitter-col;
+      border-bottom: 2px solid @splitter-col;
+
+      td{
+        height: 50px;
+        line-height: 50px;
+        padding: 0;
+        margin: 0;
+      }
+
+      #title {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+
+        a{
+          color: @cart-font-col;
+        }
+      }
+
+      #price, #quantity, #actions{
+        text-align: center;
+        font-size: 16px;
+      }
+
+      #quantity{
+        input{
+          background: transparent;
+          text-decoration: none;
+          line-height: 30px;
+          width: 44px;
+          height: 30px;
+          text-align: center;
+          border: 1px solid @splitter-col;
+          border-radius: 2px;
+
+          &:hover{
+            border: 1px solid @cart-font-col;
+            box-shadow: none;
+          }
+
+          &:focus{
+            border: 1px solid @cart-font-col;
+            outline: 0 auto;
+            font-weight: bold;
+          }
+        }
+      }
+
+
+      #price{
+          font-size: 16px;
+      }
+
+
+      #actions{
+        line-height: none;
+        cursor: pointer;
+        color: #A60000;
+
+        .actionsButton{
+          background: transparent;
+          border: 0;
+          color: #A60000;
+
+          &:hover{
+            color: red;
+            text-decoration: underline;
+          }
+
+          &:focus{
+            border:0;
+            outline: 0 auto;
+          }
+        }
+
+        &:hover{
+          text-decoration: underline;
+          color: red;
+        }
+
+        .imgWrap{
+          position: absolute;
+          height: 30px;
+          width: 30px;
+          left: 0;
+          right: 0;
+          top: 10px;
+          margin-left: auto;
+          margin-right: auto;
+
+          img{
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+          }
+        }
+      }
+
+    }
+
+
+    .totalPrices{
+      border: 0;
+      height: 50px;
+      line-height: 50px;
+
+      #comment{
+        font-weight: bold;
+        text-align: right;
+      }
+
+      #price, #actions{
+        font-weight: bold;
+        text-align: center;
+      }
+
+      #price{
+          font-size: 19px;
+      }
+
+      .buyButtonWrap{
+        .imgWrap{
+          position: absolute;
+          height: 40px;
+          width: 40px;
+          left: 0;
+          right: 0;
+          margin-left: auto;
+          margin-right: auto;
+
+          img{
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+          }
+        }
+      }
+
+      #buyButton{
+        line-height: 40px;
+        background: lighten(@cart-font-col, 5%);
+        border: 0;
+        border-radius: 2px;
+        color: white;
+        letter-spacing: 1px;
+        height: 40px;
+        margin-top: 5px;
+        width: 100%;
+        font-size: 18px;
+
+        &:hover{
+          text-decoration: underline;
+          background: lighten(@cart-font-col, 3%);
+        }
+      }
+    }
+
+  }
+
+}

@@ -1,0 +1,47 @@
+{% for user in users|slice(start,size) %}
+    <tr>
+        <td>
+            {% if user.isActiveNow == 1 %}
+                <div class="user-status user-active"></div>
+            {% else %}
+                <div class="user-status user-not-active"></div>
+            {% endif %}
+        </td>
+        <td class="user-name">{{ user.name }}</td>
+        <td class="user-surname">{{ user.surname }}</td>
+        <td class="user-email">{{ user.email }}</td>
+        <td>
+            {% set role = user.oneRole %}
+            {% if role == "ROLE_ADMIN" %} {{ 'Admininstratorius' }}
+            {% elseif role == "ROLE_USER" %} {{ 'Naudotojas' }}
+            {% elseif role == "ROLE_EDITOR" %} {{ 'Redaktorius' }}
+            {% elseif role == "ROLE_MANAGER" %} {{ 'Vadybininkas' }}
+            {% endif %}
+        </td>
+        <td class="user-options table-options">
+            <a class="btn btn-default btn-info" href="{{ path('admin_user_more_info', {'id': user.id}) }}"
+               data-toggle="tooltip" data-placement="bottom" title="Detali naudotojo informacija.">
+                {{ icon('info-sign') }}
+            </a>
+            <a class="btn btn-default btn-edit" href="{{ path('admin_user_edit', {'id': user.id}) }}"
+               data-toggle="tooltip" data-placement="bottom" title="Redaguoti naudotojo informaciją.">
+                {{ icon('edit') }}
+            </a>
+            {% if user.isLocked == true %}
+                <button class="btn btn-default btn-unban"
+                        data-toggle="tooltip" data-placement="bottom" title="Atblokuoti naudotoją.">
+                    {{ icon('ok-circle') }}
+                </button>
+            {% else %}
+                <button class="btn btn-default btn-ban"
+                        data-toggle="tooltip" data-placement="bottom" title="Užblokuoti naudotoją.">
+                    {{ icon('ban-circle') }}
+                </button>
+            {% endif %}
+            <button class="btn btn-default btn-remove"
+                    data-toggle="tooltip" data-placement="bottom" title="Ištrinti naudotojo paskyrą.">
+                {{ icon('trash') }}
+            </button>
+        </td>
+    </tr>
+{% endfor %}

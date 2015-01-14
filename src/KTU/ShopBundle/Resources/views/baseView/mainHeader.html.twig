@@ -1,0 +1,36 @@
+<header class="main-header">
+    {% image '@KTUShopBundle/Resources/images/logo.png' %}
+    <a href="{{ path('shop_landingpage') }}"><img class="main-logo" src="{{ asset_url }}" alt="krautuve_logo"/></a>
+    {% endimage %}
+
+
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+
+        <div class="userPanel">
+            <a href="/krautuve/web/profile/edit"><p class="username" title="Peržiūrėti {{ app.user.username }} profilį">{{ app.user.username }}</p></a>
+            <a class="logout" href="{{ path('fos_user_security_logout') }}">Atsijungti</a>
+        </div>
+
+        <div title="Peržiūrėti krepšelyje esančias prekes" class="cartInfo
+                {% if cartCount != 0 %}
+                 available" onclick="location.href = '{{ path('shop_cart', { 'id': app.user.id }) }}'"
+                {% else %}
+                "
+             {% endif %}
+        >
+            {% image '@KTUShopBundle/Resources/images/logoCartWhite.png' %}
+            <img src="{{ asset_url }}" alt="...">
+            {% endimage %}
+            <h3>prekių:</h3>
+            <h4>{{ cartCount }}</h4>
+        </div>
+
+     {% else %}
+
+         <div class="logRegPanel">
+             <a class="login" href="{{ path('fos_user_security_login') }}">Prisijungti</a>
+             <a class="register" href="{{ path('fos_user_registration_register') }}">Registruotis</a>
+         </div>
+
+    {% endif %}
+</header>

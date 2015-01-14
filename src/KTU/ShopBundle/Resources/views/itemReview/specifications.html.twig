@@ -1,0 +1,18 @@
+
+            <div class="blockWrap col-lg-6">
+                <div class="block col-lg-12">
+                    <p class="blockTitle">Specifikacijos</p>
+                    <div class="tableWrap">
+                        <table class="itemTable col-lg-12">
+
+                        {% for specification in specificationsArr %}
+                            <tr>
+                                <td>{{ specification.name }}</td>
+                                <td>{{ specification.value }}</td>
+                            </tr>
+                        {% endfor %}
+
+                        </table>
+                    </div>
+                </div>
+            </div>

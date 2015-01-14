@@ -1,0 +1,16 @@
+{% for category in categories|slice(start, size) %}
+
+    <tr>
+        {% set name = category.name %}
+        <td class="category-name">{{ name }}</td>
+        <td class="item-count">{% if itemCount[name] is defined %}{{ itemCount[name] }}{% else %}{{ '0' }}{% endif %}</td>
+        <td class="category-options table-options">
+            <input type="hidden" id="category-id" value="{{ category.id }}">
+            <a href="#" class="btn btn-default btn-list"
+               data-toggle="tooltip" data-placement="bottom" title="Peržiūrėti prekių sąrašą.">{{ icon('list-alt') }}</a>
+            <a href="#" class="btn btn-default btn-remove"
+               data-toggle="tooltip" data-placement="bottom" title="Ištrinti kategoriją.">{{ icon('trash') }}</a>
+        </td>
+    </tr>
+
+{% endfor %}

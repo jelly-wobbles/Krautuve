@@ -1,0 +1,40 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}
+    Profilis | {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+    {% stylesheets
+        '@KTUShopBundle/Resources/less/baseView/*'
+        '@KTUShopBundle/Resources/less/profile/*'
+        combine=true %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+    {% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+    <div class="main-wrapper clearfix">
+        <div class="enlarged">
+        </div>
+        {%  set cartCount = 0 %}
+        {% include '@KTUShop/baseView/mainHeader.html.twig' %}
+
+        {% include '@KTUShop/baseView/navBar.html.twig' %}
+
+
+        <div class="main-container col-lg-12">
+                <section class="content clearfix">{% block content %} {% endblock %}</section>
+        </div>
+
+    </div>
+
+    {% include '@KTUShop/baseView/footer.html.twig' %}
+
+{% endblock %}
+
+{% block javascripts %}
+    {% javascripts '@KTUShopBundle/Resources/javascript/assetsClasses/*' combine=true %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

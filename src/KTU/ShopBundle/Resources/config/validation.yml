@@ -1,0 +1,57 @@
+KTU\ShopBundle\Entity\Users:
+    properties:
+        name:
+            - Length:
+                max: 45
+                maxMessage: shop.name.long
+                groups: [ShopRegistration, ShopEdit]
+            - NotBlank:
+                message: shop.name.blank
+                groups: [ShopRegistration, ShopEdit]
+        surname:
+             - Length:
+                 max: 45
+                 maxMessage: shop.surname.long
+                 groups: [ShopRegistration, ShopEdit]
+             - NotBlank:
+                 message: shop.surname.blank
+                 groups: [ShopRegistration, ShopEdit]
+        zipCode:
+             - Regex:
+                 pattern: '/^LT-\d{5}$|^$/'
+                 message: shop.zipCode.pattern
+                 groups: [ShopRegistration, ShopEdit]
+        phoneNumber:
+             - Regex:
+                 pattern: '/^86\d{7}$|^$/'
+                 message: shop.phoneNumber.pattern
+                 groups: [ShopRegistration, ShopEdit]
+        address:
+             - Length:
+                 max: 255
+                 maxMessage: shop.address.long
+                 groups: [ShopRegistration, ShopEdit]
+
+KTU\ShopBundle\Entity\Categories:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: name
+            message: shop_category.name.exists
+
+KTU\ShopBundle\Entity\Images:
+    properties:
+        file:
+            - File:
+                maxSize: 8M
+                maxSizeMessage: Failas yra per didelis. ( Maksimalus failo dydis: 8Mb )
+                mimeTypes: [image/png, image/jpeg, image/jpg]
+                mimeTypesMessage: Neleistinas failo formatas. ( Leistini: jpeg, jpg, png )
+                groups: [ImageFile]
+
+FOS\UserBundle\Model\User:
+    properties:
+        email:
+            - Length:
+                max: 100
+                maxMessage: fos_user.email.long
+                groups: [Registration, Profile]

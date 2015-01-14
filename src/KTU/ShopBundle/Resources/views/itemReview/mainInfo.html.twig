@@ -1,0 +1,39 @@
+
+        <div class="blockWrap col-lg-6">
+            <div class="block col-lg-12">
+                <p class="blockTitle">Pagrindinė informacija</p>
+                <div class="tableWrap">
+                    <table class="upperTable col-lg-12">
+                        <tr>
+                            <td>Kaina:</td>
+                            <td style="font-size: 28px;">
+                                {% if hasDiscount %}
+                                    <p>{{ itemDetails.price|number_format(2, ',', '') }} €</p>
+                                    <p class="discounted">{{ itemDetails.getPurePrice|number_format(2, ',', '') }} €</p>
+                                {% else %}
+                                    <p>{{ itemDetails.price|number_format(2, ',', '') }} €</p>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Kategorija:</td>
+                            <td id="cat"><a title="Peržiūrėti kategoriją {{ itemDetails.categories.name }}" href="{{ path('shop_category' ,{ 'category' : itemDetails.categories.name }) }}">{{ itemDetails.categories.name }}</a></td>
+                        </tr>
+                        {% if hasRatings == true %}
+                            <tr>
+                                <td>Klientų įvertinimas:</td>
+                                <td class="rating">{{ ratingValue|number_format(1, '.', '') }} / 10</td>
+                            </tr>
+                        {% endif %}
+                        <tr>
+                            <td>Kiekis sandėlyje:</td>
+                            <td>{{ quantity }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>

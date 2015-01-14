@@ -1,0 +1,46 @@
+{% set dataCount = items|length %}
+{% set rowsPerPage = 10 %}
+{% embed 'KTUShopBundle:Admin:main.html.twig' %}
+{% block stylesheets %}
+    {% stylesheets '@KTUShopBundle/Resources/less/admin/adminItems.less' combine=true %}
+    <link rel="stylesheet" href="{{ asset_url }}">
+    {% endstylesheets %}
+{% endblock %}
+{% block content %}
+    {% set locations = [{ 'path': path('admin_items'), 'name': 'Prekės' }] %}
+    {% include('@KTUShop/Admin/navigationMap.html.twig') with {'locations': locations} %}
+    <div class="table-container">
+        <h4 class="table-name">{{ icon('shopping-cart') }} Prekės</h4>
+        <div class="table-body">
+            <table id="items" class="table">
+                <tr class="table-header">
+                    <th>Pavadinimas</th>
+                    <th>Kategorija</th>
+                    <th>Kaina</th>
+                    <th>Kiekis</th>
+                    <th>Veiksmai</th>
+                </tr>
+            </table>
+            {% if dataCount == 0 %}
+                <p class="no-data">Nėra prekių</p>
+            {% else %}
+                {{ tablePagination(dataCount, rowsPerPage) }}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+{% endembed %}
+{% block javascripts %}
+    <script>
+        var removeItemURL = '{{ path('admin_item_remove') }}';
+        var tableDataURL = '{{ path('admin_items_table_data') }}';
+        var totalPages = Math.round({{ dataCount }} / {{ rowsPerPage }});
+        var rowsPerPage = {{ rowsPerPage }};
+    </script>
+    {% javascripts  '@KTUShopBundle/Resources/javascript/assetsClasses/table/TableHelper.js'
+                    '@KTUShopBundle/Resources/javascript/assetsClasses/modalWindow.js'
+                    '@KTUShopBundle/Resources/javascript/admin/adminItems.js'
+        combine=true %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

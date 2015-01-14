@@ -1,0 +1,159 @@
+/**************************************
+          INCLUDES
+***************************************/
+
+@import "admin.less";
+@import "../table/table.less";
+
+/**************************************
+          STYLES
+***************************************/
+
+@pag-bor-col-hov: @items-col;
+@table-col: @items-col;
+@table-col-hover: lighten(@items-col, 45%);
+
+#items{
+
+  td{
+    position: relative;
+  }
+
+  th:first-child{
+    width: 30%;
+  }
+
+  th:nth-child(2){
+    width: 20%;
+  }
+
+  th:nth-child(3){
+    width: 12.5%;
+    min-width: 176px;
+  }
+
+  th:nth-child(4){
+    width: 15%;
+  }
+
+  th:nth-child(5){
+    width: 12.5%;
+  }
+
+  th:last-child{
+    width: 10%;
+    min-width: 258px;
+  }
+
+  .primary-info{
+    position: relative;
+    float: left;
+  }
+
+  .secondary-info{
+    clear: both;
+    display: block;
+  }
+
+  .discount-tag{
+    position: relative;
+    float: left;
+    width: 32px;
+    opacity: 0.9;
+
+    .glyphicon{
+      position: absolute;
+      font-size: 32px;
+    }
+
+    .discount-tooltip{
+      position: absolute;
+      width: 100%;
+      height: 32px;
+      top: 5px;
+      left: 10px;
+    }
+
+    .discount-value{
+      display: block;
+      color: white;
+      position: absolute;
+      font-size: 9px;
+      .transform(rotate(45deg));
+    }
+
+    .double-digits{
+      top: 10px;
+      left: 8px;
+    }
+
+    .single-digit{
+      top: 10px;
+      left: 10px;
+    }
+
+  }
+
+  .row-info{
+    position: absolute;
+    top: 4px;
+    left: 4px;
+
+    .glyphicon{
+      opacity: 0.7;
+      font-size: 17px;
+
+      &:hover{
+        opacity: 0.95;
+        text-shadow: 1px 1px #ddd;
+      }
+    }
+
+    .glyphicon-question-sign {
+      color: #666;
+    }
+
+  }
+
+  .low-storage{
+    color: #ba7000;
+
+    .glyphicon-question-sign {
+      &:hover{
+        color: #d08200;
+      }
+    }
+
+    .secondary-info{
+      color: lighten(#d08200, 5%)
+    }
+
+  }
+
+  .empty-storage{
+    color: #c8402b;
+
+    .glyphicon-question-sign {
+      &:hover{
+        color: #ff5c41;
+      }
+    }
+
+    .secondary-info{
+      color: lighten(#ff5c41, 5%)
+    }
+
+  }
+
+  .removed{
+    color: #999;
+    td {
+      height: 63px;
+    }
+  }
+
+
+
+
+}
+

@@ -1,0 +1,30 @@
+
+<section class="cartContainer col-lg-8 col-lg-offset-2">
+
+    <p class="cartContainerLabel">Prekių sąrašas</p>
+
+    <table class="cartTable col-lg-12">
+        <tr class="columnTitles">
+            <th id="title" class="col-lg-7">Pavadinimas</th>
+            <th id="quantity" class="col-lg-2">Kiekis</th>
+            <th id="priceEU" class="col-lg-3">Kaina €</th>
+        </tr>
+
+        {% for cartItem in cartItems %}
+            <tr class="itemContainer">
+                <td id="title" class="col-lg-7"><a href="{{ path('shop_itemReview' ,{ 'itemID' : cartItem.items.id }) }}" target="_blank">{{ cartItem.items.itemsdetails.name }}</a></td>
+                <td id="quantity" class="col-lg-3">{{ cartItem.quantity }}</td>
+                <td id="priceEU" class="col-lg-3">{{ (cartItem.items.itemsdetails.price * cartItem.quantity)|number_format(2, ',', '') }} €</td>
+            </tr>
+        {% endfor %}
+
+        <tr class="totalPrices">
+            <td class="col-lg-7"></td>
+            <td class="col-lg-3"></td>
+            <td id="totalPriceEU" class="col-lg-3">{{ totalPriceEU|number_format(2, ',', '') }} €</td>
+        </tr>
+
+    </table>
+
+
+</section>

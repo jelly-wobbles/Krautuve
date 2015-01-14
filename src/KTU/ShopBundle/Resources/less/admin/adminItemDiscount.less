@@ -1,0 +1,42 @@
+/**************************************
+          INCLUDES
+***************************************/
+
+@import "admin.less";
+
+/**************************************
+          STYLES
+***************************************/
+
+@table-col: @items-col;
+
+.item-discount{
+  tr td:first-child{
+    width: 120px;
+  }
+
+  tr td:nth-child(2){
+    width: 150px;
+    text-align: right;
+  }
+
+  tr td:last-child{
+    > *{
+      margin-right: 10px;
+    }
+  }
+}
+
+.no-discount{
+  text-decoration: line-through;
+  color: #999;
+}
+
+#shop_item_discount_itemDiscount{
+  margin: 10px auto 0 auto;
+  width: 100px;
+}
+
+.help-block{
+  margin-bottom: 0px;
+}

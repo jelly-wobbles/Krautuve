@@ -1,0 +1,65 @@
+<?php
+
+namespace KTU\ShopBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Currecy
+ *
+ * @ORM\Table(name="Currecy")
+ * @ORM\Entity
+ */
+class Currecy
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="multiplier", type="float", precision=10, scale=0, nullable=false)
+     */
+    private $multiplier;
+
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set multiplier
+     *
+     * @param float $multiplier
+     * @return Currecy
+     */
+    public function setMultiplier($multiplier)
+    {
+        $this->multiplier = $multiplier;
+
+        return $this;
+    }
+
+    /**
+     * Get multiplier
+     *
+     * @return float 
+     */
+    public function getMultiplier()
+    {
+        return $this->multiplier;
+    }
+}

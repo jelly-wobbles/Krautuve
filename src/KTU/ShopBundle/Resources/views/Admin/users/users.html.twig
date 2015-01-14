@@ -1,0 +1,50 @@
+{% set dataCount = users|length %}
+{% set rowsPerPage = 10 %}
+{% embed 'KTUShopBundle:Admin:main.html.twig' %}
+    {% block stylesheets %}
+        {% stylesheets '@KTUShopBundle/Resources/less/admin/adminUsers.less' combine=true %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+    {% endblock %}
+    {% block content %}
+        {% set locations = [{ 'path': path('admin_users'), 'name': 'Naudotojai' }] %}
+        {% include('@KTUShop/Admin/navigationMap.html.twig') with {'locations': locations} %}
+        <div class="table-container">
+            <h4 class="table-name">{{ icon('user') }} Naudotojai</h4>
+            <div class="table-body">
+            <table id="users" class="table">
+                <tr class="table-header">
+                    <th>Prisijungęs</th>
+                    <th>Vardas</th>
+                    <th>Pavardė</th>
+                    <th>Elektroninis paštas</th>
+                    <th>Privilegijos</th>
+                    <th>Veiksmai</th>
+                </tr>
+            </table>
+            {% if dataCount == 0 %}
+                <p class="no-data">Nėra naudotojų</p>
+            {% else %}
+                {{ tablePagination(dataCount, rowsPerPage) }}
+            {% endif %}
+            </div>
+        </div>
+    {% endblock %}
+{% endembed %}
+{% block javascripts %}
+    <script>
+        var removeUserURL = '{{ path('admin_remove_user') }}';
+        var banUserURL = '{{ path('admin_ban_user') }}';
+        var unbanUserURL = '{{ path('admin_unban_user') }}';
+        var tableDataURL = '{{ path('admin_users_table_data') }}';
+        var totalPages = Math.round({{ dataCount }} / {{ rowsPerPage }});
+        var rowsPerPage = {{ rowsPerPage }};
+    </script>
+    {% javascripts '@KTUShopBundle/Resources/javascript/assetsClasses/table/TableHelper.js'
+                   '@KTUShopBundle/Resources/javascript/assetsClasses/userEditor.js'
+                   '@KTUShopBundle/Resources/javascript/assetsClasses/modalWindow.js'
+                   '@KTUShopBundle/Resources/javascript/admin/adminUsers.js'
+        combine=true %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

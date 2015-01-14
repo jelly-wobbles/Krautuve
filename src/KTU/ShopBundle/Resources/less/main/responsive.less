@@ -1,0 +1,403 @@
+@import "../bootstrap_vars.less";
+
+// MEDIUM
+@media screen and (max-width: @screen-lg) and (min-width: @screen-md) {
+
+    .nav.categories{
+
+      li{
+        padding: 10px;
+        padding-bottom: 3px;
+
+        &:last-child{
+          border-bottom: 1px solid #EFEFEF;
+        }
+      }
+    }
+}
+
+
+
+// SMALL
+@media screen and (max-width: @screen-md) and (min-width: @screen-sm) {
+
+  .nav.categories{
+
+    li{
+      padding: 15px;
+      padding-bottom: 3px;
+
+      &:last-child{
+        border-bottom: 1px solid #EFEFEF;
+      }
+    }
+  }
+}
+
+// EXTRA-SMALL
+@media screen and (max-width: @screen-sm) and (min-width: @screen-xs) {
+
+
+  .nav.categories{
+
+    .searchBar{
+      margin-bottom: 50px;
+
+      .input-group{
+        .searchInput{
+          height: 40px;
+        }
+
+        .input-group-btn .searchButton{
+          height: 40px;
+          font-size: 22px;
+        }
+      }
+    }
+
+    li{
+      padding: 15px;
+      padding-bottom: 0;
+
+      &:last-child{
+        border-bottom: 1px solid #EFEFEF;
+      }
+
+      a{
+        font-size: 18px;
+      }
+
+    }
+  }
+
+
+
+  .item-list{
+
+
+
+    .pagination{
+
+
+      li{
+        a{
+          display: block;
+          min-width: 60px;
+          min-height: 60px;
+          width: 60px;
+          height: 60px;
+          border: 1px solid #EEE;
+          border-radius: 4px;
+          line-height: 60px;
+          padding: 0;
+          font-size: 35px;
+
+          &:hover{
+            border: 1px solid #CCC;
+          }
+        }
+
+        .toFirst, .toLast{
+          display: none;
+        }
+      }
+
+      .paginationNumber{
+        a{
+          display: none;
+        }
+
+        .isCurrent{
+          display: block;
+          box-shadow: none;
+          font-size: 28px;
+        }
+
+      }
+    }
+
+
+
+    .thumbnail{
+      height: 542px;
+      max-height: 1000px;
+      margin-bottom: 80px;
+      border-radius: 4px;
+
+
+
+
+      .priceEU{
+        height: 116px;
+
+        h5{
+          line-height: 170px;
+          font-size: 28px;
+        }
+
+        .discounted{
+          font-size: 22px;
+          line-height: 174px;
+        }
+      }
+
+
+      .discount{
+        width: 90px;
+        height: 60px;
+        font-size: 30px;
+        line-height: 60px;
+        padding: 0;
+        text-align: center;
+      }
+
+      .imageFrame{
+        .imageWrap{
+          .magGlassIcon{
+            width: 60px;
+            height: 60px;
+          }
+        }
+      }
+
+      h4{
+        padding: 0;
+        font-size: 20px;
+        height: 50px;
+        line-height: 50px;
+        border: 0;
+        border-top: 1px solid #EEE;
+        border-bottom: 1px solid #EEE;
+      }
+
+
+      .cart{
+        height: 70px;
+        width: 70px;
+        padding: 5px;
+        border: 1px solid #EEE;
+        margin-top: -66px;
+
+        img{
+          height: 60px;
+          width: 60px;
+        }
+      }
+
+
+      .cartCategoryRating{
+
+        .category{
+          height: 50px;
+          line-height: 50px;
+          font-size: 20px;
+          border-bottom: 1px solid #EEE;
+
+          a{
+            margin: 0;
+            padding: 10px;
+            padding-right: 20px;
+            padding-left: 20px;
+            border: 1px solid transparent;
+            border-radius: 2px;
+
+            &:hover{
+              border: 1px solid #EEE;
+            }
+          }
+        }
+
+        .rating{
+          height: 50px;
+          line-height: 50px;
+          font-size: 20px;
+        }
+      }
+
+
+    }
+  }
+
+}
+
+
+
+// EXTRA-EXTRA-EXTRA-SMALL
+@media screen and (max-width: @screen-xs) and (min-width: 1px) {
+
+
+
+  .nav.categories{
+
+    .searchBar{
+      margin-bottom: 50px;
+
+      .input-group{
+        .searchInput{
+          height: 40px;
+        }
+
+        .input-group-btn .searchButton{
+          height: 40px;
+          font-size: 22px;
+        }
+      }
+    }
+
+    li{
+      padding: 15px;
+      padding-bottom: 0;
+
+      &:last-child{
+        border-bottom: 1px solid #EFEFEF;
+      }
+
+      a{
+        font-size: 18px;
+      }
+
+    }
+  }
+
+
+
+  .item-list{
+    padding: 0;
+
+
+    .pagination{
+
+
+      li{
+        a{
+          display: block;
+          min-width: 55px;
+          min-height: 55px;
+          width: 55px;
+          height: 55px;
+          border: 1px solid #EEE;
+          border-radius: 4px;
+          line-height: 55px;
+          padding: 0;
+          font-size: 35px;
+
+          &:hover{
+            border: 1px solid #CCC;
+          }
+        }
+
+        .toFirst, .toLast{
+          display: none;
+        }
+      }
+
+      .paginationNumber{
+        a{
+          display: none;
+        }
+
+        .isCurrent{
+          display: block;
+          box-shadow: none;
+          font-size: 28px;
+        }
+
+      }
+    }
+
+
+
+    .thumbnail{
+      height: 540px;
+      max-height: 610px;
+      margin-bottom: 80px;
+      border-radius: 4px;
+      width: 100%;
+      max-width: 100%;
+      min-width: 100%;
+      padding: 0;
+
+
+
+      .priceEU{
+        height: 110px;
+
+        h5{
+          line-height: 164px;
+          font-size: 28px;
+        }
+
+        .discounted{
+          font-size: 22px;
+          line-height: 168px;
+        }
+      }
+
+
+      .discount{
+        width: 90px;
+        height: 60px;
+        font-size: 30px;
+        line-height: 60px;
+        padding: 0;
+        text-align: center;
+      }
+
+      .imageFrame{
+        .imageWrap{
+          .magGlassIcon{
+            width: 60px;
+            height: 60px;
+          }
+        }
+      }
+
+      h4{
+        padding: 0;
+        font-size: 20px;
+        height: 50px;
+        line-height: 50px;
+        border: 0;
+        border-top: 1px solid #EEE;
+        border-bottom: 1px solid #EEE;
+      }
+
+
+      .cart{
+        display: none;
+      }
+
+
+      .cartCategoryRating{
+
+        .category{
+          height: 50px;
+          line-height: 50px;
+          font-size: 20px;
+          border-bottom: 1px solid #EEE;
+
+          a{
+            margin: 0;
+            padding: 10px;
+            padding-right: 20px;
+            padding-left: 20px;
+            border: 1px solid transparent;
+            border-radius: 2px;
+
+            &:hover{
+              border: 1px solid #EEE;
+            }
+          }
+        }
+
+        .rating{
+          height: 30px;
+          line-height: 30px;
+          font-size: 20px;
+        }
+      }
+
+
+    }
+  }
+}

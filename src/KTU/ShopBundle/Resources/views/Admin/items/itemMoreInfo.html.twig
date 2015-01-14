@@ -1,0 +1,93 @@
+{% embed 'KTUShopBundle:Admin:main.html.twig' %}
+    {% block stylesheets %}
+        {% stylesheets '@KTUShopBundle/Resources/less/admin/adminItemMore.less' combine=true %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+    {% endblock %}
+    {% block content %}
+        {% set locations = [{ 'path': path('admin_items'), 'name': 'Prekės' },
+        { 'path': '#', 'name': 'Detali informacija' }] %}
+        {% include('@KTUShop/Admin/navigationMap.html.twig') with {'locations': locations} %}
+        <div class="table-single-row-container">
+            <h4 class="table-name">{{ icon('shopping-cart') }} {{ item.name }} informacija</h4>
+            <div class="table-body">
+                <table class="table item">
+                    <tr>
+                        <td>Prekės id.:</td>
+                        <td>{{ item.id }}</td>
+                    </tr>
+                    <tr>
+                        <td>Pavadinimas:</td>
+                        <td>{{ item.name }}</td>
+                    </tr>
+                    <tr>
+                        <td>Kategorija:</td>
+                        <td>{{ item.categories.name }}</td>
+                    </tr>
+                    <tr>
+                        <td>Kaina:</td>
+                        <td>
+                            <span class="price-e">{{ item.price|number_format(2,',',' ') }} &#8364;</span>
+                            {% if item.discount > 0 %}
+                                {% set discount = item.discount*100 %}
+                                <div class="discount-tag"><div class="discount-tooltip"
+                                                               data-toggle="tooltip" data-placement="bottom" title="{{ discount }}% nuolaida.">
+                                        {{ icon('tag') }}
+                                        <span class="discount-value
+                                    {% if discount > 9 %}
+                                        double-digits
+                                    {% else %}
+                                        single-digit
+                                    {% endif %}">{{ discount }}%</span>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            <span class="price-lt secondary-info">({{ item.priceLT|number_format(2,',',' ') }} Lt)</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Kiekis:</td>
+                        <td>{{ stored }}</td>
+                    </tr>
+                    <tr>
+                        <td>Įvertinimas:</td>
+                        <td>
+                        {% if ratersCount == 0 %}
+                            Neįvertinta
+                        {% else %}
+                            {{ rating }} / 10 <span class="secondary-info"> (Įvertino {{ ratersCount }} naudotojai(-ių))</span>
+                        {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Parduota:</td>
+                        <td>{{ sold }}</td>
+                    </tr>
+                    <tr>
+                        <td>Specifikacijos:</td>
+                        <td>
+                            <ul class="list spec-list">
+                            {% for spec in specifications %}
+                                <li class="clearfix">
+                                    <div class="spec-name">{{ spec.name }}:</div>
+                                    <div class="spec-value">{{ spec.value }}</div>
+                                </li>
+                            {% endfor %}
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Aprašymas:</td>
+                        <td>{{ item.description }}</td>
+                    </tr
+                </table>
+            </div>
+        </div>
+    {% endblock %}
+{% endembed %}
+{% block javascripts %}
+    {% javascripts '@KTUShopBundle/Resources/javascript/admin/adminItemMore.js'
+        combine=true %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

@@ -1,0 +1,58 @@
+{% embed 'KTUShopBundle:Admin:main.html.twig' %}
+    {% block stylesheets %}
+        {% stylesheets '@KTUShopBundle/Resources/less/admin/adminUserEdit.less' combine=true %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+    {% endblock %}
+    {% block content %}
+        {% set locations = [{ 'path': path('admin_users'), 'name': 'Naudotojai' },
+            { 'path': '#', 'name': 'Redaguoti paskyrą' }] %}
+        {% include('@KTUShop/Admin/navigationMap.html.twig') with {'locations': locations} %}
+        <div class="form-container">
+            <h4 class="form-name">{{ icon('edit') }} Redaguoti paskyrą</h4>
+            <div class="form-body shop_user_edit_form clearfix">
+                <form action="{{ path('admin_user_edit', {'id': user.id}) }}"
+                        {{ form_enctype(form) }} method="POST" novalidate>
+                {{ bootstrap_set_style('vertical') }}
+                {{ bootstrap_set_widget_col('6') }}
+                {{ bootstrap_set_label_col('4') }}
+                {{ form_rest(form) }}
+                <div>
+                    <p class="options-heading">Veiksmai</p>
+                    <div class="options-container">
+                        {% if user.locked == 1 %}
+                            <button id="opt-unban" class="btn btn-default btn-opt" type="button">Atblokuoti {{ icon('ok-circle') }}</button>
+                        {% else %}
+                            <button id="opt-ban" class="btn btn-default btn-opt" type="button">Blokuoti {{ icon('ban-circle') }}</button>
+                        {% endif %}
+                        <button id="opt-activate" class="btn btn-default btn-opt
+                        {% if user.enabled == 1 %} disabled{% endif %}" type="button">Aktyvuoti {{ icon('ok') }}</button>
+                        <button class="btn btn-default btn-opt" id="opt-remove" type="button">
+                            Ištrinti {{ icon('trash') }}
+                        </button>
+                    </div>
+                </div>
+                <div class="form-submit-controls clearfix">
+                    <button type="submit" class="btn btn-default submit">Patvirtinti</button>
+                    <a href="{{ path('admin_users') }}" type="button" class="btn btn-default submit-cancel">Atšaukti</a>
+                </div>
+                </form>
+            </div>
+        </div>
+    {% endblock %}
+{% endembed %}
+{% block javascripts %}
+    <script>
+        usersURL = '{{ path('admin_users') }}';
+        activateURL = '{{ path('admin_user_activate') }}';
+        removeUserURL = '{{ path('admin_remove_user') }}';
+        banUserURL = '{{ path('admin_ban_user') }}';
+        unbanUserURL = '{{ path('admin_unban_user') }}';
+    </script>
+    {% javascripts  '@KTUShopBundle/Resources/javascript/assetsClasses/userEditor.js'
+                    '@KTUShopBundle/Resources/javascript/assetsClasses/modalWindow.js'
+                    '@KTUShopBundle/Resources/javascript/admin/adminUserEdit.js'
+        combine=true %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

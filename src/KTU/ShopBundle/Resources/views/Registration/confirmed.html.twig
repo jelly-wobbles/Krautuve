@@ -1,0 +1,11 @@
+{% extends "KTUShopBundle:Registration:registration_base.html.twig" %}
+
+{% trans_default_domain 'KTUShopBundle' %}
+{% block title %}  {{ parent() }} | Jūsų paskyra aktyvuota {% endblock %}
+{% block content %}
+    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
+    {% if app.session is not empty %}
+        {% set targetUrl = app.session.get('_security.' ~ app.security.token.providerKey ~ '.target_path') %}
+        {% if targetUrl is not empty %}<p class="go-back"><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>{% endif %}
+    {% endif %}
+{% endblock content %}

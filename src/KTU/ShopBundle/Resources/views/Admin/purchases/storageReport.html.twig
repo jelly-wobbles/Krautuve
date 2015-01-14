@@ -1,0 +1,37 @@
+<table class="table report">
+<tr class="table-header">
+    <th>Nr.</th>
+    <th>Prekės identifikatorius</th>
+    <th>Prekės Pavadinimas</th>
+    <th>Prekių kiekis</th>
+</tr>
+{% for file in files %}
+    {% set fileNr = loop.index0 %}
+    {% if files|length > 1 %}
+        <tr>
+            <td></td>
+            <td> === | {{ fileNr+1 }} Failas | === </td>
+            <td></td>
+            <td></td>
+        </tr>
+    {% endif %}
+    {% for rows in file %}
+        <tr {% if errors[fileNr][loop.index0] == 1 %}class="error"{% endif %}>
+            <td>{{ rows['nr'] }}</td>
+            <td>{{ rows['item_id'] }}</td>
+            <td {% if errors[fileNr][loop.index0] == 2 %}class="error"{% endif %}>{{ rows['item_name'] }}</td>
+            <td {% if errors[fileNr][loop.index0] == 3 %}class="error"{% endif %}>{{ rows['quantity'] }}</td>
+        </tr>
+    {% endfor %}
+{% endfor %}
+</table>
+<form action="{{ path('admin_purchases_storage_report_submit') }}"
+        {{ form_enctype(form) }} method="POST" name="shop_purchases_report_storage" novalidate>
+    {{ form_rest(form) }}
+    <div class="form-submit-controls clearfix">
+        <button type="submit" class="btn btn-default submit">Patvirtinti</button>
+        <p class="secondary-info"> * Neteisingos eilutės bus atmestos.</p>
+    </div>
+</form>
+
+

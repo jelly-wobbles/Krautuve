@@ -1,0 +1,56 @@
+
+@green-col: #00BB00;
+@red-col: red;
+@gray-col: #777;
+@notify-font: Tahoma, Geneva, sans-serif;
+
+html{
+  cursor: pointer;
+}
+
+.green{
+  color: @green-col;
+}
+
+.red{
+  color: @red-col;
+}
+
+.gray{
+  color: @gray-col;
+}
+
+.bgRed{
+  background: @red-col;
+}
+
+.notify-container{
+  padding: 0;
+  padding-top: 50px;
+  padding-bottom: 50px;
+
+  .title, .message, .clickToContinue{
+    padding: 15px;
+    height: auto;
+
+    .titleText, .messageText, .clickToContinueText{
+      padding: 10px;
+      text-align: center;
+      font-family: @notify-font;
+    }
+
+    .titleText{
+      font-size: 36px;
+      font-weight: bold;
+    }
+
+    .messageText{
+      font-size: 26px;
+    }
+
+    .clickToContinueText{
+      font-size: 16px;
+    }
+  }
+
+}

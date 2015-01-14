@@ -1,0 +1,32 @@
+<?php
+
+namespace KTU\ShopBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Userroles
+ *
+ * @ORM\Table(name="UserRoles", uniqueConstraints={@ORM\UniqueConstraint(name="role_UNIQUE", columns={"role"})})
+ * @ORM\Entity
+ */
+class Userroles
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="role", type="string", length=45, nullable=false)
+     */
+    private $role;
+
+
+}

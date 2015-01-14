@@ -1,0 +1,78 @@
+{% extends "::base.html.twig" %}
+{% block title %}{{ parent() }} | Administratorius {% endblock %}
+{% set route = app.request.attributes.get('_route') %}
+{% block stylesheets %}
+    {% if route == 'admin_users' or route == 'admin_main' %}
+        {% stylesheets '@KTUShopBundle/Resources/less/admin/admin.less' combine=true %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+    {% endif %}
+{% endblock %}
+{% block body %}
+<header class="admin-header">
+    {% image '@KTUShopBundle/Resources/images/logoCart.png' %}
+        <a href="{{ path('shop_landingpage') }}"><img class="main-logo-min" src="{{ asset_url }}" alt="krautuve_logo"/></a>
+    {% endimage %}
+    <ul class="pull-right header-actions">
+        <li><a href="{{ path('shop_homepage', {'page': 1}) }}">{{ icon('home') }} Pagrindinis</a></li>
+        <li><a href="{{ path('fos_user_security_logout') }}">{{ icon('log-out') }} Atsijungti</a></li>
+    </ul>
+</header>
+    <div class="col-lg-2 admin-options">
+        <ul class="nav nav-pills nav-stacked">
+            <li {% if route == 'admin_users' or route == 'admin_user_edit' %}
+                class="active-option" {% endif %} >
+                <a class="li-item" href="{{ path('admin_users') }}">
+                    <span class="options-list-opt-name">Naudotojai </span>{{ icon('user') }}
+                </a>
+            </li>
+            <li class="{% if route == 'admin_categories' %}active-option{% endif %} drop-down
+                    {% if route == 'admin_category_add' %}sub-active{% endif %}" >
+                <div class="drop"><span class="caret"></span></div>
+                <a class="li-item" href="{{ path('admin_categories') }}">
+                    <span class="options-list-opt-name">Kategorijos </span>{{ icon('list') }}
+                </a>
+                <ul>
+                    <li{% if route == 'admin_category_add' %} class="active-option"{% endif %}>
+                        <a class="li-item" href="{{ path('admin_category_add') }}">Pridėti {{ icon('plus') }}</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="{% if route == 'admin_items' %}
+                    active-option{% endif %} drop-down {% if route == 'admin_item_add'
+                        or route == "admin_item_edit" or route == "admin_item_discount" or route=="admin_item_storage"
+                        or route == "admin_item_more_info" %}sub-active{% endif %}" >
+                <div class="drop"><span class="caret"></span></div>
+                <a href="{{ path('admin_items') }}" class="li-item">
+                    <span class="options-list-opt-name">Prekės </span>{{ icon('shopping-cart') }}
+                </a>
+                <ul>
+                    <li{% if route == 'admin_item_add' %} class="active-option"{% endif %}>
+                        <a class="li-item" href="{{ path('admin_item_add') }}">Pridėti {{ icon('plus') }}</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="{% if route == 'admin_purchases' %}active-option{% endif %} drop-down
+            {% if route == "admin_purchases_reports" %}sub-active{% endif %}" >
+                <div class="drop"><span class="caret"></span></div>
+                <a class="li-item" href="{{ path('admin_purchases') }}">
+                    <span class="options-list-opt-name">Pirkimai </span>{{ icon('euro') }}
+                </a>
+                <ul>
+                    <li{% if route == 'admin_purchases_reports' %} class="active-option"{% endif %}>
+                        <a class="li-item" href="{{ path('admin_purchases_reports') }}">Ataskaitos {{ icon('file') }}</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="col-xs-offset-2 col-xs-10 main-content-wrap">
+    {% block content %}{% endblock %}
+    </div>
+{% endblock %}
+{% block javascripts %}
+   {% javascripts '@KTUShopBundle/Resources/javascript/admin/menu.js'
+        combine=true %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

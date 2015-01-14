@@ -1,0 +1,52 @@
+<?php
+
+namespace KTU\ShopBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Purchases
+ *
+ * @ORM\Table(name="Purchases", indexes={@ORM\Index(name="fk_Purchases_Users1_idx", columns={"Users_id"}), @ORM\Index(name="fk_Purchases_PurchaseStatuses1_idx", columns={"PurchaseStatuses_id"})})
+ * @ORM\Entity
+ */
+class Purchases
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime", nullable=false)
+     */
+    private $date;
+
+    /**
+     * @var \Purchasestatuses
+     *
+     * @ORM\ManyToOne(targetEntity="Purchasestatuses")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="PurchaseStatuses_id", referencedColumnName="id")
+     * })
+     */
+    private $purchasestatuses;
+
+    /**
+     * @var \Users
+     *
+     * @ORM\ManyToOne(targetEntity="Users")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Users_id", referencedColumnName="id")
+     * })
+     */
+    private $users;
+
+
+}

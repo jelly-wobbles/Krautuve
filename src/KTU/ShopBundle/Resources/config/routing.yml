@@ -1,0 +1,35 @@
+##### IMPORTS
+
+shop_paysera:
+    resource: "@KTUShopBundle/Resources/config/routing/paysera.yml"
+
+shop_app:
+    resource: "@KTUShopBundle/Resources/config/routing/app.yml"
+
+shop_cart:
+    resource: "@KTUShopBundle/Resources/config/routing/cart.yml"
+
+shop_main:
+    resource: "@KTUShopBundle/Resources/config/routing/main.yml"
+
+shop_itemReview:
+    resource: "@KTUShopBundle/Resources/config/routing/itemReview.yml"
+
+shop_admin:
+    resource: "@KTUShopBundle/Resources/config/routing/admin.yml"
+
+
+
+##### ROUTES
+
+shop_landingpage:
+    path:     /
+    defaults: { _controller: KTUShopBundle:Main:index, page: 1 }
+
+shop_base:
+    path: /base
+    defaults: {  _controller: KTUShopBundle:baseView:index}
+
+shop_toCart:
+    path: /toCart
+    defaults: {  _controller: KTUShopBundle:Main:toCart }

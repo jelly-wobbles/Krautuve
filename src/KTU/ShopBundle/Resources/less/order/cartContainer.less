@@ -1,0 +1,88 @@
+/**************************************
+          INCLUDES
+***************************************/
+
+@import "../mixins.less";
+@cart-font-col: #009900;
+@splitter-col: #E5E5E5;
+
+@cart-font: Futura, "Trebuchet MS", Arial, sans-serif;
+
+.cartContainer{
+  padding: 0;
+  margin-bottom: 50px;
+
+
+  .cartContainerLabel{
+    text-align: center;
+    font-size: 26px;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid @cart-font-col;
+  }
+
+
+  .cartTable{
+    padding: 0;
+
+
+    .columnTitles {
+      text-align: center;
+      border: 0;
+      font-size: 16px;
+      font-weight: bold;
+      height: 30px;
+      line-height: 30px;
+
+
+      #priceLT, #priceEU, #title, #quantity{
+        text-align: center;
+      }
+    }
+
+
+    .itemContainer{
+      height: 30px;
+      font-size: 15px;
+      line-height: 14px;
+      border-top: 1px solid @splitter-col;
+      border-bottom: 1px solid @splitter-col;
+
+      td{
+        height: 30px;
+        line-height: 30px;
+        padding: 0;
+        margin: 0;
+      }
+
+      #title {
+        max-width: 200px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        a{
+          color: @cart-font-col;
+        }
+      }
+
+      #priceLT, #priceEU, #quantity{
+        text-align: center;
+      }
+
+
+    }
+
+    .totalPrices{
+      font-size: 18px;
+      text-align: center;
+      height: 40px;
+      line-height: 40px;
+      font-weight: bold;
+    }
+
+
+  }
+
+}

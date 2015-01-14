@@ -1,0 +1,42 @@
+<?php
+
+namespace KTU\ShopBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Images
+ *
+ * @ORM\Table(name="Images", indexes={@ORM\Index(name="fk_Images_ItemsDetails1_idx", columns={"ItemsDetails_id"})})
+ * @ORM\Entity
+ */
+class Images
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="path", type="string", length=255, nullable=false)
+     */
+    private $path;
+
+    /**
+     * @var \Itemsdetails
+     *
+     * @ORM\ManyToOne(targetEntity="Itemsdetails")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ItemsDetails_id", referencedColumnName="id")
+     * })
+     */
+    private $itemsdetails;
+
+
+}

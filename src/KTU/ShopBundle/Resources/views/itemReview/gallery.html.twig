@@ -1,0 +1,14 @@
+
+        <div class="blockWrap col-lg-6">
+            <div class="block col-lg-12">
+                <p class="blockTitle">Nuotraukos</p>
+
+                <div class="fotorama col-lg-12" data-maxwidth="100%" data-maxheight="390px" data-nav="thumbs">
+                    <img class="dummyPhoto" src="">
+                    {% for image in imageEntities %}
+                        <img class="itemPhoto" src="{{ asset('uploads/items/' ~ image.path) }}">
+                    {% endfor %}
+                </div>
+
+            </div>
+        </div>

@@ -1,0 +1,11 @@
+<ul class="nav nav-pills nav-stacked col-lg-2 col-md-12 categories">
+
+    {% include '@KTUShop/Main/searchBar.html.twig' %}
+
+    <li><a href="{{ path('shop_landingpage') }}">Visos prekės</a></li>
+
+    {% for category in categoryEntities %}
+        <li><a href="{{ path('shop_category' ,{ 'category' : category.name }) }}">{{ category.name }}</a></li>
+    {% endfor %}
+
+</ul>

@@ -1,0 +1,80 @@
+# Form
+form:
+    name: Vardas:
+    surname: Pavardė:
+    address: Gyvenamoji vieta:
+    zipCode: Pašto kodas:
+    phoneNumber: Telefono numeris:
+    roles: Privilegijos:
+
+# Registration
+registration:
+    check_email: El. pašto pranešimas išsiųstas adresu %email%. Jame rasite nuorodą, kurią aplankę, galėsite aktyvuoti savo paskyrą.
+    confirmed: Sveikiname, jūsų paskyra aktyvuota.
+    back: Grįžti atgal
+    submit: Registruotis
+    flash:
+        user_created: Naudotojas sukurtas
+    email:
+        subject: Registracijos patvirtinimas
+        message: |
+            Sveiki %name%!
+
+            Norėdami aktyvuoti savo paskyrą, apsilankykite adresu %confirmationUrl%
+
+            Pagarbiai,
+            Krautuvės administracija.
+
+# Password resetting
+resetting:
+    password_already_requested: Slaptažodžio keitimas šiam naudotojui jau buvo prašytas per paskutinias 24 valandas.
+    check_email: El. pašto pranešimas išsiųstas adresu %email%. Jame rasite nuorodą, kurią paspaudę, galėsite pakeisti savo slaptažodį.
+    request:
+        invalid_username: Naudotojo vardas arba el. paštas "%username%" neegzistuoja.
+        username: "Naudotojo vardas arba el. paštas:"
+        submit: Tęsti
+    reset:
+        submit: Pakeisti slaptažodį
+    flash:
+        success: Slaptažodis pakeistas
+    email:
+        subject: Slaptažodžio keitimas
+        message: |
+            Sveiki %name%!
+
+            Norėdami pakeisti savo slaptažodį, apsilankykite adresu %confirmationUrl%
+
+            Pagarbiai,
+            Krautuvės administracija.
+
+# Item forms
+item_form:
+    name: "Pavadinimas:"
+    price: "Kaina:"
+    specs: "Specifikacijos:"
+    description: "Aprašymas:"
+    category: "Pasirinkite kategoriją:"
+    uploads: "Pridėkite nuotraukas:"
+    specs_names: "Pavadinimas:"
+    specs_values: "Reikšmė:"
+
+item_storage:
+    store: "Pridėti prekes į sandėlį:"
+
+# Category form
+category_form:
+    name: "Pavadinimas:"
+
+# Purchases form
+purchases_form:
+    storage_report: "Sandėliavimo ataskaita:"
+    delivery_report: "Pristatymų ataskaita:"
+
+# Statuses
+Pending: "Laukiama"
+In progress: "Atliekamas"
+Confirmed: "Sumokėta"
+Delivering: "Pristatomas"
+Canceled: "Atšauktas"
+Received: "Pristatytas"
+

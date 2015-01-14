@@ -1,0 +1,36 @@
+
+@import '../bootstrap_vars.less';
+
+
+// EXTRA-SMALL
+@media screen and (max-width: @screen-sm) and (min-width: @screen-xs) {
+
+  .cartContainer {
+    padding: 0;
+
+    .cartTable {
+      padding: 0;
+
+      .itemContainer {
+
+        #title {
+          white-space: pre-wrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+
+        }
+      }
+    }
+  }
+
+}
+
+
+
+// EXTRA-EXTRA-EXTRA-SMALL
+@media screen and (max-width: @screen-xs) and (min-width: 1px) {
+  .cartContainer{
+    display: none;
+  }
+}
+

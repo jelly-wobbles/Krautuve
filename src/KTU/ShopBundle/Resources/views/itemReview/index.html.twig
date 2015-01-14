@@ -1,0 +1,59 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}
+    {{ itemDetails.name }} | {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+    {% stylesheets
+        '@KTUShopBundle/Resources/less/baseView/*'
+        '@KTUShopBundle/Resources/less/itemReview/*'
+        '@KTUShopBundle/Resources/less/fotorama/*'
+        combine=true %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+    {% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+
+
+    <div class="main-wrapper clearfix">
+        <div class="enlarged">
+        </div>
+
+        {% include '@KTUShop/baseView/mainHeader.html.twig' %}
+
+        {% include '@KTUShop/baseView/navBar.html.twig' %}
+
+
+        <div class="main-container col-lg-12 clearfix">
+
+            {% include '@KTUShop/itemReview/itemContainer.html.twig' %}
+
+        </div>
+
+    </div>
+
+    {% include '@KTUShop/baseView/footer.html.twig' %}
+
+{% endblock %}
+
+{% block javascripts %}
+    {% javascripts
+        '@KTUShopBundle/Resources/javascript/itemReview/*'
+        '@KTUShopBundle/Resources/javascript/main/toCart.js'
+        '@KTUShopBundle/Resources/javascript/assetsClasses/modalWindow.js'
+        '@KTUShopBundle/Resources/javascript/fotorama/*'
+        combine=true %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    <script>
+            var val = {{ ratingValue }};
+
+            $(document).ready(function() {
+                    var url = "{{ path('shop_itemReview_rate', { 'itemID': app.request.get('itemID') }) }}";
+                    rateEffects(val, url);
+            });
+    </script>
+{% endblock %}

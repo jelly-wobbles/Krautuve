@@ -1,0 +1,11 @@
+shop_app:
+    path: /app
+    defaults: {  _controller: KTUShopBundle:App:index}
+
+shop_app_getPurchaseInfo:
+    path: /app/getPurchaseInfo
+    defaults: {  _controller: KTUShopBundle:App:getPurchaseInfo}
+
+shop_app_rate:
+    path: /app/rate
+    defaults: {  _controller: KTUShopBundle:App:rate}

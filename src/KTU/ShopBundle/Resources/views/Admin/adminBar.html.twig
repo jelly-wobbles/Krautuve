@@ -1,0 +1,27 @@
+<nav class="navbar navbar-default admin-nav
+{% if app.request.cookies.has('admin_nav_bar_state') %}
+    {% if app.request.cookies.get('admin_nav_bar_state') == 'mini' %}
+        minimize-admin-bar
+    {% endif %}
+{% endif %}
+" role="navigation">
+    <div class="admin-nav-resize">{{ icon('resize-small') }}</div>
+    <div class="admin-info">
+        <a href="{{ path('admin_users') }}" class="admin-option users-online">
+            {{ icon('user') }}
+            <span class="desc-text">Vartotojai</span>
+        </a>
+        <a href="{{ path('admin_items') }}"  class="admin-option items">
+            {{ icon('shopping-cart') }}
+            <span class="desc-text">Prekių sąrašas</span>
+        </a>
+        <a href="{{ path('admin_purchases') }}" class="admin-option purchases">
+            {{ icon('euro') }}
+            <span class="desc-text">Pirkimų informacija</span>
+        </a>
+        <a href="{{ path('fos_user_security_logout') }}" class="admin-option logout">
+            {{ icon('log-out') }}
+            <span class="desc-text">Atsijungti</span>
+        </a>
+    </div>
+</nav>

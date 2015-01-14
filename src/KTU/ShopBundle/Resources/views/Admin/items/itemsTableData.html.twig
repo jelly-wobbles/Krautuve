@@ -1,0 +1,70 @@
+{% for item in items|slice(start,size) %}
+
+    {% if item.isRemoved == 1 %}
+    <tr class="removed">
+        <td><div class="row-info" data-toggle="tooltip" data-placement="bottom" title="Prekė bus ištrinta, kai bus atlikti visi pirkimai.">
+                {{ icon('question-sign') }}</div>{{ item.name }}</td>
+        <td> - </td>
+        <td> - </td>
+        <td> - </td>
+        <td></td>
+    </tr>
+    {% else %}
+    <tr {% if quantity[item.id] == 0 %}class="empty-storage"{% elseif quantity[item.id] < 5 %}class="low-storage"{% endif %}>
+        <td class="item-name">
+        {% if quantity[item.id] == 0 %}
+            <div class="row-info" data-toggle="tooltip" data-placement="bottom" title="Sandėlyje nebėra prekių.">
+                {{ icon('question-sign') }}</div>
+        {% elseif quantity[item.id] < 5 %}
+            <div class="row-info" data-toggle="tooltip" data-placement="bottom" title="Sandėlyje liko mažai prekių.">
+                {{ icon('question-sign') }}</div>
+        {% endif %}
+            {{ item.name }}
+        </td>
+        <td>{{ item.categories.name }}</td>
+        <td>
+            <span class="primary-info">{{ item.price|number_format(2,',',' ') }} &#8364;</span>
+            {% if item.discount > 0 %}
+                {% set discount = item.discount*100 %}
+                <div class="discount-tag"><div class="discount-tooltip"
+                                               data-toggle="tooltip" data-placement="bottom" title="{{ discount }}% nuolaida.">
+                    {{ icon('tag') }}
+                    <span class="discount-value
+                    {% if discount > 9 %}
+                        double-digits
+                    {% else %}
+                        single-digit
+                    {% endif %}">{{ discount }}%</span>
+                    </div>
+                </div>
+            {% endif %}
+            <span class="secondary-info">({{ item.priceLT|number_format(2,',',' ') }} Lt)</span>
+        </td>
+        <td>{{ quantity[item.id] }}</td>
+        <td class="item-options table-options">
+            <input type="hidden" id="item-id" value="{{ item.id }}" />
+            <a class="btn btn-default btn-info" href="{{ path('admin_item_more_info', {'id': item.id}) }}"
+               data-toggle="tooltip" data-placement="bottom" title="Detali prekės informacija.">
+                {{ icon('info-sign') }}
+            </a>
+            <a class="btn btn-default btn-discount" href="{{ path('admin_item_discount', {'id': item.id}) }}"
+               data-toggle="tooltip" data-placement="bottom"
+               title="{% if item.discount == 0 %}Pridėti nuolaidą.{% else %}Keisti nuolaidą.{% endif %}">
+                {{ icon('tag') }}
+            </a>
+            <a class="btn btn-default btn-storage" href="{{ path('admin_item_storage', {'id': item.id}) }}"
+               data-toggle="tooltip" data-placement="bottom" title="Sandėliavimo detalės.">
+                {{ icon('lock') }}
+            </a>
+            <a class="btn btn-default btn-edit" href="{{ path('admin_item_edit', {'id': item.id}) }}"
+               data-toggle="tooltip" data-placement="bottom" title="Redaguoti prekės informaciją.">
+                {{ icon('edit') }}
+            </a>
+            <button class="btn btn-default btn-remove"
+                    data-toggle="tooltip" data-placement="bottom" title="Ištrinti prekę.">
+                {{ icon('trash') }}
+            </button>
+        </td>
+    </tr>
+    {% endif %}
+{% endfor %}

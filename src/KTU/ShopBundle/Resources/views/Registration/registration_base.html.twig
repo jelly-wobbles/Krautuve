@@ -1,0 +1,32 @@
+{% extends "::base.html.twig" %}
+{% block stylesheets %}
+    {% stylesheets '@KTUShopBundle/Resources/less/registration.less' combine=true %}
+    <link rel="stylesheet" href="{{ asset_url }}">
+    {% endstylesheets %}
+{% endblock %}
+{% block body %}
+    <div class="main-wrapper clearfix">
+    <header class="registration-header">
+        <h2> Registracija </h2>
+        {% image '@KTUShopBundle/Resources/images/logomin.png' %}
+        <a href="{{ url('shop_homepage') }}"><img class="side-logo-md" src="{{ asset_url }}" alt="krautuve_logo"/></a>
+        {% endimage %}
+        {% image '@KTUShopBundle/Resources/images/logoCart.png' %}
+        <a href="{{ url('shop_homepage') }}"><img class="side-logo-sm" src="{{ asset_url }}" alt="krautuve_logo"/></a>
+        {% endimage %}
+    </header>
+    <div class="main-container col-lg-12">
+        <section class="content clearfix">{% block content %} {% endblock %}</section>
+    </div>
+
+    <div class="footer-push col-lg-12 clearfix"></div>
+    </div>
+    <footer class="registration-footer">
+    </footer>
+{% endblock %}
+
+{% block javascripts %}
+    {% javascripts '@KTUShopBundle/Resources/javascript/registration.js' combine=true %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

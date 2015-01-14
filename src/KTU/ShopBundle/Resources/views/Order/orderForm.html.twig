@@ -1,0 +1,34 @@
+
+<div class="orderForm col-lg-8 col-lg-offset-2">
+
+    <p class="orderFormLabel">Užsakymo forma</p>
+
+    <ul>
+        <li class="amount">Prekių kiekis: <span>{{ cartCount }}</span></li>
+        <li class="priceEU">Bendra suma: <span>{{ totalPriceEU|number_format(2, ',', '') }} €</span> </li>
+    </ul>
+
+    <p id="contactsFormLabel" >Kontaktinė pirkėjo informacija:</p>
+
+    <form class="contactsForm">
+        <label for="email">El. paštas</label>
+        <input type="text" id="email" value="{{ user.email }}" disabled="true">
+
+        <label for="number">Telefono numeris</label>
+        <input type="text" id="number" value="{{ user.phoneNumber }}">
+
+        <label for="address">Adresas</label>
+        <input type="text" id="address" value="{{ user.address }}">
+
+        <label for="name">Vardas</label>
+        <input type="text" id="name"value="{{ user.name }}">
+
+        <label for="surname">Pavardė</label>
+        <input type="text" id="surname" value="{{ user.surname }}">
+
+        <p class="reminder">* Patvirtindami užsakymą sutinkate su pirkimo taisyklėmis bei užtikrinate, kad kontaktinė informacija yra teisinga.</p>
+
+        <div class="confirmButton" onclick="confirm('{{ path('shop_cart_order_confirm', { 'id': app.user.id }) }}', '{{ path('paysera.pay')}}', '{{ asset('images/loading.gif') }}')">Patvirtinti ir apmokėti</div>
+    </form>
+
+</div>

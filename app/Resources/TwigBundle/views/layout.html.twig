@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="{{ _charset }}" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>{% block title %}{% endblock %}</title>
+    {% block head %}{% endblock %}
+</head>
+<body>
+<div id="content">
+    <div class="header clear-fix col-lg-12" style="font-family: verdana; text-align: center; padding: 70px; font-size: 38px; font-weight: bold; color: red; letter-spacing: 2px">
+        KLAIDA
+    </div>
+
+    <div class="sf-reset" style="font-family: 'courier new'; text-align: center; line-height: 100px; font-size: 28px; color: #555;">
+        {% block body %}
+        {% endblock %}
+        <a href="{{ path('shop_landingpage') }}" style="text-decoration: none">
+            <p style="font-size: 20px; color: #00BB00; padding: 10px; margin-top: 50px; font-family: verdana; letter-spacing: 1px; text-decoration: underline">Grįžti į Krautuvę</p>
+        </a>
+    </div>
+</div>
+</body>
+</html>

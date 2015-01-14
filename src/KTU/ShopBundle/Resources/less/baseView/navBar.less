@@ -1,0 +1,42 @@
+@import "../mixins";
+
+@navBar-bg-col: #FAFAFA;
+
+.navBar{
+  background-color: @navBar-bg-col;
+  padding: 0px 30px;
+  position: relative;
+  height: auto;
+  box-shadow: 0 3px 4px darken(@navBar-bg-col, 4%);
+  text-align:center;
+
+
+  .navigation{
+    width: 100%;
+
+
+    li{
+      min-width:70px;
+      max-height: 40px;
+      padding-top:12px;
+      padding-bottom:12px;
+      padding-left: 10px;
+      padding-right: 10px;
+
+      a{
+        letter-spacing: 1px;
+        padding: 5px;
+        color: #009900;
+        cursor: pointer;
+        .transition(all 0.3s ease);
+
+        &:hover{
+          color: #00B900;
+        }
+      }
+
+    }
+
+  }
+
+}

@@ -1,0 +1,118 @@
+parameters:
+    user_edit_form.type.class: KTU\ShopBundle\Form\Type\EditUserFormType
+    user_editor.class: KTU\ShopBundle\DependencyInjection\DataManipulation\UserEditor
+    users_repository.class: KTU\ShopBundle\Repository\UsersRepository
+    users_repository.factory_argument: 'KTUShopBundle:Users'
+    categories_editor.class: KTU\ShopBundle\DependencyInjection\DataManipulation\CategoryEditor
+    categories_repository.class: KTU\ShopBundle\Repository\CategoriesRepository
+    categories_repository.factory_argument: 'KTUShopBundle:Categories'
+    user.activity_listener.class: KTU\ShopBundle\EventListener\ActivityListener
+    item_add_form.type.class: KTU\ShopBundle\Form\Type\AddItemFormType
+    item_edit_form.type.class: KTU\ShopBundle\Form\Type\EditItemFormType
+    item_storage_form.type.class: KTU\ShopBundle\Form\Type\ItemStorageFormType
+    item_discount_form.type.class: KTU\ShopBundle\Form\Type\ItemDiscountFormType
+    items_editor.class: KTU\ShopBundle\DependencyInjection\DataManipulation\ItemsEditor
+    category_add.form.type.class: KTU\ShopBundle\Form\Type\addCategoryFormType
+
+services:
+    shop_user.registration.form.type:
+        class: KTU\ShopBundle\Form\Type\RegistrationFormType
+        tags:
+        - { name: form.type, alias: shop_user_registration }
+
+    shop_user_edit.form.type:
+        class: %user_edit_form.type.class%
+        scope: request
+        arguments:
+            - @users_repository
+            - @request
+        tags:
+        - { name: form.type, alias: shop_user_edit }
+
+    users_repository:
+        class:           %users_repository.class%
+        factory_service: doctrine.orm.entity_manager
+        factory_method:  getRepository
+        arguments:
+            - %users_repository.factory_argument%
+
+    shop_user.editor:
+        class: %user_editor.class%
+        arguments:
+            - @users_repository
+            - @doctrine.orm.entity_manager
+
+    shop_categories.editor:
+        class: %categories_editor.class%
+        arguments:
+            - @doctrine.orm.entity_manager
+            - @shop_items.editor
+
+    shop_categories_add.form.type:
+        class: %category_add.form.type.class%
+        tags:
+        - { name: form.type, alias: shop_category_add }
+
+    user.activity_listener:
+        class: %user.activity_listener.class%
+        arguments: [@security.context, @fos_user.user_manager]
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: onCoreController }
+
+    shop_item_add.form.type:
+        class: %item_add_form.type.class%
+        tags:
+            - { name: form.type, alias: shop_item_add }
+
+    shop_item_edit.form.type:
+        class: %item_edit_form.type.class%
+        tags:
+            - { name: form.type, alias: shop_item_edit }
+
+    shop_storage_edit.form.type:
+        class: %item_storage_form.type.class%
+        tags:
+            - { name: form.type, alias: shop_item_storage }
+
+    shop_discount_edit.form.type:
+        class: %item_discount_form.type.class%
+        tags:
+            - { name: form.type, alias: shop_item_discount }
+
+    shop_items.editor:
+        class: %items_editor.class%
+        arguments:
+            - @doctrine.orm.entity_manager
+
+    shop_table.pagination_extension:
+        class: KTU\ShopBundle\Twig\Table\PaginationExtension
+        arguments:
+            - @service_container
+        tags:
+            - { name: twig.extension }
+
+    shop_user.profile.form.type:
+         class: KTU\ShopBundle\Form\Type\ProfileFormType
+         tags:
+         - { name: form.type, alias: shop_user_profile }
+
+    shop_purchases.report.form.type:
+        class: KTU\ShopBundle\Form\Type\addReportFormType
+        tags:
+        - { name: form.type, alias: shop_purchases_report }
+
+    shop_purchases.report.storage.form.type:
+        class: KTU\ShopBundle\Form\Type\StorageReportFormType
+        tags:
+        - { name: form.type, alias: shop_purchases_report_storage }
+
+    shop_purchases.report.delivery.form.type:
+        class: KTU\ShopBundle\Form\Type\DeliveryReportFormType
+        tags:
+        - { name: form.type, alias: shop_purchases_report_delivery }
+
+    shop_purchases.editor:
+        class: KTU\ShopBundle\DependencyInjection\DataManipulation\PurchasesEditor
+        arguments:
+            - @doctrine.orm.entity_manager
+            - @shop_items.editor

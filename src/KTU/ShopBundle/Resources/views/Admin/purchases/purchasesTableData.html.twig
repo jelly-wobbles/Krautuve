@@ -1,0 +1,22 @@
+{% trans_default_domain 'KTUShopBundle' %}
+
+{% for purchase in purchases|slice(start, size) %}
+
+    <tr>
+        <td>{{ purchase.users.fullname }}</td>
+        <td>{{ itemCounts[purchase.id] }}</td>
+        <td>{{ purchasesSums[purchase.id]|number_format(2,',',' ') }} &#8364;
+            {% set priceLT = purchasesSums[purchase.id] * constant('KTU\\ShopBundle\\Entity\\Itemsdetails::LITASMULTIPLIER') %}
+            <span class="secondary-info">({{ priceLT|number_format(2,',',' ') }} Lt)</span>
+        </td>
+        <td>{{ purchase.date|date('Y-m-d H:i:s') }}</td>
+        <td>{{ purchase.Purchasestatuses.status|trans }}</td>
+        <td class="purchases-options table-options">
+            <a class="btn btn-default btn-info" href="{{ path('admin_purchases_more', {'id': purchase.id}) }}"
+                    data-toggle="tooltip" data-placement="bottom" title="Detali informacija.">
+                {{ icon('info-sign') }}
+            </a>
+        </td>
+    </tr>
+
+{% endfor %}

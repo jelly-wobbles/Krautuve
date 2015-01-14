@@ -1,0 +1,11 @@
+shop_homepage:
+    path:     /page/{page}
+    defaults: { _controller: KTUShopBundle:Main:index, page: 1 }
+
+shop_category:
+    path:     /category/{category}/{page}
+    defaults: {  _controller: KTUShopBundle:Main:loadByCategory, category: "", page: 1}
+
+shop_search:
+    path:     /search/{keyword}/{page}
+    defaults: {  _controller: KTUShopBundle:Search:index, keyword: "", page: 1}

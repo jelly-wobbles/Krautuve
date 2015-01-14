@@ -1,0 +1,46 @@
+/**************************************
+          INCLUDES
+***************************************/
+
+@import "admin";
+@import "../table/table.less";
+
+/**************************************
+          STYLES
+***************************************/
+@pag-bor-col-hov: @users-col;
+@pag-font-col-hov: darken(@users-col, 25%);
+@table-col: @users-col;
+@table-col-hover: lighten(@users-col, 25%);
+
+  #users {
+    th:first-child {
+      width: 10%;
+    }
+
+    td:first-child {
+      vertical-align: middle;
+    }
+
+    th:nth-child(2) {
+      width: 16.5%;
+    }
+
+    th:nth-child(3) {
+      width: 16.5%;
+    }
+
+    th:nth-child(4) {
+      width: 26%;
+    }
+
+    th:nth-child(5) {
+      width: 21%;
+    }
+
+    th:last-child {
+      width: 11%;
+      min-width: 212px;
+    }
+
+}

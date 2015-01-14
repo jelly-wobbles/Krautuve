@@ -1,0 +1,159 @@
+activity_check:
+    path:   /user/activity-check
+    defaults: { _controller: KTUShopBundle:Admin:activityCheck }
+    methods: [POST]
+
+admin_nav_bar_state:
+    path:   /admin/navBar/{state}
+    defaults: { _controller: KTUShopBundle:Admin:navigationBarState }
+
+admin_main:
+    path:     /admin
+    defaults: { _controller: KTUShopBundle:Admin:index }
+
+admin_users:
+    path:     /admin/users
+    defaults: { _controller: KTUShopBundle:AdminUsers:index }
+
+admin_users_table_data:
+    path:     /admin/users/render/table
+    defaults: { _controller: KTUShopBundle:AdminUsers:renderTableData }
+    methods:  [POST]
+
+admin_remove_user:
+    path:     /admin/removeUser
+    defaults: { _controller: KTUShopBundle:AdminUsers:removeUser }
+    methods: [POST]
+
+admin_ban_user:
+    path:     /admin/banUser
+    defaults: { _controller: KTUShopBundle:AdminUsers:banUser }
+    methods: [POST]
+
+admin_unban_user:
+    path:     /admin/unbanUser
+    defaults: { _controller: KTUShopBundle:AdminUsers:unbanUser }
+    methods: [POST]
+
+admin_user_edit:
+    path:     /admin/user/edit/{id}
+    defaults: { _controller: KTUShopBundle:AdminUsers:userEdit }
+
+admin_user_more_info:
+    path:     /admin/user/more-info/{id}
+    defaults: { _controller: KTUShopBundle:AdminUsers:moreInfo }
+
+admin_user_activate:
+    path:     /admin/user/activate
+    defaults: { _controller: KTUShopBundle:AdminUsers:activateUser }
+    methods: [POST]
+
+admin_categories:
+    path:     /admin/categories
+    defaults: { _controller: KTUShopBundle:AdminCategories:index }
+
+admin_categories_table_data:
+    path:     /admin/categories/render/table
+    defaults: { _controller: KTUShopBundle:AdminCategories:renderTableData }
+    methods: [POST]
+
+admin_category_add:
+    path:     /admin/category/add
+    defaults: { _controller: KTUShopBundle:AdminCategories:addCategory }
+
+admin_remove_category:
+    path:     /admin/removeCategory
+    defaults: { _controller: KTUShopBundle:AdminCategories:removeCategory }
+    methods: [POST]
+
+admin_items_table_data:
+    path:     /admin/items/render/table
+    defaults: { _controller: KTUShopBundle:AdminItems:renderTableData }
+    methods: [POST]
+
+admin_items:
+    path:     /admin/items
+    defaults: { _controller: KTUShopBundle:AdminItems:index }
+
+admin_item_more_info:
+    path:     /admin/item/more-info/{id}
+    defaults: { _controller: KTUShopBundle:AdminItems:moreInfo }
+
+admin_item_add:
+    path:     /admin/item/add
+    defaults: { _controller: KTUShopBundle:AdminItems:addItem }
+
+admin_item_add_persist:
+    path:     /admin/item/add/persist
+    defaults: { _controller: KTUShopBundle:AdminItems:persistItem }
+    methods: [POST]
+
+admin_item_edit:
+    path:     /admin/item/edit/{id}
+    defaults: { _controller: KTUShopBundle:AdminItems:editItem }
+
+admin_item_edit_update:
+    path:     /admin/item/edit/{id}/update
+    defaults: { _controller: KTUShopBundle:AdminItems:updateItem }
+    methods: [POST]
+
+admin_item_remove:
+    path:     /admin/item/remove
+    defaults: { _controller: KTUShopBundle:AdminItems:removeItem }
+
+admin_item_storage:
+    path:     /admin/item/{id}/storage
+    defaults: { _controller: KTUShopBundle:AdminItems:itemStorage }
+
+admin_item_manage_storage:
+    path:      /admin/item/{id}/storage/manage/{intention}
+    defaults: { _controller: KTUShopBundle:AdminItems:manageItemStorage }
+    methods: [POST]
+
+admin_item_manage_discount:
+    path:      /admin/item/{id}/discount/manage
+    defaults: { _controller: KTUShopBundle:AdminItems:manageItemDiscount }
+    methods: [POST]
+
+admin_item_discount:
+    path:     /admin/item/{id}/discount
+    defaults: { _controller: KTUShopBundle:AdminItems:itemDiscount }
+
+admin_purchases:
+    path:     /admin/purchases
+    defaults: { _controller: KTUShopBundle:AdminPurchases:index }
+
+admin_purchases_table_data:
+    path:     /admin/purchases/render/table
+    defaults: { _controller: KTUShopBundle:AdminPurchases:renderTableData }
+    methods: [POST]
+
+admin_purchases_more:
+    path:     /admin/purchases/more-info/{id}
+    defaults: { _controller: KTUShopBundle:AdminPurchases:purchasesMoreInfo }
+
+admin_purchases_reports:
+    path:     /admin/purchases/reports
+    defaults: { _controller: KTUShopBundle:AdminPurchases:purchasesReports }
+
+admin_purchases_storage_report:
+    path:     /admin/purchases/storage/report
+    defaults: { _controller: KTUShopBundle:AdminPurchases:purchasesStorageReport }
+    methods: [POST]
+
+admin_purchases_delivery_report:
+    path:     /admin/purchases/delivery/report
+    defaults: { _controller: KTUShopBundle:AdminPurchases:purchasesDeliveryReport }
+    methods: [POST]
+
+admin_purchases_storage_report_submit:
+    path:     /admin/purchases/storage/report/submit
+    defaults: { _controller: KTUShopBundle:AdminPurchases:purchasesStorageReportSubmit }
+    methods: [POST]
+
+admin_purchases_delivery_report_submit:
+    path:     /admin/purchases/delivery/report/submit
+    defaults: { _controller: KTUShopBundle:AdminPurchases:purchasesDeliveryReportSubmit }
+    methods: [POST]
+
+

@@ -1,0 +1,77 @@
+{% extends "::base.html.twig" %}
+
+{% block stylesheets %}
+    {% stylesheets '@KTUShopBundle/Resources/less/baseView/*' combine=true %}
+    <link rel="stylesheet" href="{{ asset_url }}">
+    {% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+
+    <div class="main-wrapper clearfix">
+
+        <header class="main-header {% if status == -1 %}bgRed{% endif %}">
+            {% image '@KTUShopBundle/Resources/images/logo.png' %}
+            <img class="main-logo" src="{{ asset_url }}" alt="krautuve_logo"/>
+            {% endimage %}
+        </header>
+
+        <div class="notify-container col-lg-12 col-md-12 col-sm-12 col-xs-12 clearfix">
+
+            {% if title != null %}
+                <div class="title">
+                    <p class="titleText
+                        {% if status == -1 %}red{% endif %}
+                        {% if status == 1 %}green{% endif %}
+                    ">{{ title }}</p>
+                </div>
+            {% endif %}
+
+            {% if text != null %}
+                <div class="message">
+                    <p class="messageText
+                        {% if status == -1 %}red{% endif %}
+                        {% if status == 1 %}green{% endif %}
+                    ">{{ text }}</p>
+                </div>
+            {% endif %}
+
+            <div class="clickToContinue">
+                <p class="clickToContinueText gray">
+                    {% if redirectText == null %}
+                        Spragtelėkite, jeigu norite tęsti
+                    {% else %}
+                        {{ redirectText }}
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+
+
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        var redirectUrl = '{{ redirectUrl }}';
+        var timerSize = 0;
+        {% if timer != null %}
+            timerSize = {{ timer }};
+            timerSize = timerSize * 1000;
+        {% endif %}
+
+        $(document).ready(function() {
+            $("body").click(function(){
+                $(this).css('cursor','wait');
+                location.href = redirectUrl;
+            });
+
+            if( timerSize > 0 ){
+                setTimeout(function() {
+                    location.href = redirectUrl;
+                }, timerSize);
+            }
+        });
+    </script>
+{% endblock %}

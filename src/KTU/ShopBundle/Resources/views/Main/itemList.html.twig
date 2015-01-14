@@ -1,0 +1,40 @@
+<section class="item-list col-lg-10 col-md-12">
+
+    {% if itemEntities == null %}
+        <p class="searchEmptyText col-xs-12">Atsiprašome, tačiau prekių neradome.</p>
+    {% else %}
+
+        {% for item in itemEntities|slice(0, 6) %}
+
+
+            {% set rating = 0 %}
+            {% set sum = 0 %}
+            {% set count = 0 %}
+            {% for rat in ratingEntities %}
+                {% if rat.itemsdetails.id == item.itemsdetails.id %}
+                    {% set sum = sum + rat.rating %}
+                    {% set count = count + 1 %}
+                {% endif %}
+            {% endfor %}
+
+            {% if count != 0 %}
+                {% set rating = sum / count %}
+            {% endif %}
+
+
+            {% set hasDiscount = false %}
+
+            {% if item.itemsdetails.discount != 0 %}
+                {% set hasDiscount = true %}
+            {% endif %}
+
+            {% include '@KTUShop/Main/thumbnail.html.twig' %}
+
+        {% endfor %}
+
+    {% endif %}
+
+
+
+    {% include '@KTUShop/Main/pagination.html.twig' %}
+</section>

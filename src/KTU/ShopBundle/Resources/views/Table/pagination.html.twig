@@ -1,0 +1,35 @@
+<nav class="navigation-container">
+    <div class="pagination-information">
+        <p class="objects-information">Rodomi įrašai: nuo <span id="objects-count-start">1</span> iki
+            <span id="objects-count-end">
+                {% if objectsPerPage > objectCount %}
+                    {{ objectCount }}
+                {% else %}
+                    {{ objectsPerPage }}
+                {% endif %}
+            </span> iš <span id="total-objects">{{ objectCount }}</span></p>
+    </div>
+    <ul class="pagination" data-table-page-count="{{ totalPages }}">
+        {% if totalPages > 5 %}
+            <li id="table-first" class="disabled">&laquo;</li>
+            <li id="table-back" class="disabled">&lsaquo;</li>
+            <li class="active page">1</li>
+            <li class="page">2</li>
+            <li class="page">3</li>
+            <li class="disabled pagination-separator">...</li>
+            <li class="page">{{ totalPages-1 }}</li>
+            <li class="page">{{ totalPages }}</li>
+            <li id="table-next">&rsaquo;</li>
+            <li id="table-last">&raquo;</li>
+        {% elseif totalPages == 1 %}
+        {% else %}
+            <li id="table-back" class="disabled">&lsaquo;</li>
+            <li class="active page">1</li>
+            {% for i in 2..totalPages %}
+                <li class="page">{{ i }}</li>
+            {% endfor %}
+            <li id="table-next">&rsaquo;</li>
+        {% endif %}
+    </ul>
+</nav>
+<div class="clearfix"></div>

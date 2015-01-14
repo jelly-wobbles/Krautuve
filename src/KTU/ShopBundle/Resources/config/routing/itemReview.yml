@@ -1,0 +1,7 @@
+shop_itemReview:
+    path:     /item/{itemID}
+    defaults: {  _controller: KTUShopBundle:itemReview:index, itemID: 0}
+
+shop_itemReview_rate:
+    path:     /item/{itemID}/rate
+    defaults: {  _controller: KTUShopBundle:itemReview:rate, itemID: 0}

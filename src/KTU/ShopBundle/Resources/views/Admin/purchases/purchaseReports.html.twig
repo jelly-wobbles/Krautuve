@@ -1,0 +1,55 @@
+{% embed 'KTUShopBundle:Admin:main.html.twig' %}
+    {% block stylesheets %}
+        {% stylesheets '@KTUShopBundle/Resources/less/admin/adminPurchasesReports.less' combine=true %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+    {% endblock %}
+    {% block content %}
+        {% set locations = [{ 'path': path('admin_purchases'), 'name': 'Pirkimai' },
+                            { 'path': '#', 'name': 'Ataskaitos'}] %}
+        {% include('@KTUShop/Admin/navigationMap.html.twig') with {'locations': locations} %}
+        <div class="table-container">
+            <h4 class="table-name">{{ icon('file') }} Ataskaitos</h4>
+            <form action="#"
+                    {{ form_enctype(form) }} method="POST" name="shop_reports" novalidate>
+                {{ bootstrap_set_style('vertical') }}
+                {{ bootstrap_set_widget_col('6') }}
+                {{ bootstrap_set_label_col('4') }}
+                <div class="upload-controls-container clearfix">
+                    <div class="button-container">
+                        <button type="button" class="btn btn-default btn-upload">
+                            <span class="button-text">Įkelti sandėliavimo ataskaitą(-as)</span>
+                            {{ icon('open') }}
+                            {{ form_widget(form.storageReport) }}
+                        </button>
+                        <a target="_blank" href="../../templates/Sandeliavimo_sablonas.xlsx">Parsisiųsti sandėliavimo ataskaitos šabloną.</a>
+                    </div>
+                    <div class="button-container">
+                        <button type="button" class="btn btn-default btn-upload">
+                            <span class="button-text">Įkelti pristatymų ataskaitą(-as)</span>
+                            {{ icon('open') }}
+                            {{ form_widget(form.deliveryReport) }}
+                        </button>
+                        <a target="_blank" href="../../templates/Pristatimu_sablonas.xlsx">Parsisiųsti pristatymų ataskaitos šabloną.</a>
+                    </div>
+                </div>
+                {{ form_rest(form) }}
+            </form>
+            <div class="table-body">
+
+            </div>
+        </div>
+    {% endblock %}
+{% endembed %}
+{% block javascripts %}
+    <script>
+        var storageReportURL = '{{ path('admin_purchases_storage_report') }}';
+        var deliveryReportURL = '{{ path('admin_purchases_delivery_report') }}';
+    </script>
+    {% javascripts  '@KTUShopBundle/Resources/javascript/assetsClasses/modalWindow.js'
+                    '@KTUShopBundle/Resources/javascript/admin/adminPurchasesReports.js'
+        combine=true %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+

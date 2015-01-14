@@ -1,0 +1,235 @@
+/**************************************
+          INCLUDES
+***************************************/
+
+@import "admin";
+
+/**************************************
+          STYLES
+***************************************/
+@form-col: @items-col;
+
+.form-container{
+
+  .group-label{
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #666;
+    text-align: left;
+  }
+
+  .label-secondary{
+    font-size: 15px;
+  }
+
+  .specs-fields{
+    .specs-values{
+      .input-wrap{
+        width: 48%;
+        float: left;
+        padding-right: 15px;
+        margin-bottom: 15px;
+      }
+    }
+
+    .specs-labels{
+      display: none;
+    }
+  }
+
+  .specs-labels{
+    label{
+      width: 48%;
+      float: left;
+      text-align: left !important;
+    }
+  }
+
+  .specs-value{
+    width:100%;
+    display: none;
+  }
+
+  .remove-btn-wrap{
+    width: 4%;
+    float: right;
+    text-align: center;
+
+    .btn{
+      font-size: 11px;
+      margin: 4px 0;
+      padding: 4px 8px;
+
+      .glyphicon{
+        top: 2px;
+        left: 0px;
+      }
+    }
+
+  }
+
+  #shop_item_edit_description{
+    resize: vertical;
+    height: 200px;
+  }
+
+}
+
+.btn-add-images{
+  margin-top: 10px;
+  position: relative;
+
+  input{
+    opacity: 0;
+    height: 100%;
+    display: block;
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+  }
+
+  &:hover{
+    cursor: pointer !important;
+  }
+
+}
+
+.upload-zone{
+  border: 1px solid #ccc;
+  padding: 15px 15px 0 15px;
+  border-radius: 4px;
+  min-height: 242px;
+}
+
+.rendered-uploads{
+  .clear-fix();
+  position: relative;
+  text-align: center;
+
+  .upload-info, .uploaded-info{
+    position: relative;
+    display: none;
+    width: 150px;
+    height: 210px;
+    margin-right: 1.5%;
+    margin-bottom: 15px;
+
+    float: left;
+    .box-shadow(inset 0 0 10px lighten(@conf-btn-col, 40%));
+    background: lighten(@conf-btn-col, 50%);
+    border: 1px solid @conf-btn-col;
+    border-radius: 4px;
+    padding: 2px;
+    box-sizing: border-box;
+
+    .img-container{
+      height: 122px;
+      display: -webkit-flexbox;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+
+      img{
+        max-width: 144px;
+        max-height: 120px;
+        margin: 0 auto;
+      }
+    }
+
+    .file-name{
+      margin-bottom: 20px;
+      line-height: 32px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      display:block;
+    }
+
+  }
+
+  .upload-text{
+    padding-top: 90px;
+    color: #aaa;
+    font-weight: bold;
+    font-size: 16px;
+    margin: 0 auto;
+    .glyphicon{
+      .animation(upDown 0.75s linear infinite alternate);
+    }
+  }
+
+  .remove-upload, .remove-uploaded{
+    .btn-custom(@remove-img-btn-col, #fff);
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .invalid-upload{
+    .box-shadow(inset 0 0 10px lighten(@remove-field-btn-col, 40%));
+    background: lighten(@remove-field-btn-col, 50%);
+    border: 1px solid @remove-field-btn-col;
+
+    .invalid-text{
+      background-color: #fff;
+      background-color: rgba(255,255,255,0.8);
+      height: 174px;
+      font-size: 17px;
+      color: darken(@remove-field-btn-col, 15%);
+      text-shadow: 1px 1px #ccc;
+      position: absolute;
+      padding-top: 50px;
+      top: 0;
+      left: 0;
+    }
+
+    .remove-upload{
+      .btn-custom(@remove-field-btn-col, #fff);
+    }
+
+  }
+
+
+}
+
+.secondary-info{
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 15px;
+
+  a{
+    color: #666;
+    text-decoration: underline;
+    &:hover{
+      color: #333;
+      text-decoration: underline;
+    }
+  }
+
+}
+
+.discount-info{
+  #discount-price{
+    font-weight: bold;
+  }
+}
+
+.help-push{
+  min-height: 80px;
+}
+
+// -- Animation frames ---
+
+@-webkit-keyframes upDown {
+  from {top:-5px}
+  to {top: 5px}
+}
+
+@keyframes upDown {
+  from {top:-5px}
+  to {top: 5px}
+}

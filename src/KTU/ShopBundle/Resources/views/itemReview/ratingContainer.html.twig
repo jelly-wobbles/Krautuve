@@ -1,0 +1,97 @@
+
+        <div class="blockWrap col-lg-6">
+            <div class="block col-lg-12">
+                <p class="blockTitle">Įvertinkite prekę</p>
+
+
+                    <div class="rateContainer col-lg-12">
+
+                        <div class="starsContainer">
+
+                            <div class="bar"></div>
+
+                            <div class="bg bg1">
+                                <div class="star star1" style="background-image: url('{{ asset('images/star.png') }}');"></div>
+                            </div>
+
+                            <div class="bg bg2">
+                                <div class="star star2" style="background-image: url('{{ asset('images/star.png') }}');"></div>
+                            </div>
+
+                            <div class="bg bg3">
+                                <div class="star star3" style="background-image: url('{{ asset('images/star.png') }}');"></div>
+                            </div>
+
+                            <div class="bg bg4">
+                                <div class="star star4" style="background-image: url('{{ asset('images/star.png') }}');"></div>
+                            </div>
+
+                            <div class="bg bg5">
+                                <div class="star star5" style="background-image: url('{{ asset('images/star.png') }}');"></div>
+                            </div>
+
+                            <div class="bg bg6">
+                                <div class="star star6" style="background-image: url('{{ asset('images/star.png') }}');"></div>
+                            </div>
+
+                            <div class="bg bg7">
+                                <div class="star star7" style="background-image: url('{{ asset('images/star.png') }}');"></div>
+                            </div>
+
+                            <div class="bg bg8">
+                                <div class="star star8" style="background-image: url('{{ asset('images/star.png') }}');"></div>
+                            </div>
+
+                            <div class="bg bg9">
+                                <div class="star star9" style="background-image: url('{{ asset('images/star.png') }}');"></div>
+                            </div>
+
+                            <div class="bg bg10">
+                                <div class="star star10" style="background-image: url('{{ asset('images/star.png') }}');"></div>
+                            </div>
+
+                        </div>
+                        {% if hasRatings == true %}
+                            <p class="ratingP">Bendras klientų įvertinimas: <span class="rating">{{ ratingValue|number_format(1, '.', '') }} / 10</span></p>
+
+                            {% if hasRated %}
+                                <p class="usersRatingP">Jūsų įvertinimas: <span id="usersRating">{{ usersRating }}</span></p>
+                            {% else %}
+                                <p class="usersRatingP" style="display: none; opacity: 0">Jūsų įvertinimas: <span id="usersRating"></span></p>
+                            {% endif %}
+
+                        {% else %}
+                            <p class="noRatingsP on">Ši prekė dar neturi įvertinimų, būkite pirmas!</p>
+                            <p class="ratingP" style="display: none; opacity: 0">Bendras klientų įvertinimas: <span class="rating"></span></p>
+                            <p class="usersRatingP" style="display: none; opacity: 0">Jūsų įvertinimas: <span id="usersRating"></span></p>
+                        {% endif %}
+                    </div>
+
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+

@@ -1,0 +1,92 @@
+{% embed 'KTUShopBundle:Admin:main.html.twig' %}
+    {% block stylesheets %}
+        {% stylesheets '@KTUShopBundle/Resources/less/admin/adminUserMore.less' combine=true %}
+        <link rel="stylesheet" href="{{ asset_url }}">
+        {% endstylesheets %}
+    {% endblock %}
+    {% block content %}
+        {% set locations = [{ 'path': path('admin_users'), 'name': 'Naudotojai' },
+        { 'path': '#', 'name': 'Detali informacija' }] %}
+        {% include('@KTUShop/Admin/navigationMap.html.twig') with {'locations': locations} %}
+        <div class="table-single-row-container">
+            <h4 class="table-name">{{ icon('user') }} {{ user.fullname }} informacija</h4>
+            <div class="table-body">
+                <table class="table user">
+                    <tr>
+                        <td>Būsena:</td>
+                        <td>
+                            {% if user.isActiveNow == 1 %}
+                                <div class="user-status user-active"></div>
+                                <span class="user-status-text">Prisijungęs</span>
+                            {% else %}
+                                <div class="user-status user-not-active"></div>
+                                <span class="user-status-text">Atsijungęs</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% if user.isActiveNow != 1 %}
+                    <tr>
+                        <td>Paskutinis prisijungimas:</td>
+                        <td>{{ user.lastLogin|date('Y-m-d H:i:s') }}</td>
+                    </tr>
+                    {% endif %}
+                    <tr>
+                        <td>Vardas:</td>
+                        <td>{{ user.name }}</td>
+                    </tr>
+                    <tr>
+                        <td>Pavardė:</td>
+                        <td>{{ user.surname }}</td>
+                    </tr>
+                    <tr>
+                        <td>Elektroninis paštas:</td>
+                        <td>{{ user.email }}</td>
+                    </tr>
+                    <tr>
+                        <td>Pašto kodas:</td>
+                        <td>{{ user.zipCode }}</td>
+                    </tr>
+                    <tr>
+                        <td>Telefono numeris:</td>
+                        <td>{{ user.phoneNumber }}</td>
+                    </tr>
+                    <tr>
+                        <td>Adresas:</td>
+                        <td>{{ user.address }}</td>
+                    </tr>
+                    <tr>
+                        <td>Privilegijos:</td>
+                        <td>
+                            {% set role = user.oneRole %}
+                            {% if role == "ROLE_ADMIN" %} {{ 'Admininstratorius' }}
+                            {% elseif role == "ROLE_USER" %} {{ 'Naudotojas' }}
+                            {% elseif role == "ROLE_EDITOR" %} {{ 'Redaktorius' }}
+                            {% elseif role == "ROLE_MANAGER" %} {{ 'Vadybininkas' }}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Aktyvuotas:</td>
+                        <td>
+                            {% if user.enabled == 1 %}
+                                Taip
+                            {% else %}
+                                Ne
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Užblokuotas:</td>
+                        <td>
+                            {% if user.locked == 1 %}
+                                Taip
+                            {% else %}
+                                Ne
+                            {% endif %}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    {% endblock %}
+{% endembed %}

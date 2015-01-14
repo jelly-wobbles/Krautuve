@@ -1,0 +1,23 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST"
+    class="fos_user_registration_register col-lg-offset-3 col-lg-6 col-md-offset-1 col-md-10" novalidate>
+    {{ bootstrap_set_col_size('md') }}
+    {{ bootstrap_set_widget_col(8) }}
+    {{ bootstrap_set_label_col(4) }}
+    {{ form_start(form, { 'style': 'horizontal' }) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.plainPassword.first) }}
+        {{ form_row(form.plainPassword.second) }}
+        {{ form_row(form.name) }}
+        {{ form_row(form.surname) }}
+        <div class="clearfix"></div>
+        <p class="optional-fields">Neprivalomi laukai: </p>
+        {{ form_row(form.address) }}
+        {{ form_row(form.zipCode) }}
+        {{ form_row(form.phoneNumber) }}
+    <div class="text-center clearfix">
+        <input type="submit" class="btn btn-lg btn-primary submit-registration" value="{{ 'registration.submit'|trans }}" />
+    </div>
+    {{ form_end(form) }}
+</form>

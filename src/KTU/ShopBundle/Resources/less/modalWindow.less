@@ -1,0 +1,111 @@
+.modal{
+
+  .modal-header{
+    h4{
+      font-weight: bold;
+    }
+  }
+
+  .modal-inner-content{
+    width: 100%;
+    float: left;
+    text-align: center;
+    min-height: 45px;
+
+    .modal-content-text {
+      display: table-cell;
+      vertical-align: middle;
+      line-height: 22px;
+    }
+
+  }
+
+  .modal-sign{
+    display: none;
+    float: left;
+    width: 15%;
+    font-size: 60px;
+    height: 45px;
+    text-align: center;
+  }
+
+  .glyphicon{
+    text-shadow: 1px 1px #999;
+  }
+
+  .glyphicon-info-sign, .glyphicon-question-sign{
+    color: #265db7;
+  }
+
+  .glyphicon-warning-sign{
+    color: #c40000;
+  }
+
+}
+
+.confirmation-modal, .information-modal, .warning-modal{
+
+  .modal-dialog{
+    width: 500px;
+  }
+
+  .close{
+    opacity: 0.8;
+    color: #fff;
+    text-shadow: none;
+    &:hover{
+      color: #fff;
+      text-decoration: none;
+      opacity: 1;
+    }
+  }
+
+  .modal-header{
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    color: white;
+    background-color: #265db7;
+  }
+
+  .modal-sign{
+    font-size: 45px;
+  }
+
+  .modal-footer{
+    margin-top: 0px;
+    text-align: center;
+    padding: 0 0 15px 0;
+    border-top: none;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+  }
+
+}
+
+.warning-modal{
+
+  .modal-header{
+    background-color: #c40000;
+  }
+}
+
+.emphasis{
+  font-weight: bold;
+}
+
+.progress-modal{
+  .preloader{
+    margin: 30px auto;
+  }
+
+  .progress-map{
+    color: #999;
+    margin-bottom: 15px;
+
+    .active-progress{
+      font-weight: bold;
+      color: #666;
+    }
+
+  }
+}

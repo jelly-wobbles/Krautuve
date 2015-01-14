@@ -1,0 +1,5 @@
+shop_bundle:
+    resource: "@KTUShopBundle/Resources/config/routing.yml"
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
