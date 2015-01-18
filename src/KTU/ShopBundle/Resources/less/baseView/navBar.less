@@ -1,6 +1,7 @@
 @import "../mixins";
 
 @navBar-bg-col: #FAFAFA;
+@navItem-txt-col: #009900;
 
 .navBar{
   background-color: @navBar-bg-col;
@@ -13,11 +14,11 @@
 
   .navigation{
     width: 100%;
-
+    padding: 2px;
 
     li{
       min-width:70px;
-      max-height: 40px;
+      max-height: 50px;
       padding-top:12px;
       padding-bottom:12px;
       padding-left: 10px;
@@ -25,13 +26,17 @@
 
       a{
         letter-spacing: 1px;
-        padding: 5px;
-        color: #009900;
+        padding: 8px;
+        color: @navItem-txt-col;
         cursor: pointer;
-        .transition(all 0.3s ease);
+        border: 1px solid transparent;
+        border-radius: 2px;
+        .transition(all 0.2s ease);
 
         &:hover{
-          color: #00B900;
+          text-decoration: none;
+          color: lighten(@navItem-txt-col, 10%);
+          border: 1px solid lighten(@navItem-txt-col, 10%);
         }
       }
 
