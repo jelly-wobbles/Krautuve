@@ -3,7 +3,7 @@
     {% include '@KTUShop/Main/searchBar.html.twig' %}
 
     {% if app.request.get('keyword') != NULL %}
-        <li class="current"><a>Paieška: <span>"{{ keyword }}"</span></a></li>
+        <li class="current search"><a>Paieška: <span>"{{ keyword }}"</span></a></li>
     {% endif %}
 
     <li {% if app.request.get('category') == NULL and app.request.get('keyword') == NULL %} class="current"{% endif %}><a href="{{ path('shop_landingpage') }}">Visos prekės</a></li>

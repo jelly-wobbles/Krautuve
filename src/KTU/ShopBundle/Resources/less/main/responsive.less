@@ -9,15 +9,19 @@
     border: 0;
     border-bottom: 2px solid #F5F5F5;
     padding: 10px;
+    background: transparent;
+    box-shadow: none;
 
     .searchBar{
       width:30%;
     }
 
-    li{
+    li, .current{
       display: inline-block;
       padding: 0;
       border: 1px solid transparent;
+      box-shadow: none;
+      width: auto;
     }
 
   }
@@ -34,17 +38,19 @@
     margin-bottom: 30px;
     padding: 10px;
     border-bottom: 2px solid #F5F5F5;
+    background: transparent;
 
     .searchBar{
       width:40%;
     }
 
 
-    li{
+    li, .current{
       display: inline-block;
       padding: 0;
       margin: 0;
       border: 1px solid transparent;
+      box-shadow: none;
 
       a{
         padding: 10px;
@@ -59,6 +65,9 @@
 
 
   .nav.categories{
+    background: transparent;
+    box-shadow: none;
+    border: 0;
 
     .searchBar{
       margin-bottom: 50px;
@@ -77,16 +86,18 @@
     }
 
     li{
-
-      &:last-child{
-        border-bottom: 1px solid #EFEFEF;
-      }
-
       a{
         padding: 15px;
         font-size: 18px;
       }
+    }
 
+    .current{
+      background: #FAFAFA;
+
+      a{
+        font-size: 22px;
+      }
     }
   }
 
@@ -248,6 +259,9 @@
 
 
   .nav.categories{
+    background: transparent;
+    border: 0;
+    box-shadow: none;
 
     .searchBar{
       margin-bottom: 50px;
@@ -267,15 +281,25 @@
     li{
       padding: 15px;
       padding-bottom: 0;
-
-      &:last-child{
-        border-bottom: 1px solid #EFEFEF;
-      }
+      border-bottom: 1px solid #EEE;
+      box-shadow: none;
 
       a{
         font-size: 18px;
       }
 
+    }
+
+    .current{
+      background: #F7F7F7;
+      box-shadow: none;
+      width: 100%;
+      border: 0;
+      border-bottom: 1px solid #EEE;
+
+      a{
+        font-size: 20px;
+      }
     }
   }
 
