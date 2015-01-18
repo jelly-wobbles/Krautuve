@@ -1,7 +1,7 @@
 @import "../bootstrap_vars";
 @import "../mixins.less";
 
-
+@categories-bg-col: #FAFAFA;
 
 
 .nav.categories{
@@ -10,7 +10,9 @@
   margin-bottom: 50px;
   height: auto;
   border: 0;
-
+  background: @categories-bg-col;
+  padding: 0;
+  box-shadow: 3px 3px 4px darken(@categories-bg-col, 4%);
 
 
   .searchBar{
@@ -21,11 +23,8 @@
     margin-left:auto;
     margin-right:auto;
     text-align: center;
-
-    &:hover{
-      -webkit-transform: scale(1.05, 1.05);
-      transform: scale(1.05, 1.05);
-    }
+    padding-left: 10px;
+    padding-right: 10px;
 
     .glyphicon-search{
       opacity:0.5;
@@ -76,30 +75,22 @@
 
   li{
     .transition(all 0.2s ease);
-    border: 1px solid transparent;
-    border-bottom: 1px solid #EFEFEF;
+    border: 2px solid transparent;
     padding: 0;
     margin: 0;
-    border-radius: 2px;
+    border-radius: 0;
+    box-shadow: 3px 0 0 darken(@categories-bg-col, 4%);
 
 
-    &:hover{
-      border: 1px solid #00C900;
-
+    &:hover:not(.current){
       a{
-        color: #00C900;
-        text-decoration: none;
+        font-weight: bold;
+        text-decoration: underline;
         background: transparent;
+        font-size: 18px;
       }
     }
 
-    &:last-child{
-      border-bottom: 0;
-
-      &:hover{
-        border: 1px solid #00C900;
-      }
-    }
 
     a{
       color: #009900;
@@ -108,6 +99,30 @@
       width: 100%;
       height: 100%;
       font-size: 16px;
+      line-height: 18px;
+
+      &:active, &:focus{
+        background: transparent;
+      }
+    }
+  }
+
+  .current{
+    border-top: 2px solid darken(@categories-bg-col, 4%);
+    border-bottom: 2px solid darken(@categories-bg-col, 4%);
+    box-shadow: 3px 0 0 #FFF;
+    background: #FFF;
+    font-weight: bold;
+    width: 101%;
+
+    a{
+      font-size: 18px;
+    }
+
+    &:hover{
+      a{
+        background:transparent;
+      }
     }
   }
 

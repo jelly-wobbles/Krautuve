@@ -2,10 +2,11 @@
 
     {% include '@KTUShop/Main/searchBar.html.twig' %}
 
-    <li><a href="{{ path('shop_landingpage') }}">Visos prekės</a></li>
+    <li {% if app.request.get('category') == NULL %} class="current"{% endif %}><a href="{{ path('shop_landingpage') }}">Visos prekės</a></li>
 
     {% for category in categoryEntities %}
-        <li><a href="{{ path('shop_category' ,{ 'category' : category.name }) }}">{{ category.name }}</a></li>
+
+        <li {% if app.request.get('category') == category.name %} class="current"{% endif %} ><a href="{{ path('shop_category' ,{ 'category' : category.name }) }}">{{ category.name }}</a></li>
     {% endfor %}
 
 </ul>
