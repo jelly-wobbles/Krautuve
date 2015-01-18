@@ -2,6 +2,7 @@
 
 namespace KTU\ShopBundle\Controller;
 
+use KTU\ShopBundle\Entity\Categories;
 use KTU\ShopBundle\Entity\Shoppingcarts;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
