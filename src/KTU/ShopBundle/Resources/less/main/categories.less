@@ -9,6 +9,9 @@
   text-align: center;
   margin-bottom: 50px;
   height: auto;
+  border: 0;
+
+
 
   .searchBar{
     padding: 0;
@@ -69,168 +72,42 @@
 
   }
 
-  li a{
-    color: #009900;
-    border-radius: 0;
-    .transition(all 0.2s ease);
 
-    &:hover{
-      color: #00C900;
-      text-decoration: underline;
-      background: transparent;
-    }
-
-  }
 
   li{
+    .transition(all 0.2s ease);
+    border: 1px solid transparent;
     border-bottom: 1px solid #EFEFEF;
     padding: 0;
     margin: 0;
+    border-radius: 2px;
+
+
+    &:hover{
+      border: 1px solid #00C900;
+
+      a{
+        color: #00C900;
+        text-decoration: none;
+        background: transparent;
+      }
+    }
 
     &:last-child{
       border-bottom: 0;
-    }
-  }
 
-}
-
-
-
-
-
-// M E D I U M     S C R E E N
-@media screen and (max-width: @screen-lg)  and (min-width: @screen-md) {
-
-  .nav.categories{
-    text-align: center;
-    margin-bottom: 30px;
-
-    .searchBar{
-      width:30%;
+      &:hover{
+        border: 1px solid #00C900;
+      }
     }
 
-    li a{
-      padding: 5px;
-      margin-right:10px;
-      margin-left: 10px;
+    a{
       color: #009900;
       border-radius: 0;
       .transition(all 0.2s ease);
-
-      &:hover{
-        color: #00C900;
-        text-decoration: underline;
-      }
-
-    }
-
-    li{
-      padding:10px;
-      padding-top: 5px;
-      padding-bottom: 5px;
-      display: inline-block;
-
-    }
-
-  }
-
-}
-
-
-
-
-
-
-
-
-
-
-// S M A L L     S C R E E N
-@media screen and (max-width: @screen-md) and (min-width: @screen-sm){
-
-  .nav.categories{
-    text-align: center;
-    margin-bottom: 30px;
-
-    .searchBar{
-      width:40%;
-    }
-
-    li a{
-      padding: 5px;
-      margin-right:10px;
-      margin-left: 10px;
-      color: #009900;
-      border-radius: 0;
-      .transition(all 0.2s ease);
-
-      &:hover{
-        color: #00C900;
-        text-decoration: underline;
-      }
-
-    }
-
-    li{
-      padding:10px;
-      padding-top: 5px;
-      padding-bottom: 5px;
-      display: inline-block;
-    }
-
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// E X T R A - S M A L L     S C R E E N
-@media screen and (max-width: @screen-sm) and (min-width: @screen-xs) {
-
-  .navigation{
-    li{
       width: 100%;
-      border-bottom: 1px solid #D5D5D5;
-    }
-  }
-
-  .searchBar{
-    width:60%;
-  }
-
-  .main-wrapper{
-    .main-header{
-      height: 220px;
-
-      .main-logo{
-        margin-left: 0;
-        float:none;
-      }
-
-      .userPanel, .logRegPanel, .cartInfo{
-        float:none;
-        margin-left: 0;
-        margin-top: 10px;
-      }
-
-      .cartInfo{
-        margin-top:15px;
-
-        h3{
-          padding-top: 5px;
-        }
-
-      }
+      height: 100%;
+      font-size: 16px;
     }
   }
 
