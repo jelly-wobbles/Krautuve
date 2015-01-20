@@ -24,7 +24,6 @@ class CartController extends Controller
         $totalPriceEU = 0;
         $cartItems = $em->getRepository('KTUShopBundle:Shoppingcarts')->findByusers( $user );
 
-
         if( $cartItems )
         {
             $cartCount = $cartCount = $em->getRepository('KTUShopBundle:Shoppingcarts')->findUsersCartItemsCount($userID);
@@ -32,7 +31,6 @@ class CartController extends Controller
         else{
             return $this->redirect($this->generateUrl('shop_landingpage'));
         }
-
 
         $totalPriceEU = $em->getRepository('KTUShopBundle:Shoppingcarts')->findUsersCartPrice( $userID );
 
@@ -114,6 +112,7 @@ class CartController extends Controller
 
         return new Response( $cartCount );
     }
+
 
     public function recalculatePricesQuantityAction(Request $request){
         $em = $this->getDoctrine()->getManager();
