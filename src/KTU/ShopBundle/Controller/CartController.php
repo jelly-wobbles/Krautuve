@@ -22,7 +22,6 @@ class CartController extends Controller
 
         $cartCount = 0;
         $totalPriceEU = 0;
-        $totalPriceLT = 0;
         $cartItems = $em->getRepository('KTUShopBundle:Shoppingcarts')->findByusers( $user );
 
 
@@ -49,37 +48,14 @@ class CartController extends Controller
 
     public function dropAction($id, $idItem){
 
-        $em = $this->getDoctrine()->getManager();
-        $user = $this->get('security.context')->getToken()->getUser();
-        $userID = $user->getId();
-
-        $text = 'SELECT p
-            FROM KTUShopBundle:Shoppingcarts p
-            WHERE p = '. $idItem;
-
-
-        $query = $em->createQuery(
-            $text
-        );
-
-        $item = $query->getSingleResult();
-
-        if($item)
-        {
-            $em->remove( $item );
-            $em->flush();
-            $amount = $cartCount = $em->getRepository('KTUShopBundle:Shoppingcarts')->findUsersCartItemsCount($userID);
-
-            if( $amount > 0 ) {
-                return new Response( $amount );
-            }
-            else{
-                return $this->redirect($this->generateUrl('shop_landingpage'));
-            }
+        if( $this->checkUser($id) == false ){
+            return $this->redirect( $this->generateUrl('shop_landingpage') );
         }
-        else
-            return new Response( -1 );
 
+        $cartEditor = $this->container->get('cart.editor');
+        $response = $cartEditor->dropItem($id, $idItem);
+
+        return $response;
     }
 
 

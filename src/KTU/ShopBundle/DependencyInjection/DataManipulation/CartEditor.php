@@ -4,6 +4,7 @@ namespace KTU\ShopBundle\DependencyInjection\DataManipulation;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\HttpFoundation\Response;
 
 class CartEditor {
 
@@ -33,6 +34,34 @@ class CartEditor {
 
         $qb->getQuery()->execute();
 
+    }
+
+    public function dropItem($userID, $itemID){
+        $em = $this->em;
+
+        $text = 'SELECT p
+            FROM KTUShopBundle:Shoppingcarts p
+            WHERE p = '. $itemID;
+
+        $query = $em->createQuery($text);
+
+        $item = $query->getSingleResult();
+
+        if($item)
+        {
+            $em->remove( $item );
+            $em->flush();
+            $amount = $cartCount = $em->getRepository('KTUShopBundle:Shoppingcarts')->findUsersCartItemsCount($userID);
+
+            if( $amount > 0 ) {
+                return new Response( $amount );
+            }
+            else{
+                return $this->redirect($this->generateUrl('shop_landingpage'));
+            }
+        }
+        else
+            return new Response( -1 );
     }
 
 } 
