@@ -24,7 +24,7 @@ class MainController extends Controller
         }
 
         $pagesTotal = $this->getPagesTotal();
-        $itemEntities = $this->getItemsByPage($page);
+        $itemEntities = $em->getRepository('KTUShopBundle:Items')->findItemsByPage($page);
         $thumbnailEntities = $this->getThumbnailsByItemsArray($itemEntities);
         $categoryEntities = $this->getCategoriesWithItems();
 
@@ -59,7 +59,8 @@ class MainController extends Controller
 
         $catObj = $em->getRepository('KTUShopBundle:Categories')->findOneByName( $category );
 
-        $itemEntities = $this->getItemsByPage($page, $catObj);
+
+        $itemEntities = $em->getRepository('KTUShopBundle:Items')->findItemsByPage($page, $catObj);
         $categoryEntities = $this->getCategoriesWithItems();
         $pagesTotal = $this->getPagesTotal($catObj);
         $ratingEntities = $em->getRepository('KTUShopBundle:Ratings')->findAll();
@@ -96,45 +97,7 @@ class MainController extends Controller
     /////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////
 
-    private function getItemsByPage($page, $category = NULL){
-        $em = $this->getDoctrine()->getManager();
 
-        $sliceFrom = ($page - 1) * 6 ;
-
-        if( $category == NULL ){
-            $itemEntities = $em->getRepository('KTUShopBundle:Items')->findByitemstatuses(1);
-        }
-        else{
-            $itemDetails = $em->getRepository('KTUShopBundle:Itemsdetails')->findBycategories( $category );
-            $itemEntities = $em->getRepository('KTUShopBundle:Items')->findByitemsdetails( $itemDetails );
-            $Detailsarr = array();
-            $Itemsarr = array();
-            foreach( $itemEntities as $item ){
-                if( !( in_array($item->getItemsdetails()->getId(), $Detailsarr) ) ){
-                    array_push( $Detailsarr, $item->getItemsdetails()->getId() );
-                    array_push( $Itemsarr, $item );
-                }
-            }
-
-            $itemEntities = $Itemsarr;
-        }
-
-
-        $temp = array();
-        foreach($itemEntities as $item){
-            $statusID = $item->getItemstatuses()->getId();
-            $itemQuantity = $item->getQuantity();
-
-            if( ( $statusID == 1 && $itemQuantity > 0 ) ){
-                array_push( $temp, $item );
-            }
-        }
-        $itemEntities = $temp;
-
-        $itemEntities = array_slice( $itemEntities, $sliceFrom, 6);
-
-        return $itemEntities;
-    }
 
     private function getThumbnailsByItemsArray($itemEntities){
 
