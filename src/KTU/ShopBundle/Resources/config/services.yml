@@ -13,8 +13,24 @@ parameters:
     item_discount_form.type.class: KTU\ShopBundle\Form\Type\ItemDiscountFormType
     items_editor.class: KTU\ShopBundle\DependencyInjection\DataManipulation\ItemsEditor
     category_add.form.type.class: KTU\ShopBundle\Form\Type\addCategoryFormType
+    user_cart.class: KTU\ShopBundle\DependencyInjection\DataManipulation\CartEditor
+    cart_items_repository.class: KTU\ShopBundle\Repository\Shoppingcarts
+    cart_items_repository.argument: 'KTUShopBundle:Shoppingcarts'
 
 services:
+    user_cart:
+        class: %user_cart.class%
+        arguments:
+             - @users_repository
+             - @doctrine.orm.entity_manager
+
+    cart_items_repository:
+            class:           %cart_items_repository.class%
+            factory_service: doctrine.orm.entity_manager
+            factory_method:  getRepository
+            arguments:
+                - %cart_items_repository.argument%
+
     shop_user.registration.form.type:
         class: KTU\ShopBundle\Form\Type\RegistrationFormType
         tags:

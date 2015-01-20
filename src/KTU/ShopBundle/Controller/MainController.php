@@ -210,16 +210,11 @@ class MainController extends Controller
 
     private function getUsersCartAmount($user){
         $em = $this->getDoctrine()->getManager();
-        $cartCount = 0;
 
-        $cartItems = $em->getRepository('KTUShopBundle:Shoppingcarts')->findByusers( $user );
+        $cartItemsRepository = $em->getRepository('KTUShopBundle:Shoppingcarts');
 
-        if( $cartItems )
-        {
-            foreach( $cartItems as $cItem ){
-                $cartCount += $cItem->getQuantity();
-            }
-        }
+        $userID = $user->getId();
+        $cartCount = $cartItemsRepository->findUsersCartItemsCount($userID);
 
         return $cartCount;
     }

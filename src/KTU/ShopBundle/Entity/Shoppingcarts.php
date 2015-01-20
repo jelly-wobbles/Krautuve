@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Shoppingcarts
  *
  * @ORM\Table(name="ShoppingCarts", indexes={@ORM\Index(name="fk_ShoppingCarts_Users1_idx", columns={"Users_id"}), @ORM\Index(name="fk_ShoppingCarts_Items1_idx", columns={"Items_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="KTU\ShopBundle\Entity\ShoppingcartsRepository")
  */
 class Shoppingcarts
 {
