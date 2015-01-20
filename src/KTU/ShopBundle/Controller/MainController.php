@@ -14,16 +14,20 @@ class MainController extends Controller
     public function indexAction($page)
     {
         $em = $this->getDoctrine()->getManager();
+        $cartCount = NULL;
 
-        $user = $this->get('security.context')->getToken()->getUser();
-        $userID = $user->getId();
-
+        $securityContext = $this->container->get('security.context');
+        if ($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $user = $securityContext->getToken()->getUser();
+            $userID = $user->getId();
+            $cartCount = $em->getRepository('KTUShopBundle:Shoppingcarts')->findUsersCartItemsCount($userID);
+        }
 
         $pagesTotal = $this->getPagesTotal();
         $itemEntities = $this->getItemsByPage($page);
         $thumbnailEntities = $this->getThumbnailsByItemsArray($itemEntities);
         $categoryEntities = $this->getCategoriesWithItems();
-        $cartCount = $em->getRepository('KTUShopBundle:Shoppingcarts')->findUsersCartItemsCount($userID);
+
         $ratingEntities = $em->getRepository('KTUShopBundle:Ratings')->findAll();
 
 
@@ -44,14 +48,19 @@ class MainController extends Controller
     public function loadByCategoryAction($category, $page)
     {
         $em = $this->getDoctrine()->getManager();
-        $user = $this->get('security.context')->getToken()->getUser();
-        $userID = $user->getId();
+        $cartCount = NULL;
+
+        $securityContext = $this->container->get('security.context');
+        if ($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $user = $securityContext->getToken()->getUser();
+            $userID = $user->getId();
+            $cartCount = $em->getRepository('KTUShopBundle:Shoppingcarts')->findUsersCartItemsCount($userID);
+        }
 
         $catObj = $em->getRepository('KTUShopBundle:Categories')->findOneByName( $category );
 
         $itemEntities = $this->getItemsByPage($page, $catObj);
         $categoryEntities = $this->getCategoriesWithItems();
-        $cartCount = $em->getRepository('KTUShopBundle:Shoppingcarts')->findUsersCartItemsCount($userID);
         $pagesTotal = $this->getPagesTotal($catObj);
         $ratingEntities = $em->getRepository('KTUShopBundle:Ratings')->findAll();
         $thumbnailEntities = $this->getThumbnailsByItemsArray( $itemEntities );
