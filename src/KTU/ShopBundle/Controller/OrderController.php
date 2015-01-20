@@ -40,15 +40,13 @@ class OrderController extends Controller
             return $this->redirect($this->generateUrl('shop_landingpage'));
         }
 
-        $totalPriceEU = $this->getUsersCartPrice($user);
-        $totalPriceLT = $totalPriceEU * 3.4528;
+        $totalPriceEU = $em->getRepository('KTUShopBundle:Shoppingcarts')->findUsersCartPrice( $userID );
 
         return $this->render('KTUShopBundle:Order:index.html.twig',
             array(
                 'cartItems' => $cartItems,
                 'cartCount' => $cartCount,
                 'totalPriceEU' => $totalPriceEU,
-                'totalPriceLT' => $totalPriceLT,
                 'user' => $user,
             ));
     }
@@ -157,23 +155,5 @@ class OrderController extends Controller
     }
 
 
-    private function getUsersCartPrice($user){
-        $em = $this->getDoctrine()->getManager();
-        $totalPrice = 0;
-
-        $cartItems = $em->getRepository('KTUShopBundle:Shoppingcarts')->findByusers( $user );
-
-        if( $cartItems ){
-            foreach( $cartItems as $cItem ){
-                $itemPrice = $cItem->getItems()->getItemsdetails()->getPrice();
-                $quantity = $cItem->getQuantity();
-
-                $totalPrice += ( $itemPrice * $quantity );
-            }
-
-        }
-
-        return ( (float)$totalPrice );
-    }
 
 }

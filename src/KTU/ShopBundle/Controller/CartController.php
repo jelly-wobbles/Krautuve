@@ -35,15 +35,13 @@ class CartController extends Controller
         }
 
 
-        $totalPriceEU = $this->getUsersCartPrice($user);
-        $totalPriceLT = $totalPriceEU * 3.4528;
+        $totalPriceEU = $em->getRepository('KTUShopBundle:Shoppingcarts')->findUsersCartPrice( $userID );
 
         return $this->render('KTUShopBundle:Cart:index.html.twig',
             array(
                 'cartItems' => $cartItems,
                 'cartCount' => $cartCount,
                 'totalPriceEU' => $totalPriceEU,
-                'totalPriceLT' => $totalPriceLT,
             ));
     }
 
@@ -104,7 +102,6 @@ class CartController extends Controller
         $user = $this->get('security.context')->getToken()->getUser();
         $newQuantity = $request->request->get('newQuantity');
         $id = $request->request->get('id');
-
         $user = $em->getRepository('KTUShopBundle:Users')->find( $user->getId() );
         $userID = $user->getId();
         $item = $em->getRepository('KTUShopBundle:Items')->findOneByid( $id );
@@ -180,6 +177,7 @@ class CartController extends Controller
 
         $user = $this->get('security.context')->getToken()->getUser();
         $user = $em->getRepository('KTUShopBundle:Users')->find( $user->getId() );
+        $userID = $user->getId();
 
         $cartItems = $em->getRepository('KTUShopBundle:Shoppingcarts')->findByusers( $user );
 
@@ -187,7 +185,7 @@ class CartController extends Controller
             return new Response( -1 );
         }
 
-        $totalPrice = $this->getUsersCartPrice($user);
+        $totalPrice = $em->getRepository('KTUShopBundle:Shoppingcarts')->findUsersCartPrice( $userID );
 
         return new Response( (float)$totalPrice );
     }
@@ -207,22 +205,4 @@ class CartController extends Controller
     }
 
 
-    private function getUsersCartPrice($user){
-        $em = $this->getDoctrine()->getManager();
-        $totalPrice = 0;
-
-        $cartItems = $em->getRepository('KTUShopBundle:Shoppingcarts')->findByusers( $user );
-
-        if( $cartItems ){
-            foreach( $cartItems as $cItem ){
-                $itemPrice = $cItem->getItems()->getItemsdetails()->getPrice();
-                $quantity = $cItem->getQuantity();
-
-                $totalPrice += ( $itemPrice * $quantity );
-            }
-
-        }
-
-        return ( (float)$totalPrice );
-    }
 }
