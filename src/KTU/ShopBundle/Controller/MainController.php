@@ -23,11 +23,11 @@ class MainController extends Controller
             $cartCount = $em->getRepository('KTUShopBundle:Shoppingcarts')->findUsersCartItemsCount($userID);
         }
 
-        $pagesTotal = $this->getPagesTotal();
+        $itemEntities = $em->getRepository('KTUShopBundle:Items')->findByItemstatuses(1);
+        $pagesTotal = $this->getPagesTotal($itemEntities, 6);
         $itemEntities = $em->getRepository('KTUShopBundle:Items')->findItemsByPage($page);
         $thumbnailEntities = $em->getRepository('KTUShopBundle:Images')->findByItemsArray($itemEntities);
         $categoryEntities = $em->getRepository('KTUShopBundle:Categories')->findThatHaveItems();
-
         $ratingEntities = $em->getRepository('KTUShopBundle:Ratings')->findAll();
 
 
@@ -62,7 +62,7 @@ class MainController extends Controller
 
         $itemEntities = $em->getRepository('KTUShopBundle:Items')->findItemsByPage($page, $catObj);
         $categoryEntities = $em->getRepository('KTUShopBundle:Categories')->findThatHaveItems();
-        $pagesTotal = $this->getPagesTotal($catObj);
+        $pagesTotal = $this->getPagesTotal($itemEntities, 6);
         $ratingEntities = $em->getRepository('KTUShopBundle:Ratings')->findAll();
         $thumbnailEntities = $em->getRepository('KTUShopBundle:Images')->findByItemsArray($itemEntities);
 
@@ -93,33 +93,13 @@ class MainController extends Controller
 
         return $response;
     }
-    
 
 
-    private function getPagesTotal($category = NULL){
-        $em = $this->getDoctrine()->getManager();
 
-        if( $category == NULL ){
-            $allItemEntities = $em->getRepository('KTUShopBundle:Items')->findByitemstatuses(1);
-            $itemsTotal = sizeof( $allItemEntities );
-            $pagesTotal = ceil( $itemsTotal / 6 );
-        }
-        else{
-            $itemDetails = $em->getRepository('KTUShopBundle:Itemsdetails')->findBycategories( $category );
-            $allItemEntities = $em->getRepository('KTUShopBundle:Items')->findByitemsdetails( $itemDetails );
-            $Detailsarr = array();
-            $Itemsarr = array();
-            foreach( $allItemEntities as $item ){
-                if( !( in_array($item->getItemsdetails()->getId(), $Detailsarr) ) ){
-                    array_push( $Detailsarr, $item->getItemsdetails()->getId() );
-                    array_push( $Itemsarr, $item );
-                }
-            }
-            $allItemEntities = $Itemsarr;
-            $itemsTotal = sizeof( $allItemEntities );
-            $pagesTotal = ceil( $itemsTotal / 6 );
-        }
+    private function getPagesTotal($itemEntities, $pageSize){
 
+        $itemsTotal = sizeof( $itemEntities );
+        $pagesTotal = ceil( $itemsTotal / $pageSize );
 
         return $pagesTotal;
     }
