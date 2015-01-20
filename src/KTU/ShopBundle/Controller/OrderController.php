@@ -19,6 +19,7 @@ class OrderController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $user = $this->get('security.context')->getToken()->getUser();
+        $userID = $user->getId();
 
         if( $this->checkUser($id) == false ){
             return $this->redirect( $this->generateUrl('shop_landingpage') );
@@ -33,7 +34,7 @@ class OrderController extends Controller
 
         if( $cartItems )
         {
-            $cartCount = $this->getUsersCartAmount($user);
+            $cartCount = $cartCount = $em->getRepository('KTUShopBundle:Shoppingcarts')->findUsersCartItemsCount($userID);
         }
         else{
             return $this->redirect($this->generateUrl('shop_landingpage'));
@@ -155,22 +156,6 @@ class OrderController extends Controller
         }
     }
 
-
-    private function getUsersCartAmount($user){
-        $em = $this->getDoctrine()->getManager();
-        $cartCount = 0;
-
-        $cartItems = $em->getRepository('KTUShopBundle:Shoppingcarts')->findByusers( $user );
-
-        if( $cartItems )
-        {
-            foreach( $cartItems as $cItem ){
-                $cartCount += $cItem->getQuantity();
-            }
-        }
-
-        return $cartCount;
-    }
 
     private function getUsersCartPrice($user){
         $em = $this->getDoctrine()->getManager();

@@ -32,17 +32,23 @@ class ShoppingcartsRepository extends EntityRepository{
      */
     public function findUsersCartItemsCount($userID)
     {
+        $count = 0;
         $em = $this->getEntityManager();
 
         $qb = $em->createQueryBuilder();
-        $qb->select('sc')
+        $qb->select('sc.quantity')
             ->from('KTUShopBundle:Shoppingcarts', 'sc')
             ->where('sc.users=' . $userID);
 
         $results = $qb->getQuery()->getResult();
-        $results = sizeof($results);
 
-        return $results;
+        if( $results ){
+            foreach( $results as $result ){
+                $count = $count + $result['quantity'];
+            }
+        }
+
+        return $count;
     }
 
 

@@ -14,6 +14,7 @@ class CartController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $user = $this->get('security.context')->getToken()->getUser();
+        $userID = $user->getId();
 
         if( $this->checkUser($id) == false ){
             return $this->redirect( $this->generateUrl('shop_landingpage') );
@@ -27,7 +28,7 @@ class CartController extends Controller
 
         if( $cartItems )
         {
-            $cartCount = $this->getUsersCartAmount($user);
+            $cartCount = $cartCount = $em->getRepository('KTUShopBundle:Shoppingcarts')->findUsersCartItemsCount($userID);
         }
         else{
             return $this->redirect($this->generateUrl('shop_landingpage'));
@@ -52,6 +53,7 @@ class CartController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $user = $this->get('security.context')->getToken()->getUser();
+        $userID = $user->getId();
 
         $text = 'SELECT p
             FROM KTUShopBundle:Shoppingcarts p
@@ -68,7 +70,7 @@ class CartController extends Controller
         {
             $em->remove( $item );
             $em->flush();
-            $amount = $this->getUsersCartAmount($user);
+            $amount = $cartCount = $em->getRepository('KTUShopBundle:Shoppingcarts')->findUsersCartItemsCount($userID);
 
             if( $amount > 0 ) {
                 return new Response( $amount );
@@ -87,17 +89,10 @@ class CartController extends Controller
 
     public function clearAction(){
 
-        $em = $this->getDoctrine()->getManager();
+        $cartEditor = $this->container->get('cart.editor');
         $user = $this->get('security.context')->getToken()->getUser();
-        $cartItems = $em->getRepository('KTUShopBundle:Shoppingcarts')->findByusers( $user );
-
-        if( $cartItems ){
-            foreach( $cartItems as $item ){
-                $em->remove($item);
-            }
-
-            $em->flush();
-        }
+        $userID = $user->getId();
+        $cartEditor->clearUsersCart( $userID );
 
         return new Response(1);
     }
@@ -111,6 +106,7 @@ class CartController extends Controller
         $id = $request->request->get('id');
 
         $user = $em->getRepository('KTUShopBundle:Users')->find( $user->getId() );
+        $userID = $user->getId();
         $item = $em->getRepository('KTUShopBundle:Items')->findOneByid( $id );
         $cartItems = $em->getRepository('KTUShopBundle:Shoppingcarts')->findByusers( $user );
         $cartItem = null;
@@ -122,7 +118,7 @@ class CartController extends Controller
 
         $shopAmount = $item->getQuantity();
 
-        $cartCount = $this->getUsersCartAmount($user);
+        $cartCount = $cartCount = $em->getRepository('KTUShopBundle:Shoppingcarts')->findUsersCartItemsCount($userID);
 
         foreach( $cartItems as $cItem ){
             if( $cItem->getItems()->getId() == $id ){
@@ -210,22 +206,6 @@ class CartController extends Controller
         }
     }
 
-
-    private function getUsersCartAmount($user){
-        $em = $this->getDoctrine()->getManager();
-        $cartCount = 0;
-
-        $cartItems = $em->getRepository('KTUShopBundle:Shoppingcarts')->findByusers( $user );
-
-        if( $cartItems )
-        {
-            foreach( $cartItems as $cItem ){
-                $cartCount += $cItem->getQuantity();
-            }
-        }
-
-        return $cartCount;
-    }
 
     private function getUsersCartPrice($user){
         $em = $this->getDoctrine()->getManager();

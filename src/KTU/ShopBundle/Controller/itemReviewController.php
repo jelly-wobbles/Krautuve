@@ -21,6 +21,7 @@ class itemReviewController extends Controller
         $ratingValue = 0;
         $usersRating = 0;
         $user = $this->get('security.context')->getToken()->getUser();
+        $userID = $user->getId();
 
         if($user == "anon.")
             $isLogged = false;
@@ -45,7 +46,7 @@ class itemReviewController extends Controller
                 $usersRating = $this->getUsersRating($user, $itemDetails);
             }
 
-            $cartCount = $this->getUsersCartAmount( $user );
+            $cartCount = $cartCount = $em->getRepository('KTUShopBundle:Shoppingcarts')->findUsersCartItemsCount($userID);
         }
 
 
@@ -110,21 +111,6 @@ class itemReviewController extends Controller
     /////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////
 
-    private function getUsersCartAmount($user){
-        $em = $this->getDoctrine()->getManager();
-        $cartCount = 0;
-
-        $cartItems = $em->getRepository('KTUShopBundle:Shoppingcarts')->findByusers( $user );
-
-        if( $cartItems )
-        {
-            foreach( $cartItems as $cItem ){
-                $cartCount += $cItem->getQuantity();
-            }
-        }
-
-        return $cartCount;
-    }
 
     private function hasRatings($itemDetails){
         $em = $this->getDoctrine()->getManager();

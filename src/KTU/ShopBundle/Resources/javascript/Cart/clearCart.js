@@ -1,18 +1,15 @@
 
-function indicateProgress(){
-    $("#buyButton").hide();
-    $(".itemContainer").css({"opacity":"0.5"});
-    $(".actions").html("<div class='imgWrap'><img src='/krautuve/web/bundles/ktushop/images/loading.gif'></div>");
-}
-
 
 function clearCart(){
+
 
     var url = window.location.href + '/clear';
     var r = confirm("Ar tikrai norite išmesti visas prekes iš krepšelio?");
     if (r == true) {
 
-        indicateProgress();
+        $("#buyButton").hide();
+        $(".itemContainer").css({"opacity":"0.5"});
+        $(".actions").html("<div class='imgWrap'><img src='/krautuve/web/bundles/ktushop/images/loading.gif'></div>");
 
         $.ajax({
             type: "POST",

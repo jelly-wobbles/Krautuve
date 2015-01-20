@@ -16,13 +16,14 @@ class MainController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $user = $this->get('security.context')->getToken()->getUser();
+        $userID = $user->getId();
 
 
         $pagesTotal = $this->getPagesTotal();
         $itemEntities = $this->getItemsByPage($page);
         $thumbnailEntities = $this->getThumbnailsByItemsArray($itemEntities);
         $categoryEntities = $this->getCategoriesWithItems();
-        $cartCount = $this->getUsersCartAmount($user);
+        $cartCount = $em->getRepository('KTUShopBundle:Shoppingcarts')->findUsersCartItemsCount($userID);
         $ratingEntities = $em->getRepository('KTUShopBundle:Ratings')->findAll();
 
 
@@ -44,12 +45,13 @@ class MainController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $user = $this->get('security.context')->getToken()->getUser();
+        $userID = $user->getId();
 
         $catObj = $em->getRepository('KTUShopBundle:Categories')->findOneByName( $category );
 
         $itemEntities = $this->getItemsByPage($page, $catObj);
         $categoryEntities = $this->getCategoriesWithItems();
-        $cartCount = $this->getUsersCartAmount($user);
+        $cartCount = $em->getRepository('KTUShopBundle:Shoppingcarts')->findUsersCartItemsCount($userID);
         $pagesTotal = $this->getPagesTotal($catObj);
         $ratingEntities = $em->getRepository('KTUShopBundle:Ratings')->findAll();
         $thumbnailEntities = $this->getThumbnailsByItemsArray( $itemEntities );
@@ -87,6 +89,7 @@ class MainController extends Controller
         $amount = 0;
 
         $user = $em->getRepository('KTUShopBundle:Users')->findOneByid( $user->getId() );
+        $userID = $user->getId();
 
         $cartItemsArr = $em->getRepository('KTUShopBundle:Shoppingcarts')->findByusers( $user );
         $cartItem = null;
@@ -125,7 +128,7 @@ class MainController extends Controller
             }
         }
 
-        $amount = $this->getUsersCartAmount($user);
+        $amount = $em->getRepository('KTUShopBundle:Shoppingcarts')->findUsersCartItemsCount($userID);
 
         return new Response( $amount );
     }
@@ -206,17 +209,6 @@ class MainController extends Controller
         $categoryEntities = $temp;
 
         return $categoryEntities;
-    }
-
-    private function getUsersCartAmount($user){
-        $em = $this->getDoctrine()->getManager();
-
-        $cartItemsRepository = $em->getRepository('KTUShopBundle:Shoppingcarts');
-
-        $userID = $user->getId();
-        $cartCount = $cartItemsRepository->findUsersCartItemsCount($userID);
-
-        return $cartCount;
     }
 
 

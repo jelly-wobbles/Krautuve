@@ -17,42 +17,21 @@ class CartEditor {
 
 
     /**
-     * @param $data
-     * @param $id
+     * @param $userID
      *
-     * Puts edited user entity into database
+     * Clears the cart of specified user by his ID
      *
-     * @return KTU/ShopBundle/Entity/Users
-     * @throws /Exception Not found
+     * @return bool
      */
-    public function edit($id, $data)
+    public function clearUsersCart($userID)
     {
-        $user = $this->users->find($id);
 
-        if ($user != null){
+        $qb = $this->em->createQueryBuilder();
 
-            $user->setEmail($data['email']);
-            $user->setName($data['name']);
-            $user->setSurname($data['surname']);
-            $user->setZipCode($data['zipCode']);
-            // Null should be placed instead of 0 when nothing is inputed
-            if($data['phoneNumber'] == 0){
-                $user->setPhoneNumber(null);
-            }
-            else{
-                $user->setPhoneNumber($data['phoneNumber']);
-            }
-            $user->setAddress($data['address']);
-            $user->setRoles(Array($data['oneRole']));
+        $qb->delete('KTUShopBundle:Shoppingcarts', 'sc')
+            ->where('sc.users=' . $userID);
 
-            $this->em->persist($user);
-            $this->em->flush();
-
-            return true;
-
-        }
-
-        throw new \Exception('User with id: '.$id.' does not exist.');
+        $qb->getQuery()->execute();
 
     }
 
