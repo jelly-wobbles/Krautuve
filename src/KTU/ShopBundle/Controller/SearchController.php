@@ -93,15 +93,7 @@ class SearchController extends Controller
         }
 
 
-        foreach ($itemEntities as $item){
-            $detailsObj = $item->getItemsdetails();
-            $imageObj = $em->getRepository('KTUShopBundle:Images')->findByitemsdetails( $detailsObj );
-
-            if($imageObj){
-                $imageObj = array_pop($imageObj);
-                array_push( $thumbnailEntities, $imageObj );
-            }
-        }
+        $thumbnailEntities = $em->getRepository('KTUShopBundle:Images')->findByItemsArray($itemEntities);
 
         $itemsTotal = sizeof( $itemEntities );
         $pagesTotal = ceil( $itemsTotal / 6 );

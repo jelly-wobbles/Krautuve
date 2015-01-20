@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  * Images
  *
  * @ORM\Table(name="Images", indexes={@ORM\Index(name="fk_Images_ItemsDetails1_idx", columns={"ItemsDetails_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="KTU\ShopBundle\Entity\ImagesRepository")
  * @ORM\HasLifecycleCallbacks
  */
 class Images

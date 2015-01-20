@@ -25,8 +25,8 @@ class MainController extends Controller
 
         $pagesTotal = $this->getPagesTotal();
         $itemEntities = $em->getRepository('KTUShopBundle:Items')->findItemsByPage($page);
-        $thumbnailEntities = $this->getThumbnailsByItemsArray($itemEntities);
-        $categoryEntities = $this->getCategoriesWithItems();
+        $thumbnailEntities = $em->getRepository('KTUShopBundle:Images')->findByItemsArray($itemEntities);
+        $categoryEntities = $em->getRepository('KTUShopBundle:Categories')->findThatHaveItems();
 
         $ratingEntities = $em->getRepository('KTUShopBundle:Ratings')->findAll();
 
@@ -61,10 +61,10 @@ class MainController extends Controller
 
 
         $itemEntities = $em->getRepository('KTUShopBundle:Items')->findItemsByPage($page, $catObj);
-        $categoryEntities = $this->getCategoriesWithItems();
+        $categoryEntities = $em->getRepository('KTUShopBundle:Categories')->findThatHaveItems();
         $pagesTotal = $this->getPagesTotal($catObj);
         $ratingEntities = $em->getRepository('KTUShopBundle:Ratings')->findAll();
-        $thumbnailEntities = $this->getThumbnailsByItemsArray( $itemEntities );
+        $thumbnailEntities = $em->getRepository('KTUShopBundle:Images')->findByItemsArray($itemEntities);
 
 
         return $this->render('KTUShopBundle:Main:index.html.twig',
@@ -93,46 +93,7 @@ class MainController extends Controller
 
         return $response;
     }
-
-    /////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////
-
-
-
-    private function getThumbnailsByItemsArray($itemEntities){
-
-        $em = $this->getDoctrine()->getManager();
-        $imageEntities = array();
-
-        foreach ($itemEntities as $item){
-            $detailsObj = $item->getItemsdetails();
-            $imageObj = $em->getRepository('KTUShopBundle:Images')->findByitemsdetails( $detailsObj );
-
-            if($imageObj){
-                $imageObj = array_pop($imageObj);
-                array_push( $imageEntities, $imageObj );
-            }
-        }
-
-        return $imageEntities;
-    }
-
-    private function getCategoriesWithItems(){
-        $em = $this->getDoctrine()->getManager();
-
-        $categoryEntities = $em->getRepository('KTUShopBundle:Categories')->findAll();
-        $temp = array();
-        foreach( $categoryEntities as $category ){
-            $arr = $em->getRepository('KTUShopBundle:Itemsdetails')->findBycategories( $category );
-
-            if( $arr ){
-                array_push( $temp, $category );
-            }
-        }
-        $categoryEntities = $temp;
-
-        return $categoryEntities;
-    }
+    
 
 
     private function getPagesTotal($category = NULL){

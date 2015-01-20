@@ -62,4 +62,27 @@ class CategoriesRepository extends EntityRepository{
 
         return $arr;
     }
+
+    /**
+     *
+     * Get categories that have items in them.
+     *
+     * @return array
+     */
+    public function findThatHaveItems(){
+        $em = $this->getEntityManager();
+
+        $categoryEntities = $em->getRepository('KTUShopBundle:Categories')->findAll();
+        $temp = array();
+        foreach( $categoryEntities as $category ){
+            $arr = $em->getRepository('KTUShopBundle:Itemsdetails')->findBycategories( $category );
+
+            if( $arr ){
+                array_push( $temp, $category );
+            }
+        }
+        $categoryEntities = $temp;
+
+        return $categoryEntities;
+    }
 } 
