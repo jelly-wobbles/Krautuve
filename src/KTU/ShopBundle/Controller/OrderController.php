@@ -27,7 +27,6 @@ class OrderController extends Controller
 
         $cartCount = 0;
         $totalPriceEU = 0;
-        $totalPriceLT = 0;
 
         $cartItems = $em->getRepository('KTUShopBundle:Shoppingcarts')->findByusers( $user );
 
