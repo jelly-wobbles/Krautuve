@@ -11,12 +11,24 @@
                         <li><a href="{{ path('shop_category', {'category': category.name, 'page': currentPage - 1 }) }}">&lsaquo;</a></li>
                     {% endif %}
 
-                    <li class="paginationNumber">
-                        <a
-                                {% if loop.index == currentPage %}class='isCurrent' {% endif %}
-                                href="{{ path('shop_category', {'category': category.name, 'page': loop.index}) }}">{{ loop.index }}
-                        </a>
-                    </li>
+
+                    {% if pagesTotal <= 4 %}
+                        <li class="paginationNumber">
+                            <a
+                                    {% if loop.index == currentPage %}class='isCurrent' {% endif %}
+                                    href="{{ path('shop_category', {'category': category.name, 'page': loop.index}) }}">{{ loop.index }}
+                            </a>
+                        </li>
+                    {% else %}
+                        {% if loop.index <= 2 %}
+                            <li class="paginationNumber">
+                                <a
+                                        {% if loop.index == currentPage %}class='isCurrent' {% endif %}
+                                        href="{{ path('shop_category', {'category': category.name, 'page': loop.index}) }}">{{ loop.index }}
+                                </a>
+                            </li>
+                        {% endif %}
+                    {% endif %}
 
                     {% if loop.last and currentPage != pagesTotal %}
                         <li><a href="{{ path('shop_category', {'category': category.name, 'page': currentPage + 1 }) }}">&rsaquo;</a></li>
@@ -40,12 +52,23 @@
                         <li><a href="{{ path('shop_homepage', {'page': currentPage - 1 }) }}">&lsaquo;</a></li>
                     {% endif %}
 
-                    <li class="paginationNumber">
-                        <a
-                                {% if loop.index == currentPage %}class='isCurrent' {% endif %}
-                                href="{{ path('shop_homepage', {'page': loop.index}) }}">{{ loop.index }}
-                        </a>
-                    </li>
+                    {% if pagesTotal <= 4 %}
+                        <li class="paginationNumber">
+                            <a
+                                    {% if loop.index == currentPage %}class='isCurrent' {% endif %}
+                                    href="{{ path('shop_homepage', {'page': loop.index}) }}">{{ loop.index }}
+                            </a>
+                        </li>
+                    {% else %}
+                        {% if loop.index >= (currentPage - 2) and loop.index <= (currentPage + 2) %}
+                            <li class="paginationNumber">
+                                <a
+                                        {% if loop.index == currentPage %}class='isCurrent' {% endif %}
+                                        href="{{ path('shop_homepage', {'page': loop.index}) }}">{{ loop.index }}
+                                </a>
+                            </li>
+                        {% endif %}
+                    {% endif %}
 
                     {% if loop.last and currentPage != pagesTotal %}
                         <li><a href="{{ path('shop_homepage', {'page': currentPage + 1 }) }}">&rsaquo;</a></li>

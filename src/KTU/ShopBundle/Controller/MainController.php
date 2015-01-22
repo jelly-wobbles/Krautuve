@@ -64,7 +64,7 @@ class MainController extends Controller
         $categoryEntities = $em->getRepository('KTUShopBundle:Categories')->findThatHaveItems();
         $itemsTotal = $em->getRepository('KTUShopBundle:Items')->findAvailableItemsCount($catObj);
         $pagesTotal = $this->getPagesTotal($itemsTotal, 6);
-        
+
         $ratingEntities = $em->getRepository('KTUShopBundle:Ratings')->findAll();
         $thumbnailEntities = $em->getRepository('KTUShopBundle:Images')->findByItemsArray($itemEntities);
 
