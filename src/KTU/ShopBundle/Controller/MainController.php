@@ -23,8 +23,8 @@ class MainController extends Controller
             $cartCount = $em->getRepository('KTUShopBundle:Shoppingcarts')->findUsersCartItemsCount($userID);
         }
 
-        $itemEntities = $em->getRepository('KTUShopBundle:Items')->findByItemstatuses(1);
-        $pagesTotal = $this->getPagesTotal($itemEntities, 6);
+        $itemsTotal = $em->getRepository('KTUShopBundle:Items')->findAvailableItemsCount();
+        $pagesTotal = $this->getPagesTotal($itemsTotal, 6);
         $itemEntities = $em->getRepository('KTUShopBundle:Items')->findItemsByPage($page);
         $thumbnailEntities = $em->getRepository('KTUShopBundle:Images')->findByItemsArray($itemEntities);
         $categoryEntities = $em->getRepository('KTUShopBundle:Categories')->findThatHaveItems();
@@ -96,9 +96,8 @@ class MainController extends Controller
 
 
 
-    private function getPagesTotal($itemEntities, $pageSize){
+    private function getPagesTotal($itemsTotal, $pageSize){
 
-        $itemsTotal = sizeof( $itemEntities );
         $pagesTotal = ceil( $itemsTotal / $pageSize );
 
         return $pagesTotal;

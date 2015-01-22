@@ -21,6 +21,27 @@ class ItemsRepository extends EntityRepository
         return $results = $qb->getQuery()->getResult()[0];
     }
 
+    function findAvailableItems()
+    {
+        $em = $this->getEntityManager();
+
+        $qb = $em->createQueryBuilder();
+        $qb->select('i')
+            ->from('KTUShopBundle:Items', 'i')
+            ->where('i.itemstatuses = ' . '1')
+            ->andWhere('i.quantity > ' . '0');
+
+        $results = $qb->getQuery()->getResult();
+
+        return $results;
+    }
+
+    function findAvailableItemsCount(){
+        $count = sizeof($this->findAvailableItems());
+
+        return $count;
+    }
+
 
     function findItemsByPage($page, $category = NULL){
         $em = $this->getEntityManager();
