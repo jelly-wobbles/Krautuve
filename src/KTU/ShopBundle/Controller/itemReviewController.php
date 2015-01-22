@@ -21,7 +21,7 @@ class itemReviewController extends Controller
         $ratingValue = 0;
         $usersRating = 0;
         $user = $this->get('security.context')->getToken()->getUser();
-        $userID = $user->getId();
+
 
         if($user == "anon.")
             $isLogged = false;
@@ -40,6 +40,7 @@ class itemReviewController extends Controller
         $allItems = $em->getRepository('KTUShopBundle:Items')->findAll();
 
         if( $isLogged ){
+            $userID = $user->getId();
 
             if( $this->hasRated($user, $itemDetails) ){
                 $hasRated = true;
