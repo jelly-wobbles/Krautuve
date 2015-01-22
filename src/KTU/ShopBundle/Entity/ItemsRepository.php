@@ -21,7 +21,7 @@ class ItemsRepository extends EntityRepository
         return $results = $qb->getQuery()->getResult()[0];
     }
 
-    function findAvailableItems()
+    function findAvailableItems($category = NULL)
     {
         $em = $this->getEntityManager();
 
@@ -33,11 +33,30 @@ class ItemsRepository extends EntityRepository
 
         $results = $qb->getQuery()->getResult();
 
+        $tmp = array();
+        if( $category ){
+            foreach($results as $result){
+                $itemCategory = $result->getItemsdetails()->getCategories();
+
+                if( $category == $itemCategory ){
+                    array_push($tmp, $result);
+                }
+            }
+
+            $results = $tmp;
+        }
+
         return $results;
     }
 
-    function findAvailableItemsCount(){
-        $count = sizeof($this->findAvailableItems());
+    function findAvailableItemsCount($category = NULL){
+        if($category){
+            $count = sizeof($this->findAvailableItems($category));
+        }
+        else{
+            $count = sizeof($this->findAvailableItems());
+        }
+
 
         return $count;
     }
