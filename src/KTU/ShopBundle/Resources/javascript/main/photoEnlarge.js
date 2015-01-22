@@ -14,7 +14,7 @@ function Enlarge(element){
 
 }
 
-
+/*
 function isEnlargeable(element){
     var is = true;
     var frameWidth = $(".imageFrame").width();
@@ -28,6 +28,7 @@ function isEnlargeable(element){
 
     return is;
 }
+*/
 
 
 function itemPhotoEnlarge(){
@@ -40,13 +41,12 @@ function itemPhotoEnlarge(){
 
     $('.thumbnail').on('click', '.imageWrap', function() {
         var img = $(this).children('.itemPhoto');
-        if( isEnlargeable( $(this) ) ){
-            Enlarge( img );
-        }
+        Enlarge( img );
     });
 
 }
 
+/*
 function addTags(){
 
     var thisWrap = null;
@@ -60,11 +60,11 @@ function addTags(){
     });
 
 }
+*/
 
 
 $(document).ready(function() {
     $(window).load(function() {
-        addTags();
         itemPhotoEnlarge();
         hideEnlarge();
     });
