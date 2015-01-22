@@ -7,7 +7,7 @@ function indicateProgress(element, check){
 
     if( check == true ){
         $(".actionsButton").attr("disabled", "disabled").css("opacity","0.3");
-        $(element).html("<div class='imgWrap'><img src='/krautuve/web/images/loading.gif'></div>");
+        $(element).html("<div class='imgWrap'><img src='/krautuve/web/bundles/ktushop/images/loading.gif'></div>");
         $(element).siblings("#title, #price").css({"opacity":"0.5"});
     }
     else{
