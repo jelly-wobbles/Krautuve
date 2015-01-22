@@ -7,8 +7,8 @@
             <ul class="pagination">
                 {% for x in 1..pagesTotal %}
                     {% if loop.first and currentPage != 1 %}
-                        <li><a class="toFirst" href="{{ path('shop_category', {'category': category.name, 'page': 1 }) }}">&laquo;</a></li>
-                        <li><a href="{{ path('shop_category', {'category': category.name, 'page': currentPage - 1 }) }}">&lsaquo;</a></li>
+                        <li><a class="arrow toFirst" title="Pirmas" href="{{ path('shop_category', {'category': category.name, 'page': 1 }) }}">&laquo;</a></li>
+                        <li><a class="arrow toPrevious" title="Praeitas" href="{{ path('shop_category', {'category': category.name, 'page': currentPage - 1 }) }}">&lsaquo;</a></li>
                     {% endif %}
 
 
@@ -16,7 +16,7 @@
                         <li class="paginationNumber">
                             <a
                                     {% if loop.index == currentPage %}class='isCurrent' {% endif %}
-                                    href="{{ path('shop_category', {'category': category.name, 'page': loop.index}) }}">{{ loop.index }}
+                                    title="{{ loop.index }} puslapis" href="{{ path('shop_category', {'category': category.name, 'page': loop.index}) }}">{{ loop.index }}
                             </a>
                         </li>
                     {% else %}
@@ -24,15 +24,15 @@
                             <li class="paginationNumber">
                                 <a
                                         {% if loop.index == currentPage %}class='isCurrent' {% endif %}
-                                        href="{{ path('shop_category', {'category': category.name, 'page': loop.index}) }}">{{ loop.index }}
+                                        title="{{ loop.index }} puslapis" href="{{ path('shop_category', {'category': category.name, 'page': loop.index}) }}">{{ loop.index }}
                                 </a>
                             </li>
                         {% endif %}
                     {% endif %}
 
                     {% if loop.last and currentPage != pagesTotal %}
-                        <li><a href="{{ path('shop_category', {'category': category.name, 'page': currentPage + 1 }) }}">&rsaquo;</a></li>
-                        <li><a class="toLast" href="{{ path('shop_category', {'category': category.name, 'page': pagesTotal }) }}">&raquo;</a></li>
+                        <li><a class="arrow toNext" title="Kitas" href="{{ path('shop_category', {'category': category.name, 'page': currentPage + 1 }) }}">&rsaquo;</a></li>
+                        <li><a class="arrow toLast" title="Paskutinis" href="{{ path('shop_category', {'category': category.name, 'page': pagesTotal }) }}">&raquo;</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
@@ -48,15 +48,15 @@
             <ul class="pagination">
                 {% for x in 1..pagesTotal %}
                     {% if loop.first and currentPage != 1 %}
-                        <li><a class="toFirst" href="{{ path('shop_homepage', {'page': 1 }) }}">&laquo;</a></li>
-                        <li><a href="{{ path('shop_homepage', {'page': currentPage - 1 }) }}">&lsaquo;</a></li>
+                        <li><a class="arrow toFirst" title="Pirmas" href="{{ path('shop_homepage', {'page': 1 }) }}">&laquo;</a></li>
+                        <li><a class="arrow toPrevious" title="Praeitas" href="{{ path('shop_homepage', {'page': currentPage - 1 }) }}">&lsaquo;</a></li>
                     {% endif %}
 
                     {% if pagesTotal <= 4 %}
                         <li class="paginationNumber">
                             <a
                                     {% if loop.index == currentPage %}class='isCurrent' {% endif %}
-                                    href="{{ path('shop_homepage', {'page': loop.index}) }}">{{ loop.index }}
+                                    title="{{ loop.index }} puslapis" href="{{ path('shop_homepage', {'page': loop.index}) }}">{{ loop.index }}
                             </a>
                         </li>
                     {% else %}
@@ -64,18 +64,21 @@
                             <li class="paginationNumber">
                                 <a
                                         {% if loop.index == currentPage %}class='isCurrent' {% endif %}
-                                        href="{{ path('shop_homepage', {'page': loop.index}) }}">{{ loop.index }}
+                                        title="{{ loop.index }} puslapis" href="{{ path('shop_homepage', {'page': loop.index}) }}">{{ loop.index }}
                                 </a>
                             </li>
                         {% endif %}
                     {% endif %}
 
                     {% if loop.last and currentPage != pagesTotal %}
-                        <li><a href="{{ path('shop_homepage', {'page': currentPage + 1 }) }}">&rsaquo;</a></li>
-                        <li><a class="toLast" href="{{ path('shop_homepage', {'page': pagesTotal }) }}">&raquo;</a></li>
+                        <li><a class="arrow toNext" title="Kitas" href="{{ path('shop_homepage', {'page': currentPage + 1 }) }}">&rsaquo;</a></li>
+                        <li><a class="arrow toLast" title="Paskutinis" href="{{ path('shop_homepage', {'page': pagesTotal }) }}">&raquo;</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
+
+            <div class="tip">puslapis {{ currentPage }} iš {{ pagesTotal }}</div>
+
         </div>
 
     {% endif %}
