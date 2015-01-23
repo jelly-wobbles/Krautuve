@@ -1,5 +1,5 @@
 
-    <p class="addToCart fixed" onclick="toCart('{{ path('shop_toCart') }}', {{ itemEntity.id }}, this, '{{ asset('images/loading.gif') }}', '{{ path('shop_cart', { 'id': app.user.id }) }}')">
+    <p class="addToCart fixed" onclick="toCart('{{ path('shop_toCart') }}', {{ itemEntity.id }}, this, '{{ asset('bundles/ktushop/images/loading.gif') }}', '{{ path('shop_cart', { 'id': app.user.id }) }}')">
         {% image '@KTUShopBundle/Resources/images/logoCartGreenPlus.png' %}
         <img src="{{ asset_url }}" alt="...">
         {% endimage %}į krepšelį
