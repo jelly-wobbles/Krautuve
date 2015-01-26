@@ -50,7 +50,7 @@ class itemReviewController extends Controller
 
         if( $this->hasRatings($itemDetails) ){
             $hasRatings = true;
-            $ratingValue = $this->getRating($itemDetails);
+            $ratingValue = $em->getRepository('KTUShopBundle:Ratings')->findItemsDetailsAverage( $itemDetails->getId() );
         }
 
 
@@ -98,61 +98,21 @@ class itemReviewController extends Controller
 
 
     private function hasRatings($itemDetails){
-        $em = $this->getDoctrine()->getManager();
-        $ratingEntities = $em->getRepository('KTUShopBundle:Ratings')->findAll();
-
-        $hasRatings = false;
-        foreach( $ratingEntities as $rating ){
-            if( $rating->getItemsdetails()->getId() == $itemDetails->getId() ){
-                $hasRatings = true;
-            }
-        }
-
-        return $hasRatings;
+        $ratingsEditor = $this->container->get('ratings.editor');
+        $result = $ratingsEditor->hasRatings($itemDetails);
+        return $result;
     }
 
-    private function getRating($itemDetails){
-        $em = $this->getDoctrine()->getManager();
-        $ratingEntities = $em->getRepository('KTUShopBundle:Ratings')->findAll();
-
-        $ratingsSum = 0;
-        $ratingsCount = 0;
-        foreach( $ratingEntities as $rating ){
-            if( $rating->getItemsdetails()->getId() == $itemDetails->getId() ){
-                $ratingsSum = $ratingsSum + $rating->getRating();
-                $ratingsCount = $ratingsCount + 1;
-            }
-        }
-
-        $ratingValue = ($ratingsSum / $ratingsCount);
-
-        return $ratingValue;
-    }
 
     private function hasRated( $user, $itemDetails ){
-        $em = $this->getDoctrine()->getManager();
-        $ratingEntities = $em->getRepository('KTUShopBundle:Ratings')->findAll();
-
-        $hasRated = false;
-        foreach( $ratingEntities as $rating ) {
-            if ($rating->getUsers()->getId() == $user->getId() && $rating->getItemsdetails()->getId() == $itemDetails->getId()) {
-                $hasRated = true;
-            }
-        }
-
-        return $hasRated;
+        $ratingsEditor = $this->container->get('ratings.editor');
+        $result = $ratingsEditor->hasRated( $user, $itemDetails);
+        return $result;
     }
 
     private function getUsersRating($user, $itemDetails){
         $em = $this->getDoctrine()->getManager();
-        $ratingEntities = $em->getRepository('KTUShopBundle:Ratings')->findAll();
-
-        $usersRating = -1;
-        foreach( $ratingEntities as $rating ) {
-            if ($rating->getUsers()->getId() == $user->getId() && $rating->getItemsdetails()->getId() == $itemDetails->getId()) {
-                $usersRating = $rating->getRating();
-            }
-        }
+        $usersRating = $em->getRepository('KTUShopBundle:Ratings')->findUsersRating( $user, $itemDetails );
 
         return $usersRating;
     }

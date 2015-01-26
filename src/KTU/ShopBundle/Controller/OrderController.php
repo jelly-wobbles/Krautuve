@@ -97,43 +97,16 @@ class OrderController extends Controller
         $hasChanges = false;
         $em = $this->getDoctrine()->getManager();
         $user = $this->get('security.context')->getToken()->getUser();
+        $userEditor = $this->container->get('shop_user.editor');
 
 
         $user = $em->getRepository('KTUShopBundle:Users')->findOneByid( $id );
-
         $number = $request->request->get('number');
         $address = $request->request->get('address');
         $name = $request->request->get('name');
         $surname = $request->request->get('surname');
 
-        $currentNumber = $user->getPhoneNumber();
-        $currentAddress = $user->getAddress();
-        $currentName = $user->getName();
-        $currentSurname = $user->getSurname();
-
-        if( $number != $currentNumber ){
-            $user->setPhoneNumber( $number );
-            $hasChanges = true;
-        }
-
-        if( $address != $currentAddress ){
-            $user->setAddress( $address );
-            $hasChanges = true;
-        }
-
-        if( $name != $currentName ){
-            $user->setName( $name );
-            $hasChanges = true;
-        }
-
-        if( $surname != $currentSurname ){
-            $user->setSurname( $surname );
-            $hasChanges = true;
-        }
-
-        if( $hasChanges ){
-            $em->flush();
-        }
+        $userEditor->updateContactInformation( $user, $number, $address, $name, $surname );
 
         return new Response( 1 );
     }
@@ -143,14 +116,10 @@ class OrderController extends Controller
     //////////////////////////////////////////////////////////
 
     private function checkUser($id){
-        $user = $this->get('security.context')->getToken()->getUser();
+        $userEditor = $this->container->get('shop_user.editor');
+        $result = $userEditor->compareID($id);
 
-        if( $user->getId() != $id ){
-            return false;
-        }
-        else{
-            return true;
-        }
+        return $result;
     }
 
 

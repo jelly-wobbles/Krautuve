@@ -17,7 +17,10 @@ class MainController extends Controller
         $cartCount = NULL;
 
         $securityContext = $this->container->get('security.context');
-        if ($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+        $userEditor = $this->container->get('shop_user.editor');
+        $isLogged = $userEditor->isLogged();
+
+        if ( $isLogged ){
             $user = $securityContext->getToken()->getUser();
             $userID = $user->getId();
             $cartCount = $em->getRepository('KTUShopBundle:Shoppingcarts')->findUsersCartItemsCount($userID);

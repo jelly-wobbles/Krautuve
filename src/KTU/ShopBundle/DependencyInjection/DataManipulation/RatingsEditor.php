@@ -62,4 +62,61 @@ class RatingsEditor {
     }
 
 
+    /**
+     * @param $itemsDetails
+     *
+     * check if itemsDetails has ratings
+     *
+     * @return bool
+     */
+    public function hasRatings($itemsDetails){
+        $em = $this->em;
+
+        $qb = $em->createQueryBuilder();
+        $qb->select('count(r) as amount')
+            ->from('KTUShopBundle:Ratings', 'r')
+            ->where('r.itemsdetails = '. $itemsDetails->getId() );
+
+        $result = $qb->getQuery()->getSingleResult();
+        $result = (int) $result['amount'];
+
+        if( $result > 0 ){
+            $hasRatings = true;
+        }
+        else{
+            $hasRatings = false;
+        }
+
+        return $hasRatings;
+    }
+
+
+    /**
+     * @param $itemsDetails
+     * @param $user
+     *
+     * check if a user has already rated itemsdetails
+     *
+     * @return bool
+     */
+    public function hasRated($user, $itemsDetails){
+        $em = $this->em;
+
+        $qb = $em->createQueryBuilder();
+        $qb->select('count(r) as amount')
+            ->from('KTUShopBundle:Ratings', 'r')
+            ->where('r.itemsdetails = '. $itemsDetails->getId() . ' and r.users = ' . $user->getId() );
+
+        $result = $qb->getQuery()->getSingleResult();
+        $result = (int) $result['amount'];
+
+        if( $result > 0 ){
+            $hasRated = true;
+        }
+        else{
+            $hasRated = false;
+        }
+
+        return $hasRated;
+    }
 } 

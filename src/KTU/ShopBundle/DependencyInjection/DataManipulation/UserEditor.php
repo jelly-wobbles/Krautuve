@@ -190,5 +190,49 @@ class UserEditor {
     }
 
 
+    /**
+     * @param $user
+     * @param $number
+     * @param $address
+     * @param $name
+     * @param $surname
+     *
+     * Updates user's contact information
+     *
+     * @return bool
+     */
+    public function updateContactInformation($user, $number, $address, $name, $surname ){
+        $em = $this->em;
+
+        $currentNumber = $user->getPhoneNumber();
+        $currentAddress = $user->getAddress();
+        $currentName = $user->getName();
+        $currentSurname = $user->getSurname();
+
+        if( $number != $currentNumber ){
+            $user->setPhoneNumber( $number );
+            $hasChanges = true;
+        }
+
+        if( $address != $currentAddress ){
+            $user->setAddress( $address );
+            $hasChanges = true;
+        }
+
+        if( $name != $currentName ){
+            $user->setName( $name );
+            $hasChanges = true;
+        }
+
+        if( $surname != $currentSurname ){
+            $user->setSurname( $surname );
+            $hasChanges = true;
+        }
+
+        if( $hasChanges ){
+            $em->flush();
+        }
+    }
+
 
 } 
