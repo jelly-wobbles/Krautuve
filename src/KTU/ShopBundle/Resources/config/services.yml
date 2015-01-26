@@ -57,6 +57,7 @@ services:
         arguments:
             - @users_repository
             - @doctrine.orm.entity_manager
+            - @security.context
 
     shop_categories.editor:
         class: %categories_editor.class%

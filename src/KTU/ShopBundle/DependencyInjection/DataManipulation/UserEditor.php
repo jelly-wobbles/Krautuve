@@ -9,10 +9,12 @@ class UserEditor {
 
     private $em;
     private $users;
+    private $context;
 
-    public function __construct(EntityRepository $users, EntityManager $em){
+    public function __construct(EntityRepository $users, EntityManager $em, $context){
         $this->users = $users;
         $this->em = $em;
+        $this->context = $context;
     }
 
     /**
@@ -146,6 +148,30 @@ class UserEditor {
         }
 
         throw new \Exception('User with email: '.$email.' does not exist.');
+    }
+
+    /**
+     * @param $userID
+     *
+     * Checks if argument user ID is equal to current user's ID
+     *
+     * @return bool
+     * @throws \Exception Not found
+     */
+    public function compareID($userID){
+        $user = $this->context->getToken()->getUser();
+
+        if( $user != null ){
+            if( $user->getId() != $userID ){
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+        else{
+            return false;
+        }
 
     }
 

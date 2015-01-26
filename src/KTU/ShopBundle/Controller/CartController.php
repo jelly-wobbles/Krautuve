@@ -26,7 +26,7 @@ class CartController extends Controller
 
         if( $cartItems )
         {
-            $cartCount = $cartCount = $em->getRepository('KTUShopBundle:Shoppingcarts')->findUsersCartItemsCount($userID);
+            $cartCount = $em->getRepository('KTUShopBundle:Shoppingcarts')->findUsersCartItemsCount($userID);
         }
         else{
             return $this->redirect($this->generateUrl('shop_landingpage'));
@@ -169,6 +169,7 @@ class CartController extends Controller
     ////////////////////////////////////////////////////////////////////////
 
     private function checkUser($id){
+        /*
         $user = $this->get('security.context')->getToken()->getUser();
 
         if( $user->getId() != $id ){
@@ -177,6 +178,12 @@ class CartController extends Controller
         else{
             return true;
         }
+        */
+
+        $userEditor = $this->container->get('shop_user.editor');
+        $result = $userEditor->compareID($id);
+
+        return $result;
     }
 
 
