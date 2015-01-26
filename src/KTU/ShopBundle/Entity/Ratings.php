@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Ratings
  *
  * @ORM\Table(name="Ratings", indexes={@ORM\Index(name="fk_Ratings_Users1_idx", columns={"Users_id"}), @ORM\Index(name="fk_Ratings_ItemsDetails1_idx", columns={"ItemsDetails_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="KTU\ShopBundle\Entity\RatingsRepository")
  */
 class Ratings
 {

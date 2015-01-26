@@ -82,21 +82,12 @@ class itemReviewController extends Controller
         $item = $em->getRepository('KTUShopBundle:Items')->findOneById($itemID);
         $itemDetails = $item->getItemsdetails();
         $value = $request->request->get('value');
-        $usersRatings = $em->getRepository('KTUShopBundle:Ratings')->findByusers( $user );
 
         $ratingsEditor = $this->container->get('ratings.editor');
         $ratingsEditor->removeRating( $userID, $itemDetails->getId() );
+        $ratingsEditor->addRating( $user, $itemDetails, $value );
 
-        $ratingObj = new Ratings();
-        $ratingObj->setRating( $value );
-        $ratingObj->setUsers( $user );
-        $ratingObj->setItemsdetails( $itemDetails );
-
-        $em->persist( $ratingObj );
-        $em->flush();
-
-
-        $ratingValue = $this->getRating($itemDetails);
+        $ratingValue = $em->getRepository('KTUShopBundle:Ratings')->findItemsDetailsAverage( $itemDetails->getId() );
 
 
         return new Response( $ratingValue );
