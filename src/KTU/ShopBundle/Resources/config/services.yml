@@ -16,6 +16,10 @@ parameters:
     cart_editor.class: KTU\ShopBundle\DependencyInjection\DataManipulation\CartEditor
     cart_editor_repository.class: KTU\ShopBundle\Repository\Shoppingcarts
     cart_editor_repository.argument: 'KTUShopBundle:Shoppingcarts'
+    ratings_editor.class: KTU\ShopBundle\DependencyInjection\DataManipulation\RatingsEditor
+    ratings_editor_repository.class: KTU\ShopBundle\Repository\Ratings
+    ratings_editor_repository.argument: 'KTUShopBundle:Ratings'
+
 
 services:
     cart.editor:
@@ -23,6 +27,19 @@ services:
         arguments:
              - @cart_editor_repository
              - @doctrine.orm.entity_manager
+
+    ratings.editor:
+        class: %ratings_editor.class%
+        arguments:
+             - @ratings_editor_repository
+             - @doctrine.orm.entity_manager
+
+    ratings_editor_repository:
+            class:           %ratings_editor_repository.class%
+            factory_service: doctrine.orm.entity_manager
+            factory_method:  getRepository
+            arguments:
+                - %ratings_editor_repository.argument%
 
     cart_editor_repository:
             class:           %cart_editor_repository.class%

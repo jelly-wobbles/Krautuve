@@ -24,8 +24,7 @@ class CartController extends Controller
         $totalPriceEU = 0;
         $cartItems = $em->getRepository('KTUShopBundle:Shoppingcarts')->findByusers( $user );
 
-        if( $cartItems )
-        {
+        if( $cartItems ){
             $cartCount = $em->getRepository('KTUShopBundle:Shoppingcarts')->findUsersCartItemsCount($userID);
         }
         else{
@@ -165,21 +164,10 @@ class CartController extends Controller
         return new Response( (float)$totalPrice );
     }
 
-    ////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////
+
+
 
     private function checkUser($id){
-        /*
-        $user = $this->get('security.context')->getToken()->getUser();
-
-        if( $user->getId() != $id ){
-            return false;
-        }
-        else{
-            return true;
-        }
-        */
-
         $userEditor = $this->container->get('shop_user.editor');
         $result = $userEditor->compareID($id);
 

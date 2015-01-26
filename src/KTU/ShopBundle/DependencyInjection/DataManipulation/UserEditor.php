@@ -175,4 +175,20 @@ class UserEditor {
 
     }
 
+
+
+    /**
+     *
+     * Checks if the user is logged in
+     *
+     * @return bool
+     */
+    public function isLogged(){
+        $result = $this->context->isGranted('IS_AUTHENTICATED_REMEMBERED');
+
+        return $result;
+    }
+
+
+
 } 

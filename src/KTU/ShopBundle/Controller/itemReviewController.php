@@ -16,15 +16,12 @@ class itemReviewController extends Controller
         $cartCount = 0;
         $quantity = 0;
         $hasRated = false;
-        $isLogged = true;
         $hasRatings = false;
         $ratingValue = 0;
         $usersRating = 0;
         $user = $this->get('security.context')->getToken()->getUser();
-
-
-        if($user == "anon.")
-            $isLogged = false;
+        $userEditor = $this->container->get('shop_user.editor');
+        $isLogged = $userEditor->isLogged();
 
 
         $itemEntity = $em->getRepository('KTUShopBundle:Items')->findOneById($itemID);
@@ -81,18 +78,14 @@ class itemReviewController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $user = $this->get('security.context')->getToken()->getUser();
+        $userID = $user->getId();
         $item = $em->getRepository('KTUShopBundle:Items')->findOneById($itemID);
         $itemDetails = $item->getItemsdetails();
         $value = $request->request->get('value');
         $usersRatings = $em->getRepository('KTUShopBundle:Ratings')->findByusers( $user );
 
-        if( $usersRatings ){
-            foreach(  $usersRatings as $rating ){
-                if( $rating->getItemsdetails()->getId() == $itemDetails->getId() ){
-                    $em->remove($rating);
-                }
-            }
-        }
+        $ratingsEditor = $this->container->get('ratings.editor');
+        $ratingsEditor->removeRating( $userID, $itemDetails->getId() );
 
         $ratingObj = new Ratings();
         $ratingObj->setRating( $value );
