@@ -1,0 +1,115 @@
+
+/**************************************
+          INCLUDES
+***************************************/
+
+@import "reset.less";
+@import "mixins.less";
+@import "global.less";
+
+/**************************************
+          VARIABLES
+***************************************/
+
+@header-bg-col: #347bb8;
+
+@footer-height: 100px;
+@footer-bg-col: #222222;
+
+/**************************************
+          STYLES
+***************************************/
+
+
+  .login-header{
+    background-color: @header-bg-col;
+    padding: 0 30px;
+    position: relative;
+    height: 100px;
+    box-shadow: 0 2px 4px lighten(@header-bg-col, 25%);
+    min-width: 400px;
+
+    .side-logo-md{
+      margin: 30px 15px 0 0;
+      float: right;
+    }
+
+    .side-logo-sm{
+      float: right;
+      display: none;
+    }
+
+
+    @media (max-width: 768px) {
+
+      height: 94px;
+
+      .side-logo-md{
+        display: none;
+      }
+
+      .side-logo-sm{
+        margin-top: 29px;
+        display: block;
+      }
+
+      h2{
+        font-size: 50px;
+      }
+
+    }
+
+  }
+
+    .errors{
+      text-align: center;
+      color: #FF0000;
+      width: 400px;
+      margin-top: 30px;
+      margin-bottom: -30px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 10px;
+      background: #FFF2F2;
+      font-weight: bold;
+    }
+
+    .fos_user_login {
+      margin-top: 50px;
+      width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0;
+
+      input, label{
+        display: block;
+        width: 400px;
+        padding: 5px;
+        height: 20px;
+        border-radius: 2px;
+      }
+
+      label{
+        margin-top: 10px;
+        font-size: 18px;
+      }
+
+      #_submit{
+        padding: 15px;
+        margin-top: 30px;
+        width: 100px;
+        line-height: 0;
+        margin-left: auto;
+        margin-right: auto;
+        background: #347bb8;
+        border: 0;
+        color: #FFF;
+        cursor: pointer;
+      }
+
+      #_submit:hover{
+        text-decoration: underline;
+        background: #236aa7;
+      }
+
+    }

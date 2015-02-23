@@ -1,6 +1,4 @@
-/**
- * Created by MV on 2014.09.28.
- */
+
 function search(src){
     var keyword = "";
     var searchButton = $(".searchButton");
