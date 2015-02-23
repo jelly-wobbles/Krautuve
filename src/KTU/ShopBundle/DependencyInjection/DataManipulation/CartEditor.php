@@ -31,7 +31,8 @@ class CartEditor {
         $qb = $this->em->createQueryBuilder();
 
         $qb->delete('KTUShopBundle:Shoppingcarts', 'sc')
-            ->where('sc.users=' . $userID);
+            ->where('sc.users = :userID')
+            ->setParameter('userID', $userID);
 
         $qb->getQuery()->execute();
 
@@ -49,19 +50,20 @@ class CartEditor {
     public function dropItem($userID, $itemID){
         $em = $this->em;
 
-        $text = 'SELECT p
-            FROM KTUShopBundle:Shoppingcarts p
-            WHERE p = '. $itemID;
+        $qb = $em->createQueryBuilder();
 
-        $query = $em->createQuery($text);
+        $qb->select('p')
+            ->from('KTUShopBundle:Shoppingcarts', 'p')
+            ->where('p = :itemID')
+            ->setParameter('itemID', $itemID);
 
-        $item = $query->getSingleResult();
+        $item = $qb->getQuery()->getSingleResult();
 
         if($item)
         {
             $em->remove( $item );
             $em->flush();
-            $amount = $cartCount = $em->getRepository('KTUShopBundle:Shoppingcarts')->findUsersCartItemsCount($userID);
+            $amount = $em->getRepository('KTUShopBundle:Shoppingcarts')->findUsersCartItemsCount($userID);
 
             if( $amount > 0 ) {
                 return new Response( $amount );
