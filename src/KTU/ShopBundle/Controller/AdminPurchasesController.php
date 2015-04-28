@@ -24,7 +24,8 @@ class AdminPurchasesController extends Controller
 
     public function renderTableDataAction(Request $request)
     {
-        if ($request->getMethod() == "POST") {
+
+       // if ($request->getMethod() == "POST") {
             $em = $this->getDoctrine()->getManager();
             $purchasesRep = $em->getRepository('KTUShopBundle:Purchases');
             $start = $request->request->get('start');
@@ -48,9 +49,9 @@ class AdminPurchasesController extends Controller
                 'size' => $size
             ));
 
-        }
+       // }
 
-        return new Response('false');
+       return new Response('false');
 
     }
 

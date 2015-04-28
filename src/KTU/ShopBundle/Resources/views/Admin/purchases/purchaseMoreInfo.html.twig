@@ -23,7 +23,7 @@
                     </tr>
                     <tr>
                         <td>Būklė:</td>
-                        <td>{{ purchase.Purchasestatuses.status|trans }}</td>
+                        <td>{{ purchase.Purchasestatuses.status|trans({}, 'KTUShopBundle')  }}</td>
                     </tr>
                     <tr>
                         <td>Data:</td>

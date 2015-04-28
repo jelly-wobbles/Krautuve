@@ -46,6 +46,7 @@ class PurchasesRepository extends EntityRepository
         $qb->select('sum(ip.itemprice * ip.quantity) as price')
             ->from('KTUShopBundle:Itemspurchases', 'ip')
             ->where('ip.purchases='.$id);
+        ;
 
         $results = $qb->getQuery()->getResult();
 
@@ -53,6 +54,20 @@ class PurchasesRepository extends EntityRepository
             return (double) $results[0]['price'];
         else
             return null;
+    }
+
+    public function findPurchasesByStatus($status)
+    {
+        $em = $this->getEntityManager();
+
+        $qb = $em->createQueryBuilder();
+        $qb->select('p')
+            ->from('KTUShopBundle:Purchases', 'p')
+            ->where('p.purchasestatuses='.$status);
+
+        $results = $qb->getQuery()->getResult();
+
+        return $results;
     }
 
 } 

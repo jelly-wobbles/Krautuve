@@ -203,6 +203,7 @@ class UserEditor {
      */
     public function updateContactInformation($user, $number, $address, $name, $surname ){
         $em = $this->em;
+        $hasChanges = false;
 
         $currentNumber = $user->getPhoneNumber();
         $currentAddress = $user->getAddress();

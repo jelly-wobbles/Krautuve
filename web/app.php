@@ -27,3 +27,5 @@ $request = Request::createFromGlobals();
 $response = $kernel->handle($request);
 $response->send();
 $kernel->terminate($request, $response);
+ini_set('display_errors', 0);
+error_reporting(0);

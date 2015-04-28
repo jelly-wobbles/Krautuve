@@ -1,0 +1,1 @@
+*/15 * * * * public_html/krautuve/app/console cron:clearPurchases

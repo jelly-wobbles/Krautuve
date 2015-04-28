@@ -34,8 +34,7 @@ class EditUserFormType extends AbstractType
             ->add('address','text',
                 array('label' => 'form.address', 'translation_domain' => 'KTUShopBundle'))
             ->add('oneRole', 'choice',
-                array('choices' => array('ROLE_USER' => 'Naudotojas', 'ROLE_EDITOR' => 'Redaktorius',
-                    'ROLE_MANAGER' => 'Vadybininkas', 'ROLE_ADMIN' => 'Administratorius'),
+                array('choices' => array('ROLE_USER' => 'Naudotojas', 'ROLE_ADMIN' => 'Administratorius'),
                       'required' => 'true',
                       'label' => 'form.roles',
                       'translation_domain' => 'KTUShopBundle',
